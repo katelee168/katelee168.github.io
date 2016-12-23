@@ -4,17 +4,17 @@ markdown:	kramdown
 permalink:	/blog/:title
 
 # Setup
-title:            Thinny
+title:            Katherine Lee
 tagline:          'blog'
-description:      'My personal blog.'
-url:              http://camporez.github.io
+description:      'Personal'
+url:              http://katelee168.github.io
 baseurl:          
 commentsystem:    google
 disqus:           example
 
 author:
-  name:           Ian Brunelli
-  url:            https://google.com/+IanCamporezBrunelli
+  name:           Katherine Lee
+  # url:            https://google.com/+IanCamporezBrunelli
 
 paginate:         5
 
@@ -23,28 +23,28 @@ icon:             /assets/images/icon.png
 cover:            /assets/images/cover.jpg
 
 social:
-  - icon:         twitter
-    url:          https://twitter.com/iancamporez
-    desc:         Follow me on twitter
+  # - icon:         twitter
+  #   url:          https://twitter.com/iancamporez
+  #   desc:         Follow me on twitter
 
   - icon:         github
-    url:          https://github.com/camporez
+    url:          https://github.com/katelee168
     desc:         Fork me on github
 
-  - icon:         googleplus-alt
-    url:          https://google.com/+IanCamporezBrunelli
-    desc:         Add me on google+
+  # - icon:         googleplus-alt
+  #   url:          https://google.com/+IanCamporezBrunelli
+  #   desc:         Add me on google+
 
-  - icon:         feed
-    url:          http://camporez.github.io/atom.xml
-    desc:         Subscribe to my feed
+  # - icon:         feed
+  #   url:          http://camporez.github.io/atom.xml
+  #   desc:         Subscribe to my feed
 
 menu:
-  - title:        Home
+  - title:        About
     url:          /
 
-  - title:        About
-    url:          /about
+  - title:        Blog
+    url:          /blog
 
 copyright:
   author:         Camporez
