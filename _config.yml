@@ -4,9 +4,8 @@ author:
 title: "Katherine Lee"
 baseurl: ""
 permalink: "/blog/:title"
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.\n"
+description: "A [blank] and [blank]\n"
 url: "http://katelee168.github.io"
-github_username: katelee168
 
 markdown: kramdown
 commentsystem: google
@@ -18,3 +17,6 @@ exclude:
 gems: 
   - jekyll-feed
 
+# Social
+github_username: katelee168
+linkedin_username: katherinelee8

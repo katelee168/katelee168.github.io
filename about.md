@@ -4,10 +4,13 @@ title: About
 permalink: /about/
 ---
 
-Hi there, 
+Welcome! I'm Katherine, a [blank]
 
-I’m Katherine! 
-
-Currently I’m working on: 
-
-Some projects in my spare time:
+Projects
+<icon>
+Resume
+<icon>
+Musings
+<icon>
+Crochet
+<icon>
