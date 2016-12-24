@@ -1,0 +1,20 @@
+--- 
+- 
+  href: /about/
+  title: About
+- 
+  href: /blog/
+  title: Blog
+- 
+  href: /resume/
+  title: Resume
+- 
+  href: /projects/
+  subcategories: 
+    - 
+      subref: /research/
+      subtitle: Research
+    - 
+      subref: /crochet/
+      subtitle: Crochet
+  title: Projects
