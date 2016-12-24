@@ -8,10 +8,9 @@ title: Hyperspace by HTML5 UP
 	<div class="inner">
 		<nav>
 			<ul>
-				<li><a href="#intro">Welcome</a></li>
-				<li><a href="#one">Who we are</a></li>
-				<li><a href="#two">What we do</a></li>
-				<li><a href="#three">Get in touch</a></li>
+				<li><a href="#intro">About</a></li>
+				<li><a href="#one">Projects</a></li>
+				<li><a href="#two">Crochet</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -23,7 +22,7 @@ title: Hyperspace by HTML5 UP
 <!-- Intro -->
 <section id="intro" class="wrapper style1 fullscreen fade-up">
 	<div class="inner">
-		<h1>Hyperspace</h1>
+		<h1>Katherine Lee</h1>
 		<p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br />
 		and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
 		<ul class="actions">
