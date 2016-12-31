@@ -106,15 +106,13 @@ title: Katherine Lee
 		<h2>Crochet</h2>
 		<p>Little Amigurumi animals</p>
 		<div class="features">
-			<section>
-				<span class="icon major fa-code"></span>
-				<h3>Lorem ipsum amet</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+			<section style="padding-left: 48px;">
+				<h3>Hazel the Bunny</h3>
+				<img src="images/hazel.JPG" alt="" data-position="center center" width="75%"/>
 			</section>
-			<section>
-				<span class="icon major fa-lock"></span>
-				<h3>Aliquam sed nullam</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+			<section style="padding-left: 48px;">
+				<h3>Arthur the Elephant</h3>
+				<p></p>
 			</section>
 		</div>
 		<div height='100px'>
