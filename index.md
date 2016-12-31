@@ -23,8 +23,13 @@ title: Katherine Lee
 <section id="intro" class="wrapper style1 fullscreen fade-up">
 	<div class="inner">
 		<h1>Katherine Lee</h1>
-		<p>some words!<br />
-		some more words!</p>
+		<p>I'm a human who enjoys studying other humans, <a href="#one">statistics</a>, and education. <br/>
+		Sometimes I link the three. <br />
+		<br/>
+		<br/>
+		I spend a good amount of time dancing, <a href="#two">crocheting</a>, and reading. <br/>
+		I love listening to 80's cardio, jazz, and <a href="https://soundcloud.com/yosi-horikawa/bubbles">Yosi Horikawa</a></p>
+
 		<!--<ul class="actions">
 			<li><a href="#one" class="button scrolly">Projects</a></li>
 		</ul>-->
@@ -96,10 +101,10 @@ title: Katherine Lee
 </section>
 
 <!-- Two -->
-<!--<section id="two" class="wrapper style3 fade-up">
+<section id="two" class="wrapper style3 fade-up fullscreen">
 	<div class="inner">
-		<h2>What we do</h2>
-		<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
+		<h2>Crochet</h2>
+		<p>Little Amigurumi animals</p>
 		<div class="features">
 			<section>
 				<span class="icon major fa-code"></span>
@@ -111,29 +116,8 @@ title: Katherine Lee
 				<h3>Aliquam sed nullam</h3>
 				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
 			</section>
-			<section>
-				<span class="icon major fa-cog"></span>
-				<h3>Sed erat ullam corper</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-			</section>
-			<section>
-				<span class="icon major fa-desktop"></span>
-				<h3>Veroeros quis lorem</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-			</section>
-			<section>
-				<span class="icon major fa-chain"></span>
-				<h3>Urna quis bibendum</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-			</section>
-			<section>
-				<span class="icon major fa-diamond"></span>
-				<h3>Aliquam urna dapibus</h3>
-				<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-			</section>
 		</div>
-		<ul class="actions">
-			<li><a href="#" class="button">Learn more</a></li>
-		</ul>
+		<div height='100px'>
+		</div>
 	</div>
-</section>-->
+</section>
