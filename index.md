@@ -28,7 +28,7 @@ title: Katherine Lee
 		<br/>
 		<br/>
 		I spend a good amount of time dancing, <a href="#two">crocheting</a>, and reading. <br/>
-		I love listening to 80's cardio, jazz, and <a href="https://soundcloud.com/yosi-horikawa/bubbles">Yosi Horikawa</a></p>
+		I love listening to 80's cardio, jazz, and <a href="https://soundcloud.com/yosi-horikawa/bubbles">Yosi Horikawa</a>.</p>
 
 		<!--<ul class="actions">
 			<li><a href="#one" class="button scrolly">Projects</a></li>
@@ -57,7 +57,7 @@ title: Katherine Lee
 				<h2>Functional connectivity in C. elegans</h2>
 				<p>words about brain connectivity!</p>
 				<ul class="actions">
-					<li><a href="#" class="button">Learn more</a></li>
+					<li><a href="celegans.html" class="button">Learn more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -104,7 +104,7 @@ title: Katherine Lee
 <section id="two" class="wrapper style3 fade-up fullscreen">
 	<div class="inner">
 		<h2>Crochet</h2>
-		<p>Little Amigurumi animals</p>
+		<p>little amigurumi animals</p>
 		<div class="features">
 			<section style="padding-left: 48px;">
 				<h3>Hazel the Bunny</h3>
@@ -119,3 +119,4 @@ title: Katherine Lee
 		</div>
 	</div>
 </section>
+
