@@ -10,13 +10,12 @@ title: Katherine Lee
 # email: youremailaddress@gmail.com
 description: Katherine's description
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://katelee168.gitlab.io" # the base hostname & protocol for your site
+url: "https://katelee168.github.io" # the base hostname & protocol for your site
 
 # Social settings
 # 500px_url: 
 # facebook_url: https://facebook.com
 github_url: https://github.com/u/katelee168
-# gitlab_url: https://gitlab.com/u/katelee168
 # googleplus_url: https://plus.google.com/u/0/+katelee168
 # instagram_url: https://instagram.com
 linkedin_url: https://www.linkedin.com/in/katherinelee8
