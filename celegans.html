@@ -22,8 +22,8 @@
 				<nav>
 					<ul>
 						<li><a href="index.html">Home</a></li>
-						<li><a href="generic.html" class="active">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
+						<li><a href="index.html#one" class="active">Projects</a></li>
+						<li><a href="index.html#two">Crochet</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -35,13 +35,11 @@
 					<section id="main" class="wrapper">
 						<div class="inner">
 							<h1 class="major">C. elegans </h1>
-							<p>Which neurons in the brain of a C. elegans are connected with each other.</p>
+							
+							
+							  <p>I worked in Professor Jonathan Pillow’s computational neuroscience lab at Princeton on understanding which neurons in the brain of a C. elegans are connected with each other. For this project, I derived a extension of Automatic Relevance Determination (ARD, a bayesian approach to determining weights between neurons) which we called Group ARD. This extension allows us to do further regularization and compute which neurons were connected at any time-point back. </p>
 
-							<p>We want to get a better understanding of how neurons in the brain are connected. But before we attempt the 100 billion neurons in human brains, let’s try a simpler task—the 120 neurons in the brain of a C. elegans. Since C. elegans are transparent, we can genetically modify their neurons with fluorescent proteins and record activity with calcium dependent (GCaMP) and independent proteins (GFP, RFP). The data set we’re working with is the first to have freely moving C. elegans and recordings from every neuron in the brain. Though this means we can answer questions like, can we predict the movements of the C. elegans through studying their neural activity, it also means we’re subject to motion artifacts. </p>
-
-							<p>We created a better way of recovering neural activity from our fluorescence recordings by modeling the calcium dependent signal as a product of activity and motion, assuming a gaussian smoothness prior over the motion artifact, then deriving a set of equations to recover the motion artifact and the activity. </p>
-
-							<p>With the neural activity, we create an autoregressive model of connectivity, then use Automatic Relevance Determination (ARD) to derive a probabilistic prediction of weights. Since we’re interested in whether there is a connection between a pair of neurons (regardless of what the weights are at a given time-step back), we extended ARD to Group ARD and can use that to derive the connectivity of neurons in the brain. </p>
+							  <p>We also created a novel method of recovering neural activity from fluorescence recordings that were subject to motion artifacts. Currently, neuroscientists will simply divide the calcium dependent signal with the calcium independent signal leading to high variations when the independent signal is small or noisy. We instead assume a multiplicative relationship, place Gaussian smoothing priors on our motion artifacts, and are able to derive a much closer estimate to neural activity. </p>
 						</div>
 					</section>
 

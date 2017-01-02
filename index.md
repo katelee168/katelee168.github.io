@@ -43,9 +43,9 @@ title: Katherine Lee
 		<div class="content">
 			<div class="inner">
 				<h2>Functional connectivity through fMRI imaging</h2>
-				<p>words about brain connectivity!</p>
+				<p>understanding changes in functional connectivity due to changes in realistic stimuli</p>
 				<ul class="actions">
-					<li><a href="#" class="button">Learn more</a></li>
+					<li><a href="sherlock.html" class="button">Learn more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -55,7 +55,7 @@ title: Katherine Lee
 		<div class="content">
 			<div class="inner">
 				<h2>Functional connectivity in C. elegans</h2>
-				<p>words about brain connectivity!</p>
+				<p>which neurons in the brain of a <i>C. elegans</i> are connected with each other?</p>
 				<ul class="actions">
 					<li><a href="celegans.html" class="button">Learn more</a></li>
 				</ul>
@@ -66,10 +66,10 @@ title: Katherine Lee
 		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
 		<div class="content">
 			<div class="inner">
-				<h2>Generating quality Reddit comments</h2>
-				<p>about the NBA!</p>
+				<h2>Generating Reddit comments</h2>
+				<p>deep learning to generate good reddit posts</p>
 				<ul class="actions">
-					<li><a href="#" class="button">Learn more</a></li>
+					<li><a href="reddit.html" class="button">Learn more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -79,9 +79,9 @@ title: Katherine Lee
 		<div class="content">
 			<div class="inner">
 				<h2>Optimally seating employees at Google</h2>
-				<p>with mixed integer linear programs!</p>
+				<p>with Mixed Integer Linear Programs</p>
 				<ul class="actions">
-					<li><a href="#" class="button">Learn more</a></li>
+					<li><a href="or.html" class="button">Learn more</a></li>
 				</ul>
 			</div>
 		</div>
@@ -91,9 +91,9 @@ title: Katherine Lee
 		<div class="content">
 			<div class="inner">
 				<h2>Feature selection for hyperspectral imagery</h2>
-				<p>at the naval lab</p>
+				<p>automatically classifying hyperspectral images</p>
 				<ul class="actions">
-					<li><a href="#" class="button">Learn more</a></li>
+					<li><a href="hyperspectral.html" class="button">Learn more</a></li>
 				</ul>
 			</div>
 		</div>
