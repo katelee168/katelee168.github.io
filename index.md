@@ -142,7 +142,7 @@ title: Katherine Lee
 
     <h3>Or find me online:</h3>
     <ul class="icons">
-      <li><a href="github.com/katelee168" class="icon fa-github fa-2x"><span class="label">Github</span></a></li>
+      <li><a href="https://github.com/katelee168" class="icon fa-github fa-2x"><span class="label">Github</span></a></li>
       <li><a href="https://www.linkedin.com/in/katherinelee8/" class="icon fa-linkedin fa-2x"><span class="label">Linkedin</span></a></li>
     </ul>
   </div>
