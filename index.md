@@ -10,11 +10,25 @@ title: Katherine Lee
 			<ul>
 				<li><a href="#intro">About</a></li>
 				<li><a href="#one">Research & Projects</a></li>
+                          <div class="menu" style="display: none;">
+                              <!-- <ul>
+                                  <li>Button1</li>
+                                  <li>Button2</li>
+                                  <li>Button3</li>
+                              </ul> -->
+                          </div>
 				<li><a href="#two">Crochet</a></li>
+                        <li><a href="#three">Contact</a></li>
 			</ul>
 		</nav>
 	</div>
 </section>
+
+<!-- $(document).ready(function() {
+    $('#one').click(function() {
+            $('.menu').slideToggle("fast");
+    });
+}); -->
 
 <!-- Wrapper -->
 <div id="wrapper">
@@ -118,5 +132,19 @@ title: Katherine Lee
 		<div height='100px'>
 		</div>
 	</div>
+</section>
+
+<!-- Three -->
+<section id="three" class="wrapper style4 fade-up fullscreen">
+  <div class='inner'>
+    <h2>Contact</h2>
+      <p>kl9 at princeton.edu<br/><br/></p>
+
+    <h3>Or find me online:</h3>
+    <ul class="icons">
+      <li><a href="github.com/katelee168" class="icon fa-github fa-2x"><span class="label">Github</span></a></li>
+      <li><a href="https://www.linkedin.com/in/katherinelee8/" class="icon fa-linkedin fa-2x"><span class="label">Linkedin</span></a></li>
+    </ul>
+  </div>
 </section>
 
