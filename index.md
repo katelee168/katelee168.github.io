@@ -53,7 +53,7 @@ title: Katherine Lee
 <!-- One -->
 <section id="one" class="wrapper style2 spotlights">
 	<section>
-		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+		<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 		<div class="content">
 			<div class="inner">
 				<h2>Functional connectivity through fMRI imaging</h2>
@@ -65,10 +65,10 @@ title: Katherine Lee
 		</div>
 	</section>
 	<section>
-		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+		<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 		<div class="content">
 			<div class="inner">
-				<h2>Functional connectivity in C. elegans</h2>
+				<h2>Functional connectivity in <i>C. elegans</i></h2>
 				<p>which neurons in the brain of a <i>C. elegans</i> are connected with each other?</p>
 				<ul class="actions">
 					<li><a href="celegans.html" class="button">Learn more</a></li>
@@ -77,7 +77,7 @@ title: Katherine Lee
 		</div>
 	</section>
 	<section>
-		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+		<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 		<div class="content">
 			<div class="inner">
 				<h2>Generating Reddit comments</h2>
@@ -89,7 +89,7 @@ title: Katherine Lee
 		</div>
 	</section>
 	<section>
-		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+		<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 		<div class="content">
 			<div class="inner">
 				<h2>Optimally seating employees at Google</h2>
@@ -101,7 +101,7 @@ title: Katherine Lee
 		</div>
 	</section>
 	<section>
-		<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+		<!-- <a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a> -->
 		<div class="content">
 			<div class="inner">
 				<h2>Feature selection for hyperspectral imagery</h2>
@@ -145,6 +145,9 @@ title: Katherine Lee
       <li><a href="https://github.com/katelee168" class="icon fa-github fa-2x"><span class="label">Github</span></a></li>
       <li><a href="https://www.linkedin.com/in/katherinelee8/" class="icon fa-linkedin fa-2x"><span class="label">Linkedin</span></a></li>
     </ul>
+
+  </div>
+  <div style='font-color: gray; position: absolute; bottom: 0'>Theme: Hyperspace from HTML5 UP
   </div>
 </section>
 
