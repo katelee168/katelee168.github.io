@@ -126,7 +126,7 @@ title: Katherine Lee
 			</section>
 			<section style="padding-left: 48px;">
 				<h3>Arthur the Elephant</h3>
-				<p></p>
+				<img src="images/arthur.JPG" alt="" data-position="center center" width="75%"/>
 			</section>
 		</div>
 		<div height='100px'>
