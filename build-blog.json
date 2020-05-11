@@ -1,0 +1,7 @@
+{
+    // "shell_cmd": "pandoc -s -S --toc -c pandoc.css -o $file_base_name.html $file_name",
+    // "shell_cmd": "pandoc -s -S -c /Users/katherinelee/pandoc/pandoc.css --filter /Users/katherinelee/pandoc-crossref/.cabal-sandbox/bin/pandoc-crossref --filter /Users/katherinelee/pandoc-crossref/.cabal-sandbox/bin/pandoc-citeproc -o $file_base_name.html $file_name",
+    "shell_cmd": "pandoc -s -S -c pandoc.css --filter /Users/katherinelee/pandoc-crossref/.cabal-sandbox/bin/pandoc-crossref  --include-in-header=/Users/katherinelee/Projects/katelee168.github.io/google-analytics.html --filter /Users/katherinelee/pandoc-crossref/.cabal-sandbox/bin/pandoc-citeproc -o $file_base_name.html $file_name",
+    // "shell_cmd": "pandoc -s -S -c pandoc.css -o $file_base_name.html $file_name",
+    "path": "/usr/texbin:$PATH"
+}
