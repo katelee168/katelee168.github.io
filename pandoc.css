@@ -12,9 +12,9 @@ html {
 body {
   color: #444;
   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-  font-size: 12px;
-  line-height: 1.7;
-  padding: 1em;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 2em;
   margin: auto;
   max-width: 42em;
   background: #fefefe;
@@ -22,7 +22,6 @@ body {
 
 a {
   color: #06e;
-  /*color: #0645ad;*/
   text-decoration: none;
 }
 
@@ -83,6 +82,10 @@ h4, h5, h6 {
 
 h1 {
   font-size: 2.5em;
+}
+
+.title {
+  margin-top: 0;
 }
 
 h2 {
@@ -251,16 +254,19 @@ table td {
   text-align: center;
 }
 
-@media only screen and (min-width: 480px) {
-  body {
-    font-size: 14px;
-  }
+@media only screen and (prefers-color-scheme: dark) {
+  body   { background:  #000; color: #ccc; }
+  h1, h2, h3, h4, h5, h6 { color: #aaa}
+  a { color: rgb(10, 132, 255) }
+  a:visited { color: rgb(132, 112, 255) }
 }
+
 @media only screen and (min-width: 768px) {
   body {
     font-size: 16px;
   }
 }
+
 @media print {
   * {
     background: transparent !important;
@@ -327,3 +333,4 @@ table td {
     page-break-after: avoid;
   }
 }
+
