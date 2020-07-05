@@ -1,0 +1,8 @@
+# Optimally seating employees at Google
+with Mixed Integer Linear Programs
+
+\
+
+I developed a custom solution to solve a Mixed Integer Linear Program (MILP) to optimize seating arrangements for 30,000 people in Mountain View across 6 years. Since we want teams to sit together and teams that work together to sit together, this problem explodes quadratically in the number of variables, and we cannot solve the vanilla formulation of the MILP. My approach decreases runtime from 30 hours (of an already decomposed problem) to 1 hour which allows us to iterate faster to find good values for penalties for the larger MILP.
+
+<p align='right'>2016, <a href='https://developers.google.com/optimization/'>Google Operations Research</a></p>
