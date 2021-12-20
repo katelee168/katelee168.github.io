@@ -1,5 +1,5 @@
 ---
-title:  'Menstruation'
+title:  'Call it like it is'
 ---
 <p style="text-align:right">Dec 2021</p>
 
@@ -7,22 +7,22 @@ I hate how the semblance of control makes me feel like it's my fault that at 25,
 Can you really expect anyone who has been through depressive episodes to risk walking through that door again?
 The medical system exacerbates those tradeoffs with dismissive attitudes and incomplete information. 
 Who should you believe if you're getting an IUD? 
-The doctor who says that it's really fine and don't believe what you've been reading on the internet, or the countless stories of women who have spoken up about their painful insertion stories or stories of insertions gone wrong?
+The doctor who says that it's really fine and don't believe what you've been reading on the internet, or the countless stories of people who have spoken up about their painful insertion stories or stories of insertions gone wrong?
 
 <!-- And as a woman I've been raised to blame myself, to accept blame easily.  -->
-As a scientist, I can recognize that it can be a relatively safe procedure, but that still means that many women will likely have painful and difficult experiences. 
-What I cannot justify is being told to discount other women's experiences: "don't listen to folks on the internet."
+As a scientist, I can recognize that it can be a relatively safe procedure, but that still means that many people will likely have painful and difficult experiences. 
+What I cannot justify is being told to discount other's experiences: "don't listen to folks on the internet."
 
 When I went in for an IUD insertion, the nurse, whose job every day was to insert IUDs, reached into my body and attempted to pull my uterus straight three times before handing a bloody stick to her assistant and gently telling me that she was going to have to stop. 
 My uterus, apparently, was folded and she couldn't get it straight enough to insert the IUD.
 
 I don't blame her for the failed insertion.
-I just want to know why, when 20% of women have a folded uterus, this isn't ever mentioned in consultations.
+I just want to know why, when 20% of uteruses are folded, this isn't ever mentioned in consultations.
 If my folded uterus explains my incredibly painful periods, why am I 25 and hearing this for the first time?
 Could this not have been checked when I first complained at 15? 
 Why is that not just standard practice?
 
-It took me years to discover that not everyone had bad period pain. Four years, in fact. Four years of missing school, of wondering what was wrong with me that I couldn't deal with this as well as everyone else around me.
+It took me years to discover that not everyone had bad period pain. Four years, in fact. Four years of missing school, of wondering what was wrong with me that I couldn't deal with it as well as everyone else around me.
 
 When I was 15, my ob/gyn joked that the pain would get better after I had a baby. "Why?" I asked. Ten years later, the nurse who attempted my IUD insertion explained that the process of growing and pushing out a baby would help straighten out my uterus, making it easier for the blood to flow out.
 As someone who was never sure if she wanted to have a biological baby, this offered me no comfort. 
@@ -35,18 +35,15 @@ How would students feel if they found out their professor was menstruating?
 When I think about my career options, I've occasionally limited myself to those where I could reschedule meetings last minute, and where I might be able to call in from bed with my video off.
 
 In school, my periods frequently conflicted with exams. 
-I couldn't get out of bed, yet somehow I was supposed to walk to a room.
-I wanted to have a hot water bottle and a blanket near me, but out of shame, I never did. 
-Taking the exam was difficult, but having to pretend that everything was normal destroyed me. It deprived me of my usual comfort items.
+I couldn't get out of bed, yet somehow I was supposed to walk into a cold room and sit upright for hours. 
+I wanted to have a hot water bottle and a blanket near me, but my shame deprived me of my usual comfort items.
 
 One time, I went to the university health services to ask that my exam be rescheduled because I was in too much pain.
 I was told that I was trying to unfairly get a leg up on the other students and that request could not be met.
-I cried through studying and through the exam. 
-I don't remember how it went. 
 
-I shamelessly brought an electric heating pad in college and at work. 
+I shamelessly carried around an electric heating pad in college and at work. 
 I was so mad that the system made everyone pretend that this was normal for so long.
-I wanted everyone to know how unnormal the pain was.
+I wanted everyone to know how frequently I was in pain.
 I wanted to show them how it ravaged my body.
 
 **Your "solutions":**
@@ -59,8 +56,9 @@ Horrible imagery.
 Your other option is to take pain killers. In college, 100mg of ibuprofen was enough to quell the pain. Today, I can take twice that, 200mg and it's not enough. I know, that's not a lot of ibuprofen, but think about how many years I'll need to take this for. I don't want to be taking handfuls of ibuprofen in my 50s.
 
 I suppose your other option is to have a baby.
+
 Or to never have a baby and get the equipment taken out. 
-But as other women have written, it's not so easy as an unmarried woman to get a doctor to perform that operation. "What if you meet someone and they want a biological baby!" Then you don't get married to them!
+But as others have written, it's not so easy as an unmarried woman to get a doctor to perform that operation. "What if you meet someone and they want a biological baby!" Then you don't get married to them!
 
 I'm mad. I'm mad because as I'm writing this I find the need to include some solutions for us to "move forward" to "have a productive conversation."
 As a person socialized as a woman, I frequently quickly accept blame and take on the responsibility of proposing solutions.
