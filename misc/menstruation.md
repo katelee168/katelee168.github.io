@@ -1,5 +1,5 @@
 ---
-title:  'Call it like it is'
+title:  'Call it what it is'
 ---
 <p style="text-align:right">Dec 2021</p>
 
@@ -7,13 +7,13 @@ I hate how the semblance of control makes me feel like it's my fault that at 25,
 Can you really expect anyone who has been through depressive episodes to risk walking through that door again?
 The medical system exacerbates those tradeoffs with dismissive attitudes and incomplete information. 
 Who should you believe if you're getting an IUD? 
-The doctor who says that it's really fine and don't believe what you've been reading on the internet, or the countless stories of people who have spoken up about their painful insertion stories or stories of insertions gone wrong?
+The doctor who says that it's really fine and don't believe what you've been reading on the internet, or the countless people who have spoken up about their painful insertions?
 
 <!-- And as a woman I've been raised to blame myself, to accept blame easily.  -->
 As a scientist, I can recognize that it can be a relatively safe procedure, but that still means that many people will likely have painful and difficult experiences. 
 What I cannot justify is being told to discount other's experiences: "don't listen to folks on the internet."
 
-When I went in for an IUD insertion, the nurse, whose job every day was to insert IUDs, reached into my body and attempted to pull my uterus straight three times before handing a bloody stick to her assistant and gently telling me that she was going to have to stop. 
+When I went in for an IUD insertion, the nurse, whose job had been described to me as inserting IUDs all day every day, reached into my body and attempted to pull my uterus straight three times before handing a bloody stick to her assistant and gently telling me that she was going to have to stop. 
 My uterus, apparently, was folded and she couldn't get it straight enough to insert the IUD.
 
 I don't blame her for the failed insertion.
@@ -30,7 +30,7 @@ As someone who was never sure if she wanted to have a biological baby, this offe
 Can we call it what it is? 
 It's a chronic illness, and we need better support from our schools, workplaces, families, and medical system.
 A couple years ago, I was working from home, from bed, with a hot water bottle against my back, and piles of blankets on top of me in the San Francisco summer. 
-I was supposed to start graduate school the next year, and I was thinking ahead to a career in academia. I couldn't imagine giving a lecture in the front of the class. I couldn't imagine standing up. I could maybe do it over video call from my bed, but would they be able to tell that their professor was a mess? 
+I was supposed to start graduate school the next year, and I was thinking ahead to a career in academia. I couldn't imagine giving a lecture in the front of the class. I couldn't imagine standing up. I could maybe do it over video call from my bed, but would the students be able to tell? 
 How would students feel if they found out their professor was menstruating?
 When I think about my career options, I've occasionally limited myself to those where I could reschedule meetings last minute, and where I might be able to call in from bed with my video off.
 
@@ -42,9 +42,9 @@ One time, I went to the university health services to ask that my exam be resche
 I was told that I was trying to unfairly get a leg up on the other students and that request could not be met.
 
 I shamelessly carried around an electric heating pad in college and at work. 
-I was so mad that the system made everyone pretend that this was normal for so long.
-I wanted everyone to know how frequently I was in pain.
-I wanted to show them how it ravaged my body.
+I was so mad that the system treated this pain as invisible for so long.
+I wanted them everyone to see my pain and confront it.
+I wanted to everyone to know how it reduced me.
 
 **Your "solutions":**
 
@@ -62,7 +62,7 @@ But as others have written, it's not so easy as an unmarried woman to get a doct
 
 I'm mad. I'm mad because as I'm writing this I find the need to include some solutions for us to "move forward" to "have a productive conversation."
 As a person socialized as a woman, I frequently quickly accept blame and take on the responsibility of proposing solutions.
-I'm lucky to have had so many others pave the way forward.
+So many others have suggested actions, and I'm lucky there's movements and people behind each item.
 They have already suggested the following:
 
 1. Menstruation days at work and in school.
