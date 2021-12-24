@@ -43,8 +43,8 @@ I was told that I was trying to unfairly get a leg up on the other students and 
 
 I shamelessly carried around an electric heating pad in college and at work. 
 I was so mad that the system treated this pain as invisible for so long.
-I wanted them everyone to see my pain and confront it.
-I wanted to everyone to know how it reduced me.
+I wanted everyone to see my pain and confront it.
+I wanted to show everyone to know how it reduced me.
 
 **Your "solutions":**
 
