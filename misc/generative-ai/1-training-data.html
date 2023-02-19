@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Training data</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Training data</h1>
+</header>
+<!--Tie to concrete examples. Here’s a dataset we know a lot about. We know these things are in it and come from these places. They get formatted in this way. These are some of the filters that we know they have used. -->
+<p>In a sense, the training data you use is the most important choice you could make in determining copyright and privacy violations of your generative model. It’s just really hard to generate infringing content if none of your training data is infringing. Of course, it’s not that simplistic, because there are many different types of data that get integrated together into a model. For example, most generative AI models currently released are interactive–they take in some information from the users and then generate content. That’s called prompt data. There’s also at least two types of training data: training data and human-feedback data <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We’re going to first discuss training data collection, then data curation and data processing. Finally, we’ll discuss collecting human-feedback data, and how prompt data integrates into the model system..</p>
+<h2 id="data-collection">Data collection</h2>
+<p>There’s a bit of a pendulum swing here. In the past, curated datasets were important to comply with regulations [todo] and also because models didn’t have the capacity to deal with shitty data. Interestingly, as models got larger and larger, they were able to pick out patterns we cared about in the data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> without us manually curating the data. Whether or not this is a “true statement” is hotly debated amongst researchers. However, the fact remains that the largest language models use training data that is minimally curated compared with standard dataset collection practices from pre-2017 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Data is primarily scraped from the web. Even so, it’s not enough to <em>just</em> scrape whatever data you come across.</p>
+<p>Dataset creators have a lot of choices to make. For example, should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages? That question actually hides even more choices. If an English sentence includes a single French word, is that sentence English or French? What about an entire French sentence embedded into an otherwise English paragraph? The answer to “Where do you draw the line” is often just a choice. As much as we would like to back each choice by science, it’s cost, and compute, prohibitive to run a different experiment for each one of these choices. For some choices, there’s no experiment that would yield a reliable answer for each question we pose. That’s because the answer is contextual and cultural. If the French sentence in the English paragraph is “Bon appetit!” then we would consider the paragraph to still primarily be English because that’s a sentence that’s often crossed-over to English. However, that wouldn’t be the case if the sentence was “Mon chat noir continue de s’enfuir” <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. However, let’s say that black cats running away became a trend on TikTok, then perhaps “Mon chat noir continue de s’enfuir” would cross-over into English.</p>
+<p>The list of data choices is extremely long. Let’s discuss some types of English text on the web. If I were to show you just the text from a Wikipedia article, a news article, a wiki-how article, and some Tweets, I bet you could guess which website they were from. Each website has a style and set of constraints based on the implicit and explicit expectations of the authors and audience. Now which ones of those websites should go into a dataset? Well it depends on what you want to use that dataset for. Or rather, it <em>ought</em> to depend on what you want to use that dataset for. The crazy thing about modern language models is that we can be more hands off in data curation than we expected. But, as we become more familiar with these models, we learn that we can’t be as hands-off as we have been. It turns out that including data in the training set that looks similar to the downstream applications means that the model performs better on those applications! <strong>TODO: Insert stuff about few-shot eval here</strong>. Hence, we see the pendulum swing back towards more hands-on curation of datasets. The standard is for dataset creators to set some notion of quality (that is often not easy to explain or document because quality is not easy to explain or document)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, then choose websites, other datasets that meet that standard and add those together to form the full dataset.</p>
+<figure>
+<img src="./images/pile-composition.png" alt="Example of dataset composition. These are all the datasets that make up the Pile." /><figcaption aria-hidden="true">Example of dataset composition. These are all the datasets that make up <a href="http://arxiv.org/abs/2101.00027">the Pile</a>.</figcaption>
+</figure>
+<p>There are a few large, open-source datasets that have documented what data goes into the dataset <strong>TODO: Add discussion about data-sheets</strong> I’ve arbitrarily defined the distinction between data collection and data curation to be adding vs. removing data from the dataset. Ultimately, these are all choices dataset creators make about what can be included.</p>
+<pre><code>## Data curation
+
+Measures of quality
+Bad words filters
+Curation to match the downstream task (is less of a thing now)
+
+Data processing
+Language
+Tokenization
+Image
+
+
+There’s a bit of a divergence between open-source datasets and proprietary datasets, like the ones that OpenAI and Google can train on. Unfortunately, companies don’t release many details about what those datasets are constructed with. We’ll discuss proprietary datasets separately later on.
+
+
+Creating image datasets runs into the same set of questions. What type of images can be included? Should art from DeviantArt be part of the training set? How about publicly available, Getty Images? 
+
+
+Open-source datasets
+Popular datasets in NLP include BLOOM, The Pile, C4. Both were constructed open-source, and you can explore them. 
+LAION-5B is the training dataset that used for Stable Diffusion
+
+
+Proprietary datasets &amp; Models
+Code
+CoPilot
+Images
+DALL-E
+CLIP
+Midjourney
+Stable Diffusion
+Text
+ChatGPT
+GPT3/2
+
+
+
+
+Notes
+Major LLMs + Data Availability
+The pile: 
+
+Bloom
+https://bigscience.huggingface.co/blog/building-a-tb-scale-multilingual-dataset-for-language-modeling
+
+
+
+
+## Human Feedback Data
+
+The pendulum swing will likely come for human feedback data as well. 
+
+## Data insertion
+
+What about generated text/images that work their way back into the training data? 
+Synthetic data
+https://link.springer.com/chapter/10.1007/978-3-030-10925-7_31
+https://openreview.net/forum?id=S1zk9iRqF7
+https://link.springer.com/chapter/10.1007/978-3-540-87471-3_20
+
+
+Data poisoning:
+https://proceedings.neurips.cc/paper/2017/file/9d7311ba459f9e45ed746755a32dcd11-Paper.pdf
+https://www.ericswallace.com/poisoning </code></pre>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Which is, yes, an absurd name for the data. It’s always weird to talk about us as a species: “the humans.” <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Models also pick out patterns that we don’t care for in the data–which is the motivation behind model alignment–to keep only the patterns we want.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>It’s not a secret that most datasets are crap. And by crap, we mean that they’re incredibly messy. In all data science, the first step is to “clean” and explore the data. Of course, “crap” is a catch-all term, and the ways in which data can be messy vary widely. However, whenever you’re dealing with large collections of data that are not cost-effective to manually curate and inspect, the dataset will necessarily contain anomalies and errors. Even if it were possible to manually curate and inspect the entire dataset, it would be impossible to find all possible patterns across the data because we are 1. All humans who have limited brain capacity and whose background makes it easier to identify some patterns and not others, and 2. Some patterns are not semantically meaningful to humans.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>In English: “My black cat keeps running away.”<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Some of us want rigor in this process, but we’re not going to get it because we’re dealing with cultural constructs that don’t lend themselves easily to quantification.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+</body>
+</html>
