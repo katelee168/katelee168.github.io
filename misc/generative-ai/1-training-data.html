@@ -23,88 +23,100 @@
 <header id="title-block-header">
 <h1 class="title">Training data</h1>
 </header>
-<!--Tie to concrete examples. Here’s a dataset we know a lot about. We know these things are in it and come from these places. They get formatted in this way. These are some of the filters that we know they have used. -->
-<p>In a sense, the training data you use is the most important choice you could make in determining copyright and privacy violations of your generative model. It’s just really hard to generate infringing content if none of your training data is infringing. Of course, it’s not that simplistic, because there are many different types of data that get integrated together into a model. For example, most generative AI models currently released are interactive–they take in some information from the users and then generate content. That’s called prompt data. There’s also at least two types of training data: training data and human-feedback data <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We’re going to first discuss training data collection, then data curation and data processing. Finally, we’ll discuss collecting human-feedback data, and how prompt data integrates into the model system..</p>
+<!--
+Audience
+Broadly general audience w/ some interest in tech/law. Needs to have a broad grasp of the full range of stuff out there
+Some historical context (that the tech folks are also missing)
+What should people know for later entries to make sense?
+-->
+<h2 id="section-1">Section 1</h2>
+<!--All generative models are trained on data, in particular, they are trained to reproduce the data in their training set. 
+Data can come in all sorts of forms. Today, we have generative models trained on text, images, music, speech, and code. You could imagine getting more specific: training models just on fan-fiction, court filings, or XX. 
+People create datasets
+Through different types of curation-->
+<p>Generative models have taken the world by storm. They’ve created a lot of opportunity for lots of different things You’ve probably played with generative models by now. All those models have seen lots of images and/or text–some of which looks like the generation and some of which doesn’t. All the data that the model has seen is called training data. Current generative models are trained to reproduce their training data. That means that if the sentence “Mary had a lamb” were in the training data, then the model would get a higher reward for choosing “lamb” after it sees “Mary had a” than any other word (even though Mary probably also had other farm animals!). Generative models today are often general purpose–but you could imagine training a model specifically on code data (such as CoPilot), legal data, news, Tweets, speech, old-school films, and so much more. For the incredibly broad definition of data, there is an equally broad set of possible generative models that could be trained.</p>
+<p>But who puts these datasets together? And what’s in them? We’ll unpack those questions in this article.</p>
+<h2 id="section-2-early-modern-datasets-1990s-2000s">Section 2: Early-modern Datasets (1990s-2000s)</h2>
+<!--
+All datasets are curated: they are all collected and organized. However, earlier datasets in computational linguistics received more careful attention paid to each individual datapoint. 
+Paragraph of pre-history to the 70s. Very early datasets for computational linguistics were hand assembled. 
+Everything is hand labeled
+Linguistic Data Consortium
+MNIST
+Multimodal
+Modern era (2000s)
+Wordnet
+WMT
+Technical features of canonical ones. Pick 2-4 from that era
+-->
+<p>We’ll start our story with one of the first dataset machine learning students learn about: MNIST<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. First released in 1999, the dataset was built by Mixing NIST’s datasets of handwritten numbers and contained only 60,000 examples in the training set. As a point of reference, LAION-5B, an image dataset made in 2022, has 5.85 billion text-image pairs. When we say this dataset was highly curated, we mean that we know its provenance, it has high coherence, and it is easily inspectable. All the digits in MNIST were written by either high school students or employees at the US Census Bureau and compiled by NIST, aka, the provenance of the data is the high school students and Census employees via NIST. The data in MNIST is rather uniform: all data are 32x32 pixels large, presented in black-and-white, and the digits are roughly centered in the image. This dataset has the added feature of being incredibly well studied. A quick Google Scholar search of MNIST returned 76,900 results<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. MNIST is so well studied, that we know exactly which examples are labeled incorrectly [<strong>Todo, find the citation</strong>].</p>
+<blockquote>
+<p>Aspects of datasets</p>
+<ul>
+<li><strong>Provenance</strong>: understanding of where the data comes from</li>
+<li><strong>Coherence</strong>: all the data is of a particular, easy do describe form</li>
+<li><strong>Inspectability</strong>: the data is easy to inspect and it’s possible to [<strong>TODO. this isn’t quite right. Looking for a different word here.</strong>]</li>
+</ul>
+</blockquote>
+<p>In some ways, MNIST is closer to modern-day datasets in that it is lightly annotated (each image is annotated only with the label of number in the image) compared with language datasets from the same time. For example, WordNet, an early linguistic dataset that studied relationships between words was carefully, manually curated and annotated. The project started in 1985 and was first released in 1995–that’s 10 years to create the dataset<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The current version of WordNet (v3.0, released in 2006) contains 147,278 unique noun, verb, adjective, and adverb strings and is (compressed) 10.5MB. That’s a far, far cry from the 800GB dataset, the Pile, released in 2020<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. As far as provenance, coherence, and inspectability go, WordNet was entirely put together by hand: the provenance is the authors of the dataset who did their best to format the data in a coherent manner. <strong>TODO: Also write about PennTreebank</strong></p>
+<p>LDC</p>
+<h2 id="section-3-explosion-of-datasets-size-2010-today">Section 3: Explosion of datasets size (2010-today)</h2>
+<!--
+Exponential growth of datasets (and the scale today)
+General description of what these datasets have in common
+Data is gathered from somewhere
+Different approaches out there for how datasets are put together. 
+Proprietary datasets
+Existing datasets people have curated
+Existing datasets (Enron)
+Web-scraping (CC)
+Stock photography sites
+-->
+<p>Language datasets of that time were reflective of both the technical limitations of the computers and systems that researchers ran, and model design. At the time, natural language models were similarly hand-designed, and relied on features like XX that XX. For instance, IBM’s Watson (developed in 2011) explicitly parsed sentences into linguistic components then used hand-designed features to win at Jeopardy <strong>TODO VERIFY</strong>. Up until 2016, Google Translate similarly used phrase-based translation which broke sentences into linguistic parts to translate separately<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Today’s language datasets are diverse and vary in size, type or presence of annotations, and level of curation. There still exist small, curated datasets (that are often used to evaluate trained models), such as each individual task in Big-Bench<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. But the major change is on the other end of the spectrum, datasets like The Pile and C4 are both 800GB or roughly <strong>TODO</strong>, the dataset for BLOOM was 1.6TB of pre-processed text<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>, and unreleased datasets used for training Chinchilla is 1.4T tokens<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. These datasets all contain data scraped from the web. All of these datasets have minimal annotations, mostly meta-data saved when the data is collected as opposed to annotations added by a person. These datasets are often filtered with automatic metrics removing things that are “poor quality,” “duplicates,” “toxic,” or “unnecessary.” All of these terms are necessarily vague which limits the effectiveness of the automatic metrics used to filter the datasets. For these large, web-scraped datasets, we no longer have interpretable provenance. We might know that a paragraph of text is from a particular website, but we won’t necessarily know what it means for that paragraph to be from pandas.com versus nyt.com. This gets even more complicated with user-generated text.</p>
+<p>Most large datasets with annotations are collections of data generated by users in the course of a product’s life-time; for example, the Amazon Reviews dataset (2018)<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a> contains 233.1M examples with customer ratings. Provenance: The RealNews dataset is a filtered dataset of web-scraped data. contains text from web-domains that are</p>
+<p>It’s harder to talk about provenance, coherence, and inspectability</p>
+<p>Datasets were hand curated because Technology (computers) were a lot more limited in memory and compute and could not process Models had a lot less capacity to find patterns in unstructured data There are so many different datasets. You can explore 23,052 datasets on HuggingFace that are language, vision, and multi-modal.</p>
 <h2 id="data-collection">Data collection</h2>
-<p>There’s a bit of a pendulum swing here. In the past, curated datasets were important to comply with regulations [todo] and also because models didn’t have the capacity to deal with shitty data. Interestingly, as models got larger and larger, they were able to pick out patterns we cared about in the data<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> without us manually curating the data. Whether or not this is a “true statement” is hotly debated amongst researchers. However, the fact remains that the largest language models use training data that is minimally curated compared with standard dataset collection practices from pre-2017 <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> Data is primarily scraped from the web. Even so, it’s not enough to <em>just</em> scrape whatever data you come across.</p>
-<p>Dataset creators have a lot of choices to make. For example, should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages? That question actually hides even more choices. If an English sentence includes a single French word, is that sentence English or French? What about an entire French sentence embedded into an otherwise English paragraph? The answer to “Where do you draw the line” is often just a choice. As much as we would like to back each choice by science, it’s cost, and compute, prohibitive to run a different experiment for each one of these choices. For some choices, there’s no experiment that would yield a reliable answer for each question we pose. That’s because the answer is contextual and cultural. If the French sentence in the English paragraph is “Bon appetit!” then we would consider the paragraph to still primarily be English because that’s a sentence that’s often crossed-over to English. However, that wouldn’t be the case if the sentence was “Mon chat noir continue de s’enfuir” <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. However, let’s say that black cats running away became a trend on TikTok, then perhaps “Mon chat noir continue de s’enfuir” would cross-over into English.</p>
-<p>The list of data choices is extremely long. Let’s discuss some types of English text on the web. If I were to show you just the text from a Wikipedia article, a news article, a wiki-how article, and some Tweets, I bet you could guess which website they were from. Each website has a style and set of constraints based on the implicit and explicit expectations of the authors and audience. Now which ones of those websites should go into a dataset? Well it depends on what you want to use that dataset for. Or rather, it <em>ought</em> to depend on what you want to use that dataset for. The crazy thing about modern language models is that we can be more hands off in data curation than we expected. But, as we become more familiar with these models, we learn that we can’t be as hands-off as we have been. It turns out that including data in the training set that looks similar to the downstream applications means that the model performs better on those applications! <strong>TODO: Insert stuff about few-shot eval here</strong>. Hence, we see the pendulum swing back towards more hands-on curation of datasets. The standard is for dataset creators to set some notion of quality (that is often not easy to explain or document because quality is not easy to explain or document)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, then choose websites, other datasets that meet that standard and add those together to form the full dataset.</p>
+<p>In a sense, the training data you use is the most important choice you could make in determining copyright and privacy violations of your generative model. It’s just really hard to generate infringing content if none of your training data is infringing. Of course, it’s not that simplistic, because there are many different types of data that get integrated together into a model. For example, most generative AI models currently released are interactive–they take in some information from the users and then generate content. That’s called prompt data. There’s also at least two types of training data: training data and human-feedback data<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. We’re going to first discuss training data collection, then data curation and data processing. Finally, we’ll discuss collecting human-feedback data, and how prompt data integrates into the model system..</p>
+<p>There’s a bit of a pendulum swing here. In the past (like, 2017), NLP systems were developed from scratch for specific tasks, so they used task-specific data. These curated datasets were important to comply with regulations [todo] and also because models didn’t have the capacity to deal with shitty data, and there was no reason to collect it. As models got larger and larger they were able to pick out patterns we cared about in the data<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> without us manually curating the data and also became more general purpose. Whether or not this is a “true statement” is hotly debated amongst researchers. However, the fact remains that the largest language models use training data that is minimally curated compared with standard dataset collection practices from pre-2017 <a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a> Data is primarily scraped from the web. Even so, it’s not enough to <em>just</em> scrape whatever data you come across.</p>
+<p>Dataset creators have a lot of choices to make. For example, should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages? That question actually hides even more choices. If an English sentence includes a single French word, is that sentence English or French? What about an entire French sentence embedded into an otherwise English paragraph? The answer to “Where do you draw the line” is often just a choice. As much as we would like to back each choice by science, it’s cost, and compute, prohibitive to run a different experiment for each one of these choices. For some choices, there’s no experiment that would yield a reliable answer for each question we pose. That’s because the answer is contextual and cultural. If the French sentence in the English paragraph is “Bon appetit!” then we would consider the paragraph to still primarily be English because that’s a sentence that’s often crossed-over to English. However, that wouldn’t be the case if the sentence was “Mon chat noir continue de s’enfuir” <a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. However, let’s say that black cats running away became a trend on TikTok, then perhaps “Mon chat noir continue de s’enfuir” would cross-over into English.</p>
+<p>The list of data choices is extremely long. Let’s discuss some types of English text on the web. If I were to show you just the text from a Wikipedia article, a news article, a wiki-how article, and some Tweets, I bet you could guess which website they were from. Each website has a style and set of constraints based on the implicit and explicit expectations of the authors and audience. Now which ones of those websites should go into a dataset? Well it depends on what you want to use that dataset for. In one popular language dataset, the Pile, the dataset creators chose to include multiple “academic” datasets, like PubMed, ArXiv, and FreeLaw, and code from Github. This means that models trained on the Pile will have seen medical literature, legal literature, and code. A model not trained on code would have a much harder time generating code<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>.</p>
 <figure>
 <img src="./images/pile-composition.png" alt="Example of dataset composition. These are all the datasets that make up the Pile." /><figcaption aria-hidden="true">Example of dataset composition. These are all the datasets that make up <a href="http://arxiv.org/abs/2101.00027">the Pile</a>.</figcaption>
 </figure>
-<p>There are a few large, open-source datasets that have documented what data goes into the dataset <strong>TODO: Add discussion about data-sheets</strong> I’ve arbitrarily defined the distinction between data collection and data curation to be adding vs. removing data from the dataset. Ultimately, these are all choices dataset creators make about what can be included.</p>
-<pre><code>## Data curation
-
-Measures of quality
-Bad words filters
-Curation to match the downstream task (is less of a thing now)
-
-Data processing
-Language
-Tokenization
-Image
-
-
-There’s a bit of a divergence between open-source datasets and proprietary datasets, like the ones that OpenAI and Google can train on. Unfortunately, companies don’t release many details about what those datasets are constructed with. We’ll discuss proprietary datasets separately later on.
-
-
-Creating image datasets runs into the same set of questions. What type of images can be included? Should art from DeviantArt be part of the training set? How about publicly available, Getty Images? 
-
-
-Open-source datasets
-Popular datasets in NLP include BLOOM, The Pile, C4. Both were constructed open-source, and you can explore them. 
-LAION-5B is the training dataset that used for Stable Diffusion
-
-
-Proprietary datasets &amp; Models
-Code
-CoPilot
-Images
-DALL-E
-CLIP
-Midjourney
-Stable Diffusion
-Text
-ChatGPT
-GPT3/2
-
-
-
-
-Notes
-Major LLMs + Data Availability
-The pile: 
-
-Bloom
-https://bigscience.huggingface.co/blog/building-a-tb-scale-multilingual-dataset-for-language-modeling
-
-
-
-
-## Human Feedback Data
-
-The pendulum swing will likely come for human feedback data as well. 
-
-## Data insertion
-
-What about generated text/images that work their way back into the training data? 
-Synthetic data
-https://link.springer.com/chapter/10.1007/978-3-030-10925-7_31
-https://openreview.net/forum?id=S1zk9iRqF7
-https://link.springer.com/chapter/10.1007/978-3-540-87471-3_20
-
-
-Data poisoning:
-https://proceedings.neurips.cc/paper/2017/file/9d7311ba459f9e45ed746755a32dcd11-Paper.pdf
-https://www.ericswallace.com/poisoning </code></pre>
+<p>There’s been some efforts within the community to encourage dataset creators to document what data goes into it. For example, many datasets within HuggingFace (a popular open-source model and dataset repository) now have <a href="https://arxiv.org/abs/1803.09010">datasheets</a> attached to them. As an example, this is the Pile’s <a href="https://arxiv.org/pdf/2201.07311.pdf">datasheet</a>. Datasheets collect information about how the data was collected, the motivation behind it, any preprocessing that was done, and future maintenance plans. Unfortunately, many companies don’t release many details about their proprietary datasets. If understanding nuances of training data is important for choosing amongst APIs, then the lack of open-documentation obfuscates which API would be best for an application. <!--To the extent that training data impacts the applications a model can be used for later, it will be challenging for users shopping for APIs to determine which API will be best for their use case. --> &lt;–!To the extent that understanding nuances of training data enables individuals who are choosing amongst APIs to determine which API will be best for their use case, the lack of open documentation will make that challenging. –&gt;<br />
+</p>
+<p>Unfortunately, as we see, just writing down where data comes from is insufficient to understand what the datasets actually contain. As unfortunate as that is, other models have been trained on data that is not documented, nor public.</p>
+<p>For example, here is a data</p>
+<h2 id="section-4-data-curation">Section 4: Data curation</h2>
+<p>Datasets are big Datasets are messy Datasets are choiceful People never see all data points.</p>
+<p>Measures of quality Bad words filters Curation to match the downstream task (is less of a thing now)</p>
+<p>Datasets in the Pile are named for where the data was collected from. As we discussed, that doesn’t always describe what constitutes the component datasets: Github contains a lot more than just code. Wikipedia can contain multiple languages. Ideally, we would use finer-grained filters to understand and curate data.</p>
+<p>Or rather, it <em>ought</em> to depend on what you want to use that dataset for. The crazy thing about modern language models is that we can be more hands off in data curation than we expected. But, as we become more familiar with these models, we learn that we can’t be as hands-off as we have been. It turns out that including data in the training set that looks similar to the downstream applications means that the model performs better on those applications! <strong>TODO: Insert stuff about few-shot eval here</strong>. Hence, we see the pendulum swing back towards more hands-on curation of datasets.</p>
+<p>The standard is for dataset creators to set some notion of quality (that is often not easy to explain or document because quality is not easy to explain or document)<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>, then choose websites, other datasets that meet that standard and add those together to form the full dataset. I’ve arbitrarily defined the distinction between data collection and data curation to be adding vs. removing data from the dataset. Ultimately, these are all choices dataset creators make about what can be included.</p>
+<h2 id="section-5">Section 5</h2>
+<p>Gathered with differing intentions over rights over the data Problematic consent over use of the data. People use whatever is available to them Any books that are online will definitely be used.</p>
+<h2 id="graveyard">Graveyard</h2>
+<p>What we accept vs. what is acceptable. “We don’t have to care about training data.” You have to unpack every single word in that sentence. Who is “we?” Who gets to not care about training data? Who doesn’t have the luxury of not caring about training data? There’s a bit of a divergence between open-source datasets and proprietary datasets, like the ones that OpenAI and Google can train on. Today’s language datasets fall into two categories: large datasets used for training models, and smaller, more curated datasets used for evaluation. The smaller, more curated datasets still sometimes</p>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Which is, yes, an absurd name for the data. It’s always weird to talk about us as a species: “the humans.” <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Models also pick out patterns that we don’t care for in the data–which is the motivation behind model alignment–to keep only the patterns we want.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>It’s not a secret that most datasets are crap. And by crap, we mean that they’re incredibly messy. In all data science, the first step is to “clean” and explore the data. Of course, “crap” is a catch-all term, and the ways in which data can be messy vary widely. However, whenever you’re dealing with large collections of data that are not cost-effective to manually curate and inspect, the dataset will necessarily contain anomalies and errors. Even if it were possible to manually curate and inspect the entire dataset, it would be impossible to find all possible patterns across the data because we are 1. All humans who have limited brain capacity and whose background makes it easier to identify some patterns and not others, and 2. Some patterns are not semantically meaningful to humans.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>In English: “My black cat keeps running away.”<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>Some of us want rigor in this process, but we’re not going to get it because we’re dealing with cultural constructs that don’t lend themselves easily to quantification.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.lri.fr/~marc/Master2/MNIST_doc.pdf">About MNIST</a>. The original website seems to be password-protected: https://yann.lecun.com/exdb/mnist/.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>To be fair, it isn’t 76,900 articles on MNIST because the name is also synonymous with “small dataset” so other datasets like Fashion-MNIST that has photos of clothing, also appear in the search results.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://wordnet.princeton.edu/">Princeton University “About WordNet.” WordNet. Princeton University. 2010.</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><a href="https://arxiv.org/abs/2101.00027">The Pile: An 800GB Dataset of Diverse Text for Language Modeling</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p><a href="https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html">A Neural Network for Machine Translation, at Production Scale</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>The distinction between evaluation and training is not super clear. Evaluation datasets are often benchmarks that come with a training and test set. It’s common practice to train on the data from the training set of the evaluation benchmark then test on the evaluation benchmark’s test set. https://github.com/google/BIG-bench<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p><a href="https://huggingface.co/bigscience/bloom#training-data">BLOOM Training data</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>https://arxiv.org/pdf/2203.15556.pdf<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p><a href="https://nijianmo.github.io/amazon/index.html">Amazon Review Data (2018)</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Which is, yes, an absurd name for the data. It’s always weird to talk about us as a species: “the humans.”<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>Models also pick out patterns that we don’t care for in the data–which is the motivation behind model alignment–to keep only the patterns we want.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>It’s not a secret that most datasets are crap. And by crap, we mean that they’re incredibly messy. In all data science, the first step is to “clean” and explore the data. Of course, “crap” is a catch-all term, and the ways in which data can be messy vary widely. However, whenever you’re dealing with large collections of data that are not cost-effective to manually curate and inspect, the dataset will necessarily contain anomalies and errors. Even if it were possible to manually curate and inspect the entire dataset, it would be impossible to find all possible patterns across the data because we are 1. All humans who have limited brain capacity and whose background makes it easier to identify some patterns and not others, and 2. Some patterns are not semantically meaningful to humans.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p>In English: “My black cat keeps running away.”<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p>This doesn’t mean that models not explicitly trained on code can’t generate code. Webscraped data is not clean, and there will inevitably be some code mixed in.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15" role="doc-endnote"><p>Some of us want rigor in this process, but we’re not going to get it because we’re dealing with cultural constructs that don’t lend themselves easily to quantification.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>
