@@ -328,3 +328,32 @@ table td {
     page-break-after: avoid;
   }
 }
+
+/* remove underlines for footnotes */
+
+a.footnote-ref {
+  text-decoration: none;
+}
+
+
+
+/* Ludwig suggestion: no underline, supercript, [brackets] */
+
+a.footnote-ref {
+  margin-inline-start: 0.125em;
+  text-decoration: none;
+  /* doesn't make a visible difference in current font, "Georgia", but would make a difference in other fonts */
+  font-variant-numeric: tabular-nums;
+}
+
+.footnote-ref sup {
+  font-size: 85%;
+}
+
+.footnote-ref sup::before {
+  content: "[";
+}
+
+.footnote-ref sup::after {
+  content: "]";
+}
