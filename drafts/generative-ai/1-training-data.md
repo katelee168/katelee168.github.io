@@ -1,8 +1,8 @@
 ---
 title: "Generative AI"
 tags: [machine learning, datasets, generative ai, artificial intelligence, copyright, privacy, law]
-date: April 28, 2023
 ---
+<p align="right">April 28, 2023</p>
 
 If you’ve seen the recent TikTok trend of transforming people into historical versions of themselves^[[Lensa AI climbs the App Store charts as its ‘magic avatars’ go viral](https://techcrunch.com/2022/12/01/lensa-ai-climbs-the-app-store-charts-as-its-magic-avatars-go-viral/)], or had a conversation with the chatbot ChatGPT you’ve interacted with generative AI. 
 <!--In the last year, use of generative AI has exploded. People now use it to generate songs, pose as customer service representatives, and aid in drug discovery. -->
@@ -95,7 +95,7 @@ Up until 2016, Google Translate similarly used phrase-based translation which br
 
 > Today’s datasets are on the scale of multiple terabytes. It’s impossible to annotate or fully understand these datasets. 
 
-Since MNIST has been so extensively studied,^[A quick Google Scholar search returned 76,900 articles that mention MNIST. To be fair, it isn’t 76,900 articles on MNIST because the name is also synonymous with “small, standard dataset” so other datasets like Fashion-MNIST, which has photos of clothing, also appear in the search results.]
+Since MNIST has been so extensively studied,^[Over 6000 papers cite MNIST directly and a Google Scholar search returned 76,900 articles that mention MNIST.  MNIST has become synonymous with “small, standard dataset” so other datasets like Fashion-MNIST, which has photos of clothing, also appear in the search results.]
  we know how many and which examples are labeled incorrectly.
 ^[Several papers investigate mislabeled images in MNIST, including: [Northcutt, 2019](https://arxiv.org/abs/1911.00068), and ]
 In contrast, modern datasets are entirely different.
@@ -121,7 +121,7 @@ It wasn’t just the growth of the internet that drove the growth in dataset siz
 These shifts also decreased the need for annotations since models were able to pick out patterns in the data that corresponded with tasks without relying on data that was curated for the task. 
 
 
-For example, many generative are trained to generate the next word in the sentence but not on any other task. However, modern models can perform tasks like reversing a sentence^[Try it yourself in [ChatGPT](https://chat.openai.com/).]. Modern models are not successful every time. However, providing examples of what “reversal” means in the prompt to the model can help the model understand the pattern^[Models also pick out patterns that we don’t care for in the data–which is the motivation behind model alignment–to keep only the patterns we want. Also whether models are actually able to pick up patterns that we “care about” is hotly debated amongst researchers.].
+For example, many generative models are trained to generate the next word in the sentence. However, modern models can perform tasks like reversing a sentence^[Try it yourself in [ChatGPT](https://chat.openai.com/).], that they weren’t explicitly trained to do^[Other modern LMs can be trained with other objective functions, like masked language modeling (also called span corruption), or the UL2 loss. More info [here](https://ai.googleblog.com/2022/10/ul2-20b-open-source-unified-language.html)]! Modern models are not successful every time. However, providing examples of what “reversal” means in the prompt to the model can help the model understand the pattern^[Models also pick out patterns that we don’t care for in the data–which is the motivation behind model alignment–to keep only the patterns we want. Also whether models are actually able to pick up patterns that we “care about” is hotly debated amongst researchers.].
 
 **TODO** older datasets still used for evaluation
 
@@ -133,6 +133,12 @@ The balance of genres in a dataset affects the model's knowledge and ability.
 For example, should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages? That question actually hides even more choices. If an English sentence includes a single Italian word, is that sentence English or Italian? What about the sentence, “I walked from campo dei fiori to santa Maria degli angeli?” Additionally, many situations are contextual and cultural. Before René Magritte’s 1929 painting, we would have said “Ceci n'est pas une pipe” was French, but today, it would also be commonly understood by many English speakers.
 As much as we would like to back each decision on what data to include by science, it’s cost- and compute- prohibitive to run a different experiment for each decision. 
 Thus many of these decisions are just choices the dataset creator makes.
+
+
+<figure style="text-align:center;">
+  <img src="images/pipe.jpeg" alt="Ceci n’est pas une pipe" style="width:50%;">
+  <figcaption>Est-ce French? Is this l'anglais?</figcaption>
+</figure>
 
 Even within one language there are many varieties of text that come from different sources. Data from Twitter, code repositories, personal blogs, advertisements, FanFiction, PasteBin dumps, text for search-engine optimization, and so on, are going to look very different.
 Dataset creators make assumptions about the content of each domain and often choose to include or exclude entire domains. 
@@ -171,10 +177,10 @@ Some model creators will also specify a “good model that doesn’t cause harm.
 What constitutes "toxic" content  is ill-defined and constantly evolving, and classifications of toxicity can be correlated with other aspects of text, such as sexual explicitness.
 ^[[Prior work](https://maria-antoniak.github.io/resources/2021_acl_bad_seeds.pdf) demonstrates how biases can seep into bias measurements through choices in the topics.]
 ^[The [Perspective API](https://medium.com/jigsaw/better-discussions-with-imperfect-models-91558235d442) is one API that tries to identify “toxic” content. Again, what is considered “toxic” is context dependent, and in this case may be better explained as “stuff you don’t want advertisements associated with.”]
+For example, the Texas’ Liberty County Vindicator posted the full text of the Declaration of Independence and [Facebook’s moderation flagged it as hate speech](https://www.washingtonpost.com/news/the-intersect/wp/2018/07/05/facebook-censored-a-post-for-hate-speech-it-was-the-declaration-of-independence/]).
 Additionally, different individuals or groups may have different interpretations of the same text, complicating the process of deciding what data to include and exclude. 
 For example, the LGBTQ community centers sexual orientation and sexual experience. Filtering out data related to sexual orientation and sexual experience could inadvertently remove data related to the LGBTQ community.
-^[[This paper](https://arxiv.org/abs/2104.08758) provides an example of this in the dataset C4.]  
-^[One way to approach this challenge is to adopt a more flexible and inclusive approach to data collection and analysis. This may involve working closely with individuals or groups who have expertise in the cultural context under study and being open to multiple perspectives and interpretations. Overall, it is important to recognize that cultural data is often fluid and dynamic, and our understanding of it may change over time. Therefore, any process for determining what data to include and exclude must be adaptable and open to revision as new insights emerge. It may also involve acknowledging the limitations of quantitative methods in capturing the full complexity of cultural data and being open to using qualitative approaches that allow for more nuanced and contextualized analysis.]
+^[[This paper](https://arxiv.org/abs/2104.08758) provides an example of this in the dataset C4.] ^[One way to approach this challenge is to adopt a more flexible and inclusive approach to data collection and analysis. This may involve working closely with individuals or groups who have expertise in the cultural context under study and being open to multiple perspectives and interpretations. Overall, it is important to recognize that cultural data is often fluid and dynamic, and our understanding of it may change over time. Therefore, any process for determining what data to include and exclude must be adaptable and open to revision as new insights emerge. It may also involve acknowledging the limitations of quantitative methods in capturing the full complexity of cultural data and being open to using qualitative approaches that allow for more nuanced and contextualized analysis.]
 Whatever process we use must be adaptable and open to revision. We can never have a black and white process of determining what data to include and exclude because we are dealing with cultural connotations that resist quantification and objectivity.
 
 However, the scale of the datasets encourages dataset creators and curators to use automatic methods to decide on mass what data to include or remove. 
@@ -205,7 +211,15 @@ What dataset creation really boils down to is a set of choices. Datasets could l
 
 We started this journey discussing how the choices in training data can raise copyright issues. Next in this series on generative AI, we’ll discuss what sorts of copyrightable works could be included in the training data, why they may have ended up there, and whether or not that is permissible. Additionally, we’ll discuss how different media (text, image, video, music, etc.) might require different treatment.
 
+<!-- Instead, dataset curators typically mean that they want a dataset that creates a “good model.”
+Ultimately, datasets exist to serve the tasks we want models to do. "General purpose" is not a task that it is easy to develop a dataset for.
+Fro example, OpenAI's models are trained for the goal of being general-purpose, except if the purpose is generating hate speech.
+ -->
+ 
+## Dedicated to Chris Cieri
+
+This piece is dedicated to the late, [Chris Cieri](https://www.ldc.upenn.edu/christopher-cieri-1963-2023), director of LDC, with whom we had discussed the early versions of this paper in 2021. 
 
 ## Acknowledgements
 
-This discussion is fueled by years of discussions with wonderful people, including, but not limited to: James Grimmelman, David Mimno, A.F. Cooper, Daphne Ippolito, Nicholas Carlini, Florian Tramer, James Bradbury, Shayne Longpre and Chris Cieri
+This discussion is fueled by years of discussions with wonderful people, including, but not limited to: [James Grimmelman](https://james.grimmelmann.net/), [David Mimno](https://mimno.infosci.cornell.edu/), [A. Feder Cooper](https://afedercooper.info/), [Daphne Ippolito](https://daphnei.com/), [Nicholas Carlini](https://nicholas.carlini.com/), [Florian Tramèr](https://floriantramer.com/), [James Bradbury](https://twitter.com/jekbradbury), [Shayne Longpre](https://www.shaynelongpre.com/) and Chris Cieri
