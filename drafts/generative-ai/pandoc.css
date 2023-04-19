@@ -12,9 +12,9 @@ html {
 body {
   color: #444;
   font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-  font-size: 12px;
-  line-height: 1.7;
-  padding: 1em;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 2em;
   margin: auto;
   max-width: 42em;
   background: #fefefe;
@@ -22,7 +22,6 @@ body {
 
 a {
   color: #06e;
-  /*color: #0645ad;*/
   text-decoration: none;
   text-decoration: underline;
 }
@@ -84,6 +83,10 @@ h4, h5, h6 {
 
 h1 {
   font-size: 2.5em;
+}
+
+.title {
+  margin-top: 0;
 }
 
 h2 {
@@ -252,16 +255,19 @@ table td {
   text-align: center;
 }
 
-@media only screen and (min-width: 480px) {
-  body {
-    font-size: 14px;
-  }
+@media only screen and (prefers-color-scheme: dark) {
+  body   { background:  #000; color: #ccc; }
+  h1, h2, h3, h4, h5, h6 { color: #aaa}
+  a { color: rgb(10, 132, 255) }
+  a:visited { color: rgb(132, 112, 255) }
 }
+
 @media only screen and (min-width: 768px) {
   body {
     font-size: 16px;
   }
 }
+
 @media print {
   * {
     background: transparent !important;
@@ -329,6 +335,9 @@ table td {
   }
 }
 
+
+
+
 /* remove underlines for footnotes */
 
 a.footnote-ref {
@@ -356,4 +365,22 @@ a.footnote-ref {
 
 .footnote-ref sup::after {
   content: "]";
+}
+
+@media screen and (min-width: 1100px) {
+  #TOC {
+    position: fixed;
+    top: 50%;
+    left: 50px; /* Adjust this value to position the table of contents as needed */
+    width: 15%;
+    transform: translateY(-50%);
+    max-height: calc(100vh - 100px); /* Adjust this value if necessary to prevent the table of contents from extending beyond the bottom of the screen */
+    overflow-y: auto;
+  }
+  li {
+    list-style: none
+  }
+  #TOC a {
+    text-decoration: none;
+  }
 }
