@@ -367,6 +367,14 @@ a.footnote-ref {
   content: "]";
 }
 
+/* toc */
+#TOC li {
+  list-style: none
+}
+#TOC a {
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1100px) {
   #TOC {
     position: fixed;
@@ -376,11 +384,5 @@ a.footnote-ref {
     transform: translateY(-50%);
     max-height: calc(100vh - 100px); /* Adjust this value if necessary to prevent the table of contents from extending beyond the bottom of the screen */
     overflow-y: auto;
-  }
-  li {
-    list-style: none
-  }
-  #TOC a {
-    text-decoration: none;
   }
 }

@@ -30,7 +30,7 @@ In this first chapter, we’ll build an understanding of how dataset creators ju
 > 3. **How do you generate from generative AI models?** [coming soon]
 > 4. **Is training infringement? Do outputs infringe?** [coming soon]
 
-## Chapter 1: Training data {#intro}
+# Chapter 1: Training data {#intro}
 
 <p align="right">
 by [Katherine Lee](https://katelee168.github.io/) and [Daphne Ippolito](https://daphnei.com/) </br>
@@ -47,7 +47,7 @@ In this chapter, we discuss datasets of the not-so-distant past (the late 1990s 
 Finally, we acknowledge both the difficulty in making educated choices and the real impact those choices have on the resulting models. 
 
 
-### Chapter 1: TOC
+### 1. Training Data: TOC
 
 1. [**Early Datasets**](#early-datasets): Early datasets (pre-2010) were much smaller, had denser annotations, and required manual curation. 
 2. [**Today’s Datasets**](#today-datasets): Today’s datasets are on the scale of multiple terabytes. It’s impossible to annotate or fully understand these datasets. 
