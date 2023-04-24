@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Katherine Lee, Cornell" />
+  <meta name="author" content="A. Feder Cooper, Cornell" />
+  <meta name="author" content="David Mimno, Cornell" />
+  <meta name="author" content="James Grimmelmann, Cornell" />
+  <meta name="dcterms.date" content="2023-05-12" />
+  <title>Talkin’ ’Bout AI Generation: Copyright and Privacy in Generative AI Models</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title"><p>Talkin’ ’Bout AI Generation: Copyright and Privacy in Generative AI Models</p></h1>
+<p class="author">Katherine Lee, Cornell</p>
+<p class="author">A. Feder Cooper, Cornell</p>
+<p class="author">David Mimno, Cornell</p>
+<p class="author">James Grimmelmann, Cornell</p>
+<p class="date">May 12, 2023</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul><li><a href="#intro">Intro</a></li><li><a href="#what-do-ra-models-change">What do r&amp;a models change?</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#copyright">Copyright</a></li><li><a href="#licensing">Licensing</a></li><li><a href="#attribution-is-interesting-in-its-own-right-because-the-us-does-not-have-an-attribution-right">Attribution is interesting in its own right because the US does not have an attribution right</a></li><li><a href="#reactions-to-peters-work">Reactions to Peter’s work</a></li><li><a href="#discussion">Discussion</a><ul><li><a href="#actionable-as-a-tort-meets-the-definitions-of-the-tort-and-someone-can-bring-a-suit-to-stop-it-not-necessarily-that-it-violates-law">Actionable as a tort: meets the definitions of the tort and someone can bring a suit to stop it (not necessarily that it violates law)</a></li></ul></li><li><a href="#bibliography">Bibliography</a></li></ul>
+</nav>
+<!--
+PLSC: Privacy and Copyright in Retrieval and Attribution Models [drafts]
+--><h2 id="intro">Intro</h2><p>ML researchers justified data collection under fair use Generative models are stochastic databases Memorization is not inherently problematic Neither are retrieval or attribution models Where do profits go now? Ownership and distribution rights are not the same</p><h2 id="what-do-ra-models-change">What do r&amp;a models change?</h2><!-- Outline: 
+Is there a connection between the outputs and the inputs
+And how reliable is that connection?
+Does accuracy matter?   
+Yes, because how accurate or inaccurate something is changes the perceived 
+Define accuracy:
+Copy of training data
+Accurate statement about the world (that may or may not be explicitly in the training data)
+Is the model an accurate database?
+How much information is aggregated together?
+How accurate are inferences from the model?
+Three processes
+Retrieve, generation, and attribution
+You can do any combination of these two without the third
+RG:
+Retrieves potential match without knowing the quality of the example
+GA: 
+RA:
+G: just on it’s own. For example, if the retrieved content is not relevant
+Generation and attribution both incorporate additional information (literally using another dataset, often) and are not accurate.
+Attribution requires some level of interpretability and probability which may or may not be confident. 
+Accuracy or usefulness
+Accuracy is not at the model level, it’s at the example level, and you don’t know the accuracy of each example. 
+If the model says it uses A, B, C to generate D, it might not actually be true that D wasn’t used
+--><p>The copyright discussion hinges on whether there is an understandable relationship between the input and output. In today’s models, people argue that there isn’t much of a correlation here because there is no interpretable path between the input and output that would make it easy to understand what the reasons would be. However, attribution and retrieval models attempt to illuminate that gap. They change the legal landscape appropriately</p><p>Another question of note is how reliable the connection between the outputs and the inputs are. Some might say, obviously the reliability of the connection matters. If I were to tell you that walking down this path would get you home with 80% probability, would you take it? What about 70%, what about 50%? What if I told you each of these ten paths were a 10% probability of taking you home, and later you discover that only some of them do? Or some of them get you closer than others? Which path would make sense to walk down?</p><p>Accuracy and reliability matter because it changes how that thing is perceived. Does accuracy matter?<br />
+Yes, because how accurate or inaccurate something is changes the perceived Define accuracy: Copy of training data Accurate statement about the world (that may or may not be explicitly in the training data) Is the model an accurate database? How much information is aggregated together? How accurate are inferences from the model?</p><p>Three processes Retrieve, generation, and attribution You can do any combination of these two without the third RG: Retrieves potential match without knowing the quality of the example GA: RA: G: just on it’s own. For example, if the retrieved content is not relevant Generation and attribution both incorporate additional information (literally using another dataset, often) and are not accurate. Attribution requires some level of interpretability and probability which may or may not be confident. Accuracy or usefulness Accuracy is not at the model level, it’s at the example level, and you don’t know the accuracy of each example. If the model says it uses A, B, C to generate D, it might not actually be true that D wasn’t used</p><h2 id="privacy">Privacy</h2><!--
+
+Torts
+In the United States, tort law offers a legal framework to protect privacy rights. Tort law is a body of law that provides individuals with the right to sue for damages when their privacy is violated. Tort law recognizes several privacy torts, including intrusion into seclusion, appropriation of name or likeness, public disclosure of private facts, and placing a person in a false light.
+
+
+intrusion into seclusion,
+appropriation of name or likeness,
+Trademark infringement
+public disclosure of private facts, and
+placing a person in a false light.
+Time Inc v. Hill (1967)
+Intentionality: sometimes matters for privacy violations (for example, false light) 
+AKA: Actual Malice
+How interpretable is the model to the person who created it? Do they have enough control over the model that they could have prevented something?
+What about to the person who uses it?
+Plausible fake for image models
+If the adversarial data gets reintegrated back into the model
+Google Spain SP v. Agencia Espanola De Protection de Datos
+delisting
+GDPR
+Obligations to be accurate
+Obligations to people in the system
+Obligations to notify upon data breach
+Models do not discriminate between private or copyrighted data
+
+
+
+The General Data Protection Regulation (GDPR) and the Google Spain SP v. Agencia Espanola De Protection de Datos case recognize individuals' right to be forgotten or delisted from search engines. The GDPR provides individuals with the right to have their personal information corrected or erased. Additionally, the GDPR requires companies to notify individuals of data breaches and implement measures to protect personal information. The obligations to accuracy, people in the system, and notification upon data breach are critical components of privacy protection. 
+
+In conclusion, privacy is a fundamental right that is challenging to protect in the digital era. Tort law offers a legal framework to protect individuals' privacy rights, including the right to sue for damages. The use of machine learning models that process personal data raises concerns about privacy and the control individuals have over their personal information. Adversarial attacks can generate plausible fakes that can be used to harm an individual's reputation or privacy. The GDPR and the Google Spain SP v. Agencia Espanola De Protection de Datos case recognize individuals' right to be forgotten or delisted from search engines and provide individuals with the right to have their personal information corrected or erased. Privacy protection requires companies to implement measures to protect personal information and notify individuals of data breaches. While not all privacy violations fall under torts, concrete harm is necessary to measure the impact of privacy violations.
+--><p>Why do we care about privacy The US constitution recognizes privacy as a fundamental, human right. However, just what we mean by that has been a topic of debate throughout American history and especially in the last century. We may commonly understand privacy to enable individuals to live aspects of their lives outside of the public view. Privacy can sometimes be in contention with public interest, especially the privacy of public figures where actions they take or aspects of their lives may be important for the public to be aware of. TODO: Ex: president, sex offenders.</p><p>While some techniques, like reinforcement learning from human feedback (RLHF), attempt to better “align” model generations to human preferences, the fundamental issue with respecting privacy remains understanding the context in which a phrase may or may not be sensitive. This issue is laid out in Helen Nissabaum’s 2009 book on contextual integrity <span class="citation" data-cites="nissenbaum2009privacy">(Nissenbaum 2009)</span> which dissolves the notion of public or private data and instead asks that we consider the context in which the information in question is being shared. Different contexts call for different treatment of data. Techniques like RLHF currently fall short of addressing sensitivity because they do not make judgements for each data point and each generation as to whether the content is sensitive or not, and do not understand the context in which a generation is being requested. Any model that does not take into account both the context of the training data and the context in which a generation is created will necessarily fall short of the standards held by contextual integrity.</p><p>Privacy violations in generative models arise because the context in which data originated becomes divorced from the data through the process of collecting training data and training generative models.</p><p>Attribution and retrieval models differ from current generative models by connecting generations to sources. However, it is not enough to simply link the source. Linking the source to the generation can both improve and exacerbate privacy harms. Since these models still cannot judge whether the generations created, or the training data used, are sensitive or personal, knowing the sources of generations simply enables fact verification. If the source information was intended to be public, then, yes, knowing the source of the information is only helpful in the sense that we know the generation has validity. On the other hand, if the source information was not intended for a public audience, then knowing the source information furthers privacy harms by revealing, to the extent that the source is believable, that the generated information was indeed true. The extent to which retrieval and attribution models can improve privacy leaks, then, is limited to the extent that the data retrieved or trained on was intended to be shared publicly. However, we reiterate that attributions generated and training data retrieved <em>may not actually</em> be used for any given generation. Thus, whether attribution and retrieval models are able to improve accuracy assessments of generations is limited by the likelihood that those attributions and retrieved data were actually used to create the generation.</p><p>A common objection to the validity of privacy harms from generative models is that generations cannot be easily traced to an individual, and these potential harms are not cognizable. In “Privacy Harms,” <span class="citation" data-cites="citron2022privacy">(Citron and Solove 2022)</span> argues that tests for cognizable privacy harms are incomplete as today’s norm of mass data collection violates the privacy of a large number of people an incognizable amount. Again, however, attribution and retrieval models directly aim to trace generations back to individual sources. This potentially increases the risks of</p><p>While generative AI poses the risk of all privacy harms that Daniel Solove lays out in <span class="citation" data-cites="solove2006taxonomy">(Solove 2006)</span> (information collection, information processing, information dissemination, and invasions <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>),</p><!--However, stuff can be a violation of privacy that doesn’t get into the torts
+But this is where concrete harm would come in. there likely isn't measurable harm from other violations of privacy. 
+Identifiability & Accuracy of information about those people
+There are several aspects to privacy, including identifiability and accuracy of information. For example, having access to a diary without the name of the author could potentially be a less concerning privacy violation than having the diary and the name of its author. 
+However, if the author could be inferred from the diary, that diary is still “identifiable.” 
+On the other hand, if inaccurate information is spread about an identified individual, that could cause harm to the individual. In order to convincingly say that the 
+--><p>Does privacy matter even if the information is not identifiable? Attribution and retrieval models can make information more identifiable. Information aggregation and correlation. Looking for statistical patterns. Information processing.</p><p>A naive implementation of attribution and retrieval models that is unaware of the sensitivity of the data retrieved over could increase the likelihood that sensitive information is generated. Privacy harms that have physical manifestations are easiest to think of. In applications of generative AI</p><h2 id="copyright">Copyright</h2><p>Similarity between outputs and inputs What is a copy Something substantially similar: generation looks alike. Need to be able to tell things apart. How do you prove copyright and infringement What is an idea vs. expression Personhood Is the dataset a reproduction of the data? Yes Is the model a reproduction of the data? If you can’t reconstruct a copy of the work from it, then it’s not a copy You can if you generate from it (is generation reconstruction?) Retrieval model is more likely to be a copy because it is more closely patterned Fair use These all become sharper because Drawing on a smaller number of examples of the training data Transformative use Market harm Copying (library + internet) Section 512 (Safe harbor) Secondary liability Can we prevent copying from specific works without having to disable parts of the model You have to make explicit large changes to control the model What is considered Intention of copyright law to protect intellectual property rights And profits from content creation Does use of the data take away from the value the original creator could have gotten? Google books was a small snippet</p><h2 id="licensing">Licensing</h2><p>But also creates the possibility of licensing Bunch of fair use scholarship and case law that fair use should be found when a licensing market wouldn’t work: “Fair Use as Market Failure: A Structural and Economic Analysis of the” by Wendy J. Gordon If you have a functioning licensing market then people will find each other and work out deals When the market fails, then you need fair use Market may fail when you can’t find each other, or licenses may unreasonably withhold consent. It’s not a 1:1 use my work, pay me. There’s a complicated relationship between the inputs, outputs, and pieces in between. There are likely a lot of examples that won’t get traced back See if they break down and create bad incentives.</p><h2 id="attribution-is-interesting-in-its-own-right-because-the-us-does-not-have-an-attribution-right">Attribution is interesting in its own right because the US does not have an attribution right</h2><p>Generative models are terrible at attributing, with retrieval and attribution models it’s in the name Because we don’t have attribution rights, there’s not much legal payoff. Attribution is a value that we protect or don’t and different models do it differently.</p><h2 id="reactions-to-peters-work">Reactions to Peter’s work</h2><p>What are reasonable technical safeguards that could be implemented? Reasonable standard of care? “Throughout this work we will not generally cover liability to the model creator for the model weights themselves. It is unresolved as to whether the model parameters themselves are infringing, and thus whether the model trainers themselves are liable” They make a distinction between model trainers and model deployers. So trainers would simply be the people creating the tool to potentially infringe. Which, under other circumstances did have liability “When the model is capable of outputting both transformative and non-transformative content, it is also unresolved how the model itself (and model creators) should be treated as a function of secondary liability. The extraction of non-transformative content, according to our experiments and others, is often not straightforward. It requires effort on the part of model users and deployers to identify an extraction mechanism.” This is not quite right. Verbatim content can be easy to identify. Near-verbatim content is also easy to identify if you know what “non-verbatim” means. Whether the content is transformative or not depends on the context and content of the generation. Thus, whether the generation is verbatim or near-verbatim, or not at all is a <em>factor</em> that goes into judging whether that generation is transformative or not Similarly, attribution is another <em>factor</em>. Additionally, adversarially acting to extract non-transformative content is often not straightforward. However, intent to extract non-transformative content is not required for model users to create non-transformative content. “But it is not obvious that the DMCA safe harbors apply to generated content. For example, in 2019, Amazon lost on a motion to dismiss when its algorithms selected copyrighted material to host on the website (Williams-Sonoma, Inc. v. Amazon.com, Inc., N.D. Cal. 2021, Order on Motion to Dismiss). The court was unconvinced that Amazon was eligible for safe harbor under the DMCA. They stated that to establish safe harbor the content must be stored “at the direction of the user” (Mavrix Photographs, LLC v. Livejournal Inc., 9th Cir. 2017, at 1052). This may mean that generated content does not have the same safe harbor and that post-hoc take-downs are not sufficient to reduce liability.26 As such, filtering of generated content before a takedown request is ever received may be more important while the courts determine the applicability of DMCA to generated content.” And possibly also related to sec 230 “For example, if a dataset house thousands of distinct images of a given NBA player with a distinctive tattoo, it may be difficult to deduplicate all of these images in a way that prevents the model from learning to reproduce the tattoo verbatim. Thus, situations like Alexander v. Take-Two Interactive Software, Inc. (S.D. Ill. 2020) might still occur with this strategy.” This is concept vs. verbatim memorization</p><h2 id="discussion">Discussion</h2><p>The interesting thing about thinking about these models is that you can’t just ignore the technical decision that were made, however, at the same time, you can’t treat them as a black box either. So the rules and regulations we come up with with regards to generative models need to adapt to slightly different implementations of the models. And there will always be changes that reduce the longevity of those implementations. ## Archive</p><p>Current models Trained to maximize the value function Relate outputs to user-provided inputs</p><h3 id="actionable-as-a-tort-meets-the-definitions-of-the-tort-and-someone-can-bring-a-suit-to-stop-it-not-necessarily-that-it-violates-law">Actionable as a tort: meets the definitions of the tort and someone can bring a suit to stop it (not necessarily that it violates law)</h3><!--
+# Graveyard
+They directly target issues of interpretability, attempting to to trace input training examples through to output generations. 
+Lawsuits and public discussion currently treat generative systems as “black boxes”: stochastic databases that consist of uninterpretable numerical representations derived from the training data in which that data cannot be identified. 
+This uninterpretability leads to legal paradoxes. While training a generative model will often be fair-use under existing doctrine, that same model can emit outputs that are strikingly similar to existing copyrighted works. Similarly, it is unclear how to ensure that a model will not emit sensitive personal information^[Differential privacy provides strong theoretical guarantees, however it does not _ensure_ that a model will not emit sensitive personal information].
+Unfortunately, both retrieval and attribution models do not perfectly identify determining training examples. This ambiguity further muddies responsibility and liability.
+We study how technical innovations drive changes in legal analysis by performing an extended legal analysis on an emerging class of generative AI methods called _retrieval and attribution models_ (RAMs). 
+Regurgitated training data forces discussion around copyright and privacy that centers how much value from generative models comes with a loss of control creators have over their data.
+As technology evolves, new methods of training and generation raise different copyright and privacy issues. We showcase these differences through studying RAMs and suggest that we untangle copyright and privacy concerns in discussions of generative ML.
+Identifying key concepts, like the ability to connect training examples and generations, enable us to deconstruct technical evolution and build legal analyses. 
+Inaccurate information could be mitigated by attribution and retrieval models because sources are more grounded. 
+However, we reiterate that attribution and retrieval models do not necessarily get _right_ which source data were used to create the generations. Having a false sense of attribution reduces the ability of generations to being fact checked. 
+While folks like Daniel Solove argue that data collection and processing are privacy harms in their own right, the most easily recognizable forms of privacy harms that arise from generative models are information dissemination and invasions
+^[[@solove2006taxonomy] defines privacy harms: information collection, information processing, information dissemination, and invasions. Invasions refers to “intrusion” and “decisional interference.” An example of decisional interference is a patient choosing to forgo a treatment out of fear that possible disclosure they received that treatment will adversely affect them.].
+Citron and Solove term these recognizable harms as “cognizable harms”^[@citron2022privacy]
+In practice, not all privacy violations may be legally recognized, cognizable harms. Additionally, these cognizable harms don't neatly correspond to intuitive notions of identifiable and manifested privacy harms [@citron2022privacy]. 
+--><h1 class="unnumbered" id="bibliography">Bibliography</h1><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography"><div id="ref-citron2022privacy" class="csl-entry" role="doc-biblioentry">Citron, Danielle.K., and Daniel J. Solove. 2022. <span>“Privacy Harms.”</span> <em>Boston University Law Review</em> 102.</div><div id="ref-nissenbaum2009privacy" class="csl-entry" role="doc-biblioentry">Nissenbaum, Helen. 2009. <em>Privacy in Context: Technology, Policy, and the Integrity of Social Life</em>. Stanford: Stanford University Press. <a href="http://www.sup.org/books/title/?id=8862">http://www.sup.org/books/title/?id=8862</a>.</div><div id="ref-solove2006taxonomy" class="csl-entry" role="doc-biblioentry">Solove, Daniel J. 2006. <span>“A Taxonomy of Privacy.”</span> <em>University of Pennsylvania Law Review</em> 154 (3): 477–564. <a href="https://doi.org/10.2307/40041279">https://doi.org/10.2307/40041279</a>.</div></div><section class="footnotes" role="doc-endnotes"><hr /><ol><li id="fn1" role="doc-endnote"><p>Invasions refers to “intrusion” and “decisional interference.” An example of decisional interference is a patient choosing to forgo a treatment out of fear that possible disclosure they received that treatment will adversely affect them.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li></ol></section>
+</body>
+</html>
