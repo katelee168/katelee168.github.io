@@ -359,18 +359,26 @@ a.footnote-ref {
   font-size: 85%;
 }
 
-.footnote-ref sup::before {
+/*.footnote-ref sup::before {
   content: "[";
 }
 
 .footnote-ref sup::after {
   content: "]";
-}
+}*/
 
 /* toc */
 #TOC li {
-  list-style: none
+  list-style: none;
+  margin-top: 0.5em;
 }
+
+#TOC li li {
+  margin-top: 0;
+  font-size: 0.9em;
+  margin-left: -1em;
+}
+
 #TOC a {
   text-decoration: none;
 }
