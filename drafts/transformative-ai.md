@@ -3,6 +3,8 @@ title:  'Transformative AI'
 ---
 <p style="text-align:right">May 2023</p>
 
+We should use _*transformative AI*_ when talking about new + future ML/AI tools. 
+
 > **Transformative AI**: The application of statistical, machine learning, or artificial intelligence tools that has a significant impact on either daily life, an industry/sector/good, or world affairs. Transformative AI prompts re-thinking either the statistical/ML/AI tools, or the role they play in their application. Transformative AI doesn’t have to be accurate, useful, or safe–it just has to be used to some effect.
 
 _Pros:_
