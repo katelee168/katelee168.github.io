@@ -25,3 +25,4 @@ Duplicate examples play such a large role in memorized examples, but we can iden
 Protecting privacy in unstructured data like language is extra challenging. 
 
 
+<p style="text-align:right">[Katherine Lee](https://katelee168.github.io/),  [drafts ↩](https://katelee168.github.io/drafts)</p>
