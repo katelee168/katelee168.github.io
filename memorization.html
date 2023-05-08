@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>memorization</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h2 id="memorization-google-research-brain-team">Memorization @ Google Research, Brain Team</h2>
+<p>Our goal is to quantify and detect memorization with a eye towards improving privacy guarantees and learning more about how models learn.</p>
+<h3 id="weve-shown-that">We’ve shown that:</h3>
+<ul>
+<li>we can extract more memorized examples from larger models [<a href="https://arxiv.org/abs/2202.07646">paper</a>]</li>
+<li>examples with duplicates in the training data are easier to extract [<a href="https://arxiv.org/abs/2202.07646">paper</a>]
+<ul>
+<li>removing duplicates dramatically reduces memorization and leads to language models that generalize better</li>
+</ul></li>
+<li>evaluating the upper bound of memorized examples is difficult because discoverability is difficult [<a href="https://arxiv.org/abs/2202.07646">paper</a>]</li>
+</ul>
+<h3 id="how-can-you-find-memorized-examples">How can you find memorized examples?</h3>
+<p><em>For more discussion on trade-offs of studied definitions of memorization, please see this blog. <strong>TODO</strong></em></p>
+<p>Given a model, how can we evaluate the amount of memorization?</p>
+<p>Unfortunately, there is no current strategy to discover upper bounds of memorization.</p>
+<ol type="1">
+<li>The simplest strategy to evaluate an</li>
+</ol>
+<p>What about identifying memorized examples that are seen just a few times?</p>
+<p>Duplicate examples play such a large role in memorized examples, but we can identify examples that are seen a few times but have a large impact on the model through measuring counterfactual memorization.</p>
+<p>Protecting privacy in unstructured data like language is extra challenging.</p>
+</body>
+</html>
