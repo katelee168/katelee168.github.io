@@ -3,15 +3,17 @@ title:  'Transformative AI'
 ---
 <p style="text-align:right">May 2023</p>
 
-We should use _*transformative AI*_ when talking about new + future ML/AI tools. 
+We should use _*transformative AI*_ when talking about current + future ML/AI tools. 
 
-> **Transformative AI**: The application of statistical, machine learning, or artificial intelligence tools that has a significant impact on either daily life, an industry/sector/good, or world affairs. Transformative AI prompts re-thinking either the statistical/ML/AI tools, or the role they play in their application. Transformative AI doesn’t have to be accurate, useful, or safe–it just has to be used to some effect.
+> **Transformative AI**: The application of statistical, machine learning, or artificial intelligence tools that has a significant impact on either daily life, an industry/sector/good, or world affairs. 
+>
+> Transformative AI prompts re-thinking either the statistical/ML/AI tools, or the role they play in their application. Transformative AI doesn’t have to be accurate, useful, or safe–it just has to be used to some effect.
 
 _Pros:_
 
 - Focuses on the impact
 - Focuses on choices around model creation, release, and adoption.
-Doesn’t require a conversation about sentience. 
+- Doesn’t require a conversation or decision about what is sentience. 
 
 _Drawbacks:_
 
@@ -49,4 +51,4 @@ I like the term “transformative AI” over AGI because it focuses on the impac
 
 -->
 
-<p style="text-align:right">[Katherine Lee](https://katelee168.github.io/),  [misc ↩](https://katelee168.github.io/misc)</p>
+<p style="text-align:right">[Katherine Lee](https://katelee168.github.io/),  [drafts ↩](https://katelee168.github.io/drafts)</p>
