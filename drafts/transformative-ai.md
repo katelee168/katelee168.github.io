@@ -1,19 +1,23 @@
 ---
-title:  'Transformative AI'
+title:  'Say Transformative AI'
 ---
 <p style="text-align:right">May 2023</p>
 
-We should use _*transformative AI*_ when talking about current + future ML/AI tools. 
+We should use the term _*transformative AI*_ when talking about current + future ML/AI tools. 
 
 > **Transformative AI**: The application of statistical, machine learning, or artificial intelligence tools that has a significant impact on either daily life, an industry/sector/good, or world affairs. 
 >
-> Transformative AI prompts re-thinking either the statistical/ML/AI tools, or the role they play in their application. Transformative AI doesn’t have to be accurate, useful, or safe–it just has to be used to some effect.
+> Transformative AI does not have to be accurate, useful, or safe–it just has to be used to some effect.
+
+Transformative AI prompts re-thinking either the statistical/ML/AI tools, with a focus on the impact of their usage.
 
 _Pros:_
 
 - Focuses on the impact
 - Focuses on choices around model creation, release, and adoption.
-- Doesn’t require a conversation or decision about what is sentience. 
+- Does not require a conversation or decision about what is sentience. 
+    - AI can be dangerous or helpful regardless of what we consider sentience is. 
+- Less fear-mongering 
 
 _Drawbacks:_
 
@@ -28,10 +32,8 @@ Terms like AGI can obscure the plethora of decisions and control points that the
 
 The term AGI and the discussion around it is still extremely useful for disambiguating conversations and for communicating assumptions held, so I don’t think it should go away. Transformative AI is another term that can signal a set of concerns that aren’t the same as terms like AI Safety, AI Ethics, Ethical AI, AGI, Alignment, Fairness, etc.
 
-_Who’s already using this term:_
-
 Transformative AI is already used in the LessWrong/EA communities. On [LessWrong](https://www.lesswrong.com/tag/transformative-ai) and [EA Forum](https://forum.effectivealtruism.org/topics/transformative-artificial-intelligence)], the bar for transformative is given as “at least as significant as the agricultural or industrial revolutions”^[https://forum.effectivealtruism.org/topics/transformative-artificial-intelligence]. 
-I do not think technology needs to be that significant in order to be transformative. Additionally, was it clear when the agricultural or industrial revolutions occurred that they would be transformative on that scale and in that particular ways? I continue to believe that we all have a lot more agency than we expect, and that those revolutions occurred because of institutions, and systematic issues, yes, but also individual choices and policies made during those times.
+However, I do not think technology needs to be that significant in order to be transformative.^[On this note, I'm happy to entertain other names that better signal a different set of concerns than the LessWrong/EA communities] Was it clear when the agricultural or industrial revolutions occurred that they would be transformative on that scale and in that particular ways? I continue to believe that we all have a lot more agency than we expect, and that those revolutions occurred because of institutions, and systematic issues, yes, but also individual choices and policies made during those times.
 
 Is that extremely broad? Yes. Does that include many developments that have already existed for many years like the ranking algorithms used in YouTube / Netflix / Amazon? Yes. We need to continue to adapt to these technologies, even those that have been around for a long time. In some cases, adaptation changes wholesale the way those technologies work because we’ve decided as a society that we prefer the alternative. We cannot go into anything with the premise that it must exist any particular way or must exist at all. Unexpected and unaccounted for situations arise continually, especially with developing technology.
 
