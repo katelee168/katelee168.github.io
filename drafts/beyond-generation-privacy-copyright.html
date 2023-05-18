@@ -156,28 +156,37 @@ sensitive or private data, and it also raises copyright problems because
 some training instances include copyrighted works of authorship. Both of
 these types of issues present immediate risks: Researchers have found
 cases in which generative outputs included API keys <span
-class="citation" data-cites="api-keys">(Mohammed 2021)</span>,
-individuals’ contact information <span class="citation"
-data-cites="carlini2020extracting">(Carlini et al. 2020)</span>,
-identifiable human faces <span class="citation"
-data-cites="carlini2023extracting">(Carlini, Hayes, et al. 2023)</span>,
-and close replicas of artists’ unique styles <span class="citation"
-data-cites="stablediffusion-suit">(Butterick 2023)</span>.</p>
+class="citation" data-cites="api-keys">(<a href="#ref-api-keys"
+role="doc-biblioref">Mohammed 2021</a>)</span>, individuals’ contact
+information <span class="citation"
+data-cites="carlini2020extracting">(<a href="#ref-carlini2020extracting"
+role="doc-biblioref">Carlini et al. 2020</a>)</span>, identifiable human
+faces <span class="citation" data-cites="carlini2023extracting">(<a
+href="#ref-carlini2023extracting" role="doc-biblioref">Carlini, Hayes,
+et al. 2023</a>)</span>, and close replicas of artists’ unique styles
+<span class="citation" data-cites="stablediffusion-suit">(<a
+href="#ref-stablediffusion-suit" role="doc-biblioref">Butterick
+2023</a>)</span>.</p>
 <p>Although the legal analysis of generative AI is still in its infancy,
 one common theme is to treat generative models like they are <em>black
 boxes</em> <span class="citation"
-data-cites="lehr2017legalml pasquale2015blackbox citron2008dueprocess rich2015bb li2021blackbox">(Lehr
-and Ohm 2017; Pasquale 2015; Citron 2008; Rich 2015; Li 2021)</span>.
-While it is possible to train models to produce certain kinds of
-outputs, and while it is possible to inspect outputs to test whether
-they have particular properties, it is generally considered to be
-extraordinarily difficult, if not impossible, to trace why and how a
-model generated a particular output. That is, generative models, combine
-a user query or prompt with an uninterpretable numerical representation
-derived from the training data to create a new output. The generation is
-not easily traced to any given data point in the training set, and
-changing the query, the data, or even the random seed used to start the
-generation process can significantly change the generation.</p>
+data-cites="lehr2017legalml pasquale2015blackbox citron2008dueprocess rich2015bb li2021blackbox">(<a
+href="#ref-lehr2017legalml" role="doc-biblioref">Lehr and Ohm 2017</a>;
+<a href="#ref-pasquale2015blackbox" role="doc-biblioref">Pasquale
+2015</a>; <a href="#ref-citron2008dueprocess"
+role="doc-biblioref">Citron 2008</a>; <a href="#ref-rich2015bb"
+role="doc-biblioref">Rich 2015</a>; <a href="#ref-li2021blackbox"
+role="doc-biblioref">Li 2021</a>)</span>. While it is possible to train
+models to produce certain kinds of outputs, and while it is possible to
+inspect outputs to test whether they have particular properties, it is
+generally considered to be extraordinarily difficult, if not impossible,
+to trace why and how a model generated a particular output. That is,
+generative models, combine a user query or prompt with an
+uninterpretable numerical representation derived from the training data
+to create a new output. The generation is not easily traced to any given
+data point in the training set, and changing the query, the data, or
+even the random seed used to start the generation process can
+significantly change the generation.</p>
 <p>The black-box view of generative AI has important consequences for
 its legal treatment. In privacy, it is quite difficult to tell whether
 an output is an accurate or faithful reflection of training data (in
@@ -188,24 +197,34 @@ arguments under which ML researchers have justified the practice of
 collecting and using large volumes of data. It is precisely because the
 model itself is uninterpretable that it has been considered not simply
 to be an infringing copy of the training data <span class="citation"
-data-cites="li2021blackbox pasquale2015blackbox">(Li 2021; Pasquale
-2015)</span>. In other words, although generative-AI models can both
+data-cites="li2021blackbox pasquale2015blackbox">(<a
+href="#ref-li2021blackbox" role="doc-biblioref">Li 2021</a>; <a
+href="#ref-pasquale2015blackbox" role="doc-biblioref">Pasquale
+2015</a>)</span>. In other words, although generative-AI models can both
 <em>memorize</em> their training data <span class="citation"
-data-cites="carlini2020extracting">(Carlini et al. 2020)</span> and
+data-cites="carlini2020extracting">(<a href="#ref-carlini2020extracting"
+role="doc-biblioref">Carlini et al. 2020</a>)</span> and
 <em>hallucinate</em> outputs that have no basis in reality <span
-class="citation" data-cites="lee2018hallucinations">(Lee et al.
-2018)</span>, it is extremely difficult to tell when a model is doing
-so, much less prevent it <span class="citation"
-data-cites="carlini2023quantifying ippolito2022preventing">(Carlini,
-Ippolito, et al. 2023; Ippolito et al. 2022)</span>.</p>
+class="citation" data-cites="lee2018hallucinations">(<a
+href="#ref-lee2018hallucinations" role="doc-biblioref">Lee et al.
+2018</a>)</span>, it is extremely difficult to tell when a model is
+doing so, much less prevent it <span class="citation"
+data-cites="carlini2023quantifying ippolito2022preventing">(<a
+href="#ref-carlini2023quantifying" role="doc-biblioref">Carlini,
+Ippolito, et al. 2023</a>; <a href="#ref-ippolito2022preventing"
+role="doc-biblioref">Ippolito et al. 2022</a>)</span>.</p>
 <p>But AI models are not inherently black boxes, even though much of the
 existing legal literature treats them this way. ML researchers are
 actively attempting to develop techniques for giving better and more
 granular causal explanations of the generation process <span
 class="citation"
-data-cites="meng2022locating geva2023dissecting henighan2023circuits dai2022knowledge">(Meng
-et al. 2022; Geva et al. 2023; Henighan et al. 2023; Dai et al.
-2022)</span>. In particular, two classes of generative models –
+data-cites="meng2022locating geva2023dissecting henighan2023circuits dai2022knowledge">(<a
+href="#ref-meng2022locating" role="doc-biblioref">Meng et al. 2022</a>;
+<a href="#ref-geva2023dissecting" role="doc-biblioref">Geva et al.
+2023</a>; <a href="#ref-henighan2023circuits"
+role="doc-biblioref">Henighan et al. 2023</a>; <a
+href="#ref-dai2022knowledge" role="doc-biblioref">Dai et al.
+2022</a>)</span>. In particular, two classes of generative models –
 <em>retrieval</em> models and <em>attribution</em> models – are
 explicitly designed <em>not</em> to be black boxes.</p>
 <p>In a vanilla generative model, the training data is simply used to
@@ -307,14 +326,19 @@ a classification model like the image-classifier is a label, and the
 output of a regression model like the property-valuer is a number, the
 output of a generative model — a <em>generation</em> — is a piece of
 media. There are image models <span class="citation"
-data-cites="rombach2022highresolution">(Rombach et al. 2022)</span>,
-text models <span class="citation" data-cites="brown2020language">(T. B.
-Brown et al. 2020)</span>, music models <span class="citation"
-data-cites="agostinelli2023musiclm">(Agostinelli et al. 2023)</span>,
-spoken-audio models <span class="citation"
-data-cites="oord2016wavenet">(Oord et al. 2016)</span>, 3D scene models
-<span class="citation" data-cites="poole2022dreamfusion">(Poole et al.
-2022)</span>, and many more (Many modern generative AIs combine
+data-cites="rombach2022highresolution">(<a
+href="#ref-rombach2022highresolution" role="doc-biblioref">Rombach et
+al. 2022</a>)</span>, text models <span class="citation"
+data-cites="brown2020language">(<a href="#ref-brown2020language"
+role="doc-biblioref">T. B. Brown et al. 2020</a>)</span>, music models
+<span class="citation" data-cites="agostinelli2023musiclm">(<a
+href="#ref-agostinelli2023musiclm" role="doc-biblioref">Agostinelli et
+al. 2023</a>)</span>, spoken-audio models <span class="citation"
+data-cites="oord2016wavenet">(<a href="#ref-oord2016wavenet"
+role="doc-biblioref">Oord et al. 2016</a>)</span>, 3D scene models <span
+class="citation" data-cites="poole2022dreamfusion">(<a
+href="#ref-poole2022dreamfusion" role="doc-biblioref">Poole et al.
+2022</a>)</span>, and many more (Many modern generative AIs combine
 modalities.).</p>
 <p><em>The form of the model.</em> Neural networks are the architecture
 for most generative AI models. In comparison to more-familiar sets for
@@ -482,9 +506,10 @@ be implemented so that an individual’s data never has to leave their
 device.</p>
 <p>Additionally, retrieval models have been used to externalize
 “memory”, embracing memorization to reduce hallucinations <span
-class="citation" data-cites="shuster2021hallucination">(Shuster et al.
-2021)</span>. That goal of reducing hallucinations has been referred to
-as “improving factuality” or “model groundness.” In this scenario, a
+class="citation" data-cites="shuster2021hallucination">(<a
+href="#ref-shuster2021hallucination" role="doc-biblioref">Shuster et al.
+2021</a>)</span>. That goal of reducing hallucinations has been referred
+to as “improving factuality” or “model groundness.” In this scenario, a
 model might be trained on either private and/or public data and then
 augmented with a public retrieval dataset. A model creator could
 independently verify that the information contained in the retrieval
@@ -501,11 +526,14 @@ verify any facts about the retrieval dataset. This is particularly
 challenging when data is scraped from the web as it may contain
 inaccurate information and even deliberate misinformation. The majority
 of popular retrieval models have this goal <span class="citation"
-data-cites="lamda">(Thoppilan et al. 2022)</span>.</p>
+data-cites="lamda">(<a href="#ref-lamda" role="doc-biblioref">Thoppilan
+et al. 2022</a>)</span>.</p>
 <p>Retrieval models offer another advantage by enabling the
 incorporation of more recent data into models. <span class="citation"
-data-cites="luu2021time lazaridou2021mind">(Luu et al. 2021; Lazaridou
-et al. 2021)</span> Instead of retraining a model to include more recent
+data-cites="luu2021time lazaridou2021mind">(<a href="#ref-luu2021time"
+role="doc-biblioref">Luu et al. 2021</a>; <a
+href="#ref-lazaridou2021mind" role="doc-biblioref">Lazaridou et al.
+2021</a>)</span> Instead of retraining a model to include more recent
 data, retrieval datasets can simply be augmented with more recent data.
 Of course this is not without limits. The retriever module is designed
 with particular data in mind. If the retrieval dataset becomes very
@@ -526,16 +554,18 @@ modules involve training a “retriever module” such as the methods listed
 on the right. Other modules can rely on traditional tools like
 performing a web search via a pre-existing search engine. Many current
 language models use neural retrievers such as LaMDA <span
-class="citation" data-cites="lamda">(Thoppilan et al. 2022)</span> and
-RETRO <span class="citation"
-data-cites="borgeaud2021improving">(Borgeaud et al. 2022)</span>. <a
-href="#fn4" class="footnote-ref" id="fnref4"
+class="citation" data-cites="lamda">(<a href="#ref-lamda"
+role="doc-biblioref">Thoppilan et al. 2022</a>)</span> and RETRO <span
+class="citation" data-cites="borgeaud2021improving">(<a
+href="#ref-borgeaud2021improving" role="doc-biblioref">Borgeaud et al.
+2022</a>)</span>. <a href="#fn4" class="footnote-ref" id="fnref4"
 role="doc-noteref"><sup>4</sup></a></p>
 <figure id="fig:retrievers">
 <img src="images/retrieval-methods.jpg" style="width:75.0%" />
 <figcaption>A flow chart categorizing many different methods for
 creating retriever modules <span class="citation"
-data-cites="guu2022representing">(Guu 2022)</span>.</figcaption>
+data-cites="guu2022representing">(<a href="#ref-guu2022representing"
+role="doc-biblioref">Guu 2022</a>)</span>.</figcaption>
 </figure>
 <h3 data-number="3.1.2" id="sec:retriever-limits"><span
 class="header-section-number">3.1.2</span> Retrieval has Limits</h3>
@@ -548,11 +578,16 @@ module might not generalize well to an individual living in Germany or
 an individual in Sri Lanka. Generalization is a known challenge and one
 that is actively studied. While there is a lot of interest in the
 problem of temporal shifts <span class="citation"
-data-cites="luu2021time lazaridou2021mind">(Luu et al. 2021; Lazaridou
-et al. 2021)</span> and adapting to new domains <span class="citation"
-data-cites="gururangan2020dont han2019unsupervised logeswaran2019zero">(Gururangan
-et al. 2020; Han and Eisenstein 2019; Logeswaran et al. 2019)</span>,
-there is currently not a playbook of best practices.</p>
+data-cites="luu2021time lazaridou2021mind">(<a href="#ref-luu2021time"
+role="doc-biblioref">Luu et al. 2021</a>; <a
+href="#ref-lazaridou2021mind" role="doc-biblioref">Lazaridou et al.
+2021</a>)</span> and adapting to new domains <span class="citation"
+data-cites="gururangan2020dont han2019unsupervised logeswaran2019zero">(<a
+href="#ref-gururangan2020dont" role="doc-biblioref">Gururangan et al.
+2020</a>; <a href="#ref-han2019unsupervised" role="doc-biblioref">Han
+and Eisenstein 2019</a>; <a href="#ref-logeswaran2019zero"
+role="doc-biblioref">Logeswaran et al. 2019</a>)</span>, there is
+currently not a playbook of best practices.</p>
 <p>Unfortunately, because the retrieved examples are added as inputs
 (and thus “suggestions”) to the generator module, it is possible for
 those retrieved examples to be <em>underutilized</em>. In the example of
@@ -570,12 +605,15 @@ celebrated in the summer on December 25” depending on which module, the
 retriever or the generator, dominates. The presence of the verified
 facts in the retrieval dataset does not ensure that the generated output
 abides by those facts <span class="citation"
-data-cites="longpre2022entitybased">(Longpre et al. 2022)</span>.
-Previous work found that the language model, GPT-3 <span
-class="citation" data-cites="brown2020language">(T. B. Brown et al.
-2020)</span>, updated generated answers to include facts found in the
-retrieved examples 85% of the time <span class="citation"
-data-cites="si2023prompting">(Si et al. 2023)</span>.</p>
+data-cites="longpre2022entitybased">(<a
+href="#ref-longpre2022entitybased" role="doc-biblioref">Longpre et al.
+2022</a>)</span>. Previous work found that the language model, GPT-3
+<span class="citation" data-cites="brown2020language">(<a
+href="#ref-brown2020language" role="doc-biblioref">T. B. Brown et al.
+2020</a>)</span>, updated generated answers to include facts found in
+the retrieved examples 85% of the time <span class="citation"
+data-cites="si2023prompting">(<a href="#ref-si2023prompting"
+role="doc-biblioref">Si et al. 2023</a>)</span>.</p>
 <h2 data-number="3.2" id="attribution"><span
 class="header-section-number">3.2</span> Attribution</h2>
 <p>Attribution models aim to <em>attribute</em> training examples to
@@ -586,8 +624,10 @@ the model inputs. These techniques originated with classical statistics
 and then were developed further for classification models with the goal
 of better interpreting model outputs and understanding “contributions”
 from training examples towards predictions <span class="citation"
-data-cites="cook1977detection koh2017understanding">(Cook 1977; Koh and
-Liang 2017)</span>.</p>
+data-cites="cook1977detection koh2017understanding">(<a
+href="#ref-cook1977detection" role="doc-biblioref">Cook 1977</a>; <a
+href="#ref-koh2017understanding" role="doc-biblioref">Koh and Liang
+2017</a>)</span>.</p>
 <p>In the remainder of this paper, we use the words “attribution” and
 “influence” interchangeably. A common definition of influence is as
 follows:</p>
@@ -615,26 +655,29 @@ id="fnref8" role="doc-noteref"><sup>8</sup></a>:</dt>
 <p>If a generation is much more or less likely to be produced after
 greater importance is placed on a given training example during
 training, then that training example has high <em>influence</em> on the
-generation <span class="citation"
-data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.</p>
+generation <span class="citation" data-cites="akyurek2022tracing">(<a
+href="#ref-akyurek2022tracing" role="doc-biblioref">Akyürek et al.
+2022</a>)</span>.</p>
 </dd>
 <dt>Embedding-based attribution:</dt>
 <dd>
 <p>A training example can be <em>attributed</em> to a given model output
 if the model’s internal representation of the training example is very
 similar to the model’s internal representation of the prompt for the
-model output <span class="citation"
-data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.</p>
+model output <span class="citation" data-cites="akyurek2022tracing">(<a
+href="#ref-akyurek2022tracing" role="doc-biblioref">Akyürek et al.
+2022</a>)</span>.</p>
 </dd>
 </dl>
 <p>While the <em>change-based influence</em> definition does not require
 training an entirely new model, it still requires computationally
 expensive and memory intensive approximations <span class="citation"
-data-cites="schioppa2022scaling">(Schioppa et al. 2022)</span>. On the
-other hand, <em>embedding based attribution</em> is much cheaper, but
-has the drawback that a correlation between a training example and a
-generation does not imply that the presence of that training example
-caused the generation.</p>
+data-cites="schioppa2022scaling">(<a href="#ref-schioppa2022scaling"
+role="doc-biblioref">Schioppa et al. 2022</a>)</span>. On the other
+hand, <em>embedding based attribution</em> is much cheaper, but has the
+drawback that a correlation between a training example and a generation
+does not imply that the presence of that training example caused the
+generation.</p>
 <h3 data-number="3.2.1" id="sec:attribution-limits"><span
 class="header-section-number">3.2.1</span> How to Interpret
 Attribution</h3>
@@ -701,7 +744,9 @@ edit distance between “the dog was red” and “the dog was blue” is one
 word: there is a one word difference between the first and second
 phrase. The particular definition chosen for “similar” can be more or
 less permissive in returning candidate examples <span class="citation"
-data-cites="ippolito2022preventing">(Ippolito et al. 2022)</span>.</p>
+data-cites="ippolito2022preventing">(<a
+href="#ref-ippolito2022preventing" role="doc-biblioref">Ippolito et al.
+2022</a>)</span>.</p>
 <p>Two further challenges for understanding sources of error remain.
 First, techniques for attribution and retrieval are typically measured
 across many different generations. While this gives an estimate as to
@@ -712,8 +757,9 @@ the specific example retrieved or attributed and the relationship
 between those examples and the generation. Second, approximations for
 influence are easier for smaller models. As generative AI models have
 become larger and more complex, identifying good approximations remains
-a challenge <span class="citation" data-cites="basu2021influence">(Basu,
-Pope, and Feizi 2021)</span>.</p>
+a challenge <span class="citation" data-cites="basu2021influence">(<a
+href="#ref-basu2021influence" role="doc-biblioref">Basu, Pope, and Feizi
+2021</a>)</span>.</p>
 <h2 data-number="3.3" id="sec:definitions"><span
 class="header-section-number">3.3</span> Technical Definitions are not
 Legal Definitions</h2>
@@ -1319,8 +1365,10 @@ online.<a href="#fnref3" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>For more details comparing different methods for
 creating retriever modules, please see <span class="citation"
-data-cites="lesota2021survey">Lesota et al. (2021)</span> or <span
-class="citation" data-cites="guu2022representing">Guu (2022)</span>.<a
+data-cites="lesota2021survey">Lesota et al. (<a
+href="#ref-lesota2021survey" role="doc-biblioref">2021</a>)</span> or
+<span class="citation" data-cites="guu2022representing">Guu (<a
+href="#ref-guu2022representing" role="doc-biblioref">2022</a>)</span>.<a
 href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>While this example is a stretch, it is illustrative of
 other “facts” that may not be present in collected and curated training
@@ -1329,17 +1377,21 @@ role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>The strategy for computing the counterfactual influence
 can also be called <em>leave-one-out training</em> <span
 class="citation"
-data-cites="koh2017understanding feldman2020influence">(Koh and Liang
-2017; Feldman and Zhang 2020)</span>.<a href="#fnref6"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+data-cites="koh2017understanding feldman2020influence">(<a
+href="#ref-koh2017understanding" role="doc-biblioref">Koh and Liang
+2017</a>; <a href="#ref-feldman2020influence"
+role="doc-biblioref">Feldman and Zhang 2020</a>)</span>.<a
+href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>For example, the open-source, Pythia, language models
 cost an estimated $400,000 in compute per model <span class="citation"
-data-cites="biderman2023pythia">(Biderman et al. 2023)</span>.<a
-href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+data-cites="biderman2023pythia">(<a href="#ref-biderman2023pythia"
+role="doc-biblioref">Biderman et al. 2023</a>)</span>.<a href="#fnref7"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p>In the literature this is called “gradient-based
-influence”<span class="citation"
-data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.<a
-href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+influence”<span class="citation" data-cites="akyurek2022tracing">(<a
+href="#ref-akyurek2022tracing" role="doc-biblioref">Akyürek et al.
+2022</a>)</span>.<a href="#fnref8" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p>The challenge of creating technical definitions to use
 as proxies is discussed further in section <a href="#sec:definitions"
 data-reference-type="ref" data-reference="sec:definitions">3.3</a>.<a
@@ -1364,28 +1416,34 @@ role="doc-backlink">↩︎</a></p></li>
 definitions is the term <em>differential privacy</em>. Differential
 privacy has been embraced in many systems since it’s introduction in
 2006, including by the U.S. Census Bureau <span class="citation"
-data-cites="census">(Population Reference Bureau and the U.S. Census
-Bureau’s 2020 Census Data Products and Dissemination Team 2023)</span>,
-because it it provides guarantees of the amount of exposure of data.
-Specifically, “algorithm is said to be differentially private if by
-looking at the output, one cannot tell whether any individual’s data was
-included in the original dataset or not” <span class="citation"
-data-cites="harvardprivacytools">(Harvard University Privacy Tools
-Project Accessed 2023)</span>. This definition of “privacy preserving”
-is strict, but easily broken. If an individual is duplicated in the
-dataset then removing one instance of that individual would not
-necessarily make it more challenging to tell if that individual’s data
-was included int he original dataset <span class="citation"
-data-cites="brown2022what">(H. Brown et al. 2022)</span><a
-href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+data-cites="census">(<a href="#ref-census"
+role="doc-biblioref">Population Reference Bureau and the U.S. Census
+Bureau’s 2020 Census Data Products and Dissemination Team
+2023</a>)</span>, because it it provides guarantees of the amount of
+exposure of data. Specifically, “algorithm is said to be differentially
+private if by looking at the output, one cannot tell whether any
+individual’s data was included in the original dataset or not” <span
+class="citation" data-cites="harvardprivacytools">(<a
+href="#ref-harvardprivacytools" role="doc-biblioref">Harvard University
+Privacy Tools Project Accessed 2023</a>)</span>. This definition of
+“privacy preserving” is strict, but easily broken. If an individual is
+duplicated in the dataset then removing one instance of that individual
+would not necessarily make it more challenging to tell if that
+individual’s data was included int he original dataset <span
+class="citation" data-cites="brown2022what">(<a
+href="#ref-brown2022what" role="doc-biblioref">H. Brown et al.
+2022</a>)</span><a href="#fnref12" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
 <li id="fn13"><p>The interpretability literature is ripe with
 discussions of what an acceptable notion of interpretability could look
 like. The takeaway is that there is no one answer. It depends on the
 application of the model and why interpretability may be desired <span
 class="citation"
-data-cites="molnar2020history rudin2021interpretable">(Molnar,
-Casalicchio, and Bischl 2020; Rudin et al. 2021)</span>.<a
-href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+data-cites="molnar2020history rudin2021interpretable">(<a
+href="#ref-molnar2020history" role="doc-biblioref">Molnar, Casalicchio,
+and Bischl 2020</a>; <a href="#ref-rudin2021interpretable"
+role="doc-biblioref">Rudin et al. 2021</a>)</span>.<a href="#fnref13"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn14"><p>This example assumes that an individual’s data will
 only contain their private information. For example, an individual’s
 chat messages or emails with a friend could contain their friend’s
