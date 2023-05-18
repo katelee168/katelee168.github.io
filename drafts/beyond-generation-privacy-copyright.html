@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Katherine Lee" />
+  <meta name="author" content="A. Feder Cooper" />
+  <meta name="author" content="David Mimno" />
+  <meta name="author" content="James Grimmelmann" />
+  <title>Beyond Generation: Privacy and Copyright Consequences of Retrieval and Attribution Models</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Beyond Generation: Privacy and Copyright Consequences
+of Retrieval and Attribution Models</h1>
+<p class="author">Katherine Lee<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p class="author">A. Feder Cooper</p>
+<p class="author">David Mimno</p>
+<p class="author">James Grimmelmann</p>
+<p class="date">May 2023</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#intro" id="toc-intro"><span
+class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#background" id="toc-background"><span
+class="toc-section-number">2</span> Background on ML and Generative
+Models</a>
+<ul>
+<li><a
+href="#classification-and-regression-familiar-machine-learning-setups"
+id="toc-classification-and-regression-familiar-machine-learning-setups"><span
+class="toc-section-number">2.1</span> Classification and Regression:
+Familiar Machine Learning Setups</a></li>
+<li><a href="#generative-models-are-another-machine-learning-setup"
+id="toc-generative-models-are-another-machine-learning-setup"><span
+class="toc-section-number">2.2</span> Generative Models are Another
+Machine Learning Setup</a></li>
+<li><a href="#memorization-and-hallucination"
+id="toc-memorization-and-hallucination"><span
+class="toc-section-number">2.3</span> Memorization and
+Hallucination</a></li>
+</ul></li>
+<li><a href="#retrieval-and-attribution-models"
+id="toc-retrieval-and-attribution-models"><span
+class="toc-section-number">3</span> Retrieval and Attribution Models</a>
+<ul>
+<li><a href="#retrieval" id="toc-retrieval"><span
+class="toc-section-number">3.1</span> Retrieval</a>
+<ul>
+<li><a href="#sec:retrieval-sources"
+id="toc-sec:retrieval-sources"><span
+class="toc-section-number">3.1.1</span> Retrieval Models Utilize
+Multiple Data Sources</a></li>
+<li><a href="#sec:retriever-limits" id="toc-sec:retriever-limits"><span
+class="toc-section-number">3.1.2</span> Retrieval has Limits</a></li>
+</ul></li>
+<li><a href="#attribution" id="toc-attribution"><span
+class="toc-section-number">3.2</span> Attribution</a>
+<ul>
+<li><a href="#sec:attribution-limits"
+id="toc-sec:attribution-limits"><span
+class="toc-section-number">3.2.1</span> How to Interpret
+Attribution</a></li>
+</ul></li>
+<li><a href="#sec:definitions" id="toc-sec:definitions"><span
+class="toc-section-number">3.3</span> Technical Definitions are not
+Legal Definitions</a></li>
+</ul></li>
+<li><a href="#sec:privacy" id="toc-sec:privacy"><span
+class="toc-section-number">4</span> Privacy</a>
+<ul>
+<li><a href="#sec:source-verification"
+id="toc-sec:source-verification"><span
+class="toc-section-number">4.1</span> Attribution Enables Source
+Verification</a></li>
+<li><a href="#retrieval-creates-airgaps"
+id="toc-retrieval-creates-airgaps"><span
+class="toc-section-number">4.2</span> Retrieval Creates Airgaps</a></li>
+<li><a href="#generative-ai-suffers-from-diffusion-of-responsibility"
+id="toc-generative-ai-suffers-from-diffusion-of-responsibility"><span
+class="toc-section-number">4.3</span> Generative AI Suffers from
+Diffusion of Responsibility</a></li>
+<li><a href="#sec:decontextualize" id="toc-sec:decontextualize"><span
+class="toc-section-number">4.4</span> Generative AI Decontextualizes
+Data</a></li>
+</ul></li>
+<li><a href="#copyright" id="toc-copyright"><span
+class="toc-section-number">5</span> Copyright</a>
+<ul>
+<li><a href="#sec:copy-proof" id="toc-sec:copy-proof"><span
+class="toc-section-number">5.1</span> Attribution Can Provide Evidence
+of Copying</a></li>
+<li><a href="#sec:decoupling" id="toc-sec:decoupling"><span
+class="toc-section-number">5.2</span> Airgaps Can Make Copying
+Explicit</a></li>
+<li><a href="#sec:secondary-liability"
+id="toc-sec:secondary-liability"><span
+class="toc-section-number">5.3</span> Retrieval and Attribution Can
+Scramble Secondary Liability</a></li>
+</ul></li>
+<li><a href="#sec:conclusion" id="toc-sec:conclusion"><span
+class="toc-section-number">6</span> Conclusion</a></li>
+</ul>
+</nav>
+<h1 data-number="1" id="intro"><span
+class="header-section-number">1</span> Introduction</h1>
+<p>Extraordinary recent advances in generative artificial intelligence
+(AI) models have led to legal and ethical dilemmas in two related areas:
+privacy and in copyright. Unlike earlier models that use training data
+to learn to output scores or classifications, generative models produce
+output of the same form as the training data, such as fluent text or
+high-resolution images. Current models are so powerful, in fact, that
+they generate exact or near-exact copies of training instances. This
+presents serious privacy issues because some training instances include
+sensitive or private data, and it also raises copyright problems because
+some training instances include copyrighted works of authorship. Both of
+these types of issues present immediate risks: Researchers have found
+cases in which generative outputs included API keys <span
+class="citation" data-cites="api-keys">(Mohammed 2021)</span>,
+individuals’ contact information <span class="citation"
+data-cites="carlini2020extracting">(Carlini et al. 2020)</span>,
+identifiable human faces <span class="citation"
+data-cites="carlini2023extracting">(Carlini, Hayes, et al. 2023)</span>,
+and close replicas of artists’ unique styles <span class="citation"
+data-cites="stablediffusion-suit">(Butterick 2023)</span>.</p>
+<p>Although the legal analysis of generative AI is still in its infancy,
+one common theme is to treat generative models like they are <em>black
+boxes</em> <span class="citation"
+data-cites="lehr2017legalml pasquale2015blackbox citron2008dueprocess rich2015bb li2021blackbox">(Lehr
+and Ohm 2017; Pasquale 2015; Citron 2008; Rich 2015; Li 2021)</span>.
+While it is possible to train models to produce certain kinds of
+outputs, and while it is possible to inspect outputs to test whether
+they have particular properties, it is generally considered to be
+extraordinarily difficult, if not impossible, to trace why and how a
+model generated a particular output. That is, generative models, combine
+a user query or prompt with an uninterpretable numerical representation
+derived from the training data to create a new output. The generation is
+not easily traced to any given data point in the training set, and
+changing the query, the data, or even the random seed used to start the
+generation process can significantly change the generation.</p>
+<p>The black-box view of generative AI has important consequences for
+its legal treatment. In privacy, it is quite difficult to tell whether
+an output is an accurate or faithful reflection of training data (in
+which case it is potentially a privacy violation) or a modified version
+of training data (in which case it is potentially a different kind of
+privacy violation). In copyright, black-boxiness goes to the fair-use
+arguments under which ML researchers have justified the practice of
+collecting and using large volumes of data. It is precisely because the
+model itself is uninterpretable that it has been considered not simply
+to be an infringing copy of the training data <span class="citation"
+data-cites="li2021blackbox pasquale2015blackbox">(Li 2021; Pasquale
+2015)</span>. In other words, although generative-AI models can both
+<em>memorize</em> their training data <span class="citation"
+data-cites="carlini2020extracting">(Carlini et al. 2020)</span> and
+<em>hallucinate</em> outputs that have no basis in reality <span
+class="citation" data-cites="lee2018hallucinations">(Lee et al.
+2018)</span>, it is extremely difficult to tell when a model is doing
+so, much less prevent it <span class="citation"
+data-cites="carlini2023quantifying ippolito2022preventing">(Carlini,
+Ippolito, et al. 2023; Ippolito et al. 2022)</span>.</p>
+<p>But AI models are not inherently black boxes, even though much of the
+existing legal literature treats them this way. ML researchers are
+actively attempting to develop techniques for giving better and more
+granular causal explanations of the generation process <span
+class="citation"
+data-cites="meng2022locating geva2023dissecting henighan2023circuits dai2022knowledge">(Meng
+et al. 2022; Geva et al. 2023; Henighan et al. 2023; Dai et al.
+2022)</span>. In particular, two classes of generative models –
+<em>retrieval</em> models and <em>attribution</em> models – are
+explicitly designed <em>not</em> to be black boxes.</p>
+<p>In a vanilla generative model, the training data is simply used to
+<em>train</em> the model so that it effectively captures the relevant
+features of the data domain. In an image model, for example, that means
+that the label “cat” corresponds to images of cats. Generative models
+take in user-inputted prompts, like “Draw an image of a yawning cat” and
+creates generations by combining features that are learned from the
+training data. The learned features could be very specific, like that
+cats have pointy ears, or could encompass entire concepts, like the idea
+of a domestic cat, or a specific cat. Thus, the training dataset can
+show up in the model on two time scales: it is both used at training
+time to create a model, and then because information from the training
+data is now embedded in the model’s weights, it is used again at
+generation time to create an output.</p>
+<p>Retrieval models add another role for data. In addition to the
+<em>training</em> dataset, there is also a separate <em>retrieval</em>
+dataset. The training dataset is used to train the model as before, but
+the retrieval dataset is used as additional input at generation time. In
+response to a user prompt, the model identifies – it “retrieves” –
+instances in the retrieval dataset that are good matches for the prompt.
+It then takes these results and uses them as inspiration for the
+generation. To use the example from above, when prompted with “yawning
+cat,” a retrieval model will first search the retrieval dataset for
+images of yawning cats, and then use those images to generate its own
+image of a yawning cat.</p>
+<p>An attribution model also extends the vanilla model of generation,
+but in a different way. An attribution model has been engineered so that
+in addition to its output generation, it also produces a list of
+possible attributions for that generation – instances within the
+training data that had the most “influence” on the output. Influence
+here is a term of art (discussed in more detail below), but one common
+approach to defining influence is counterfactual: an input is
+influential to an output if a model trained without the input would have
+been unlikely to produce the output.</p>
+<p>Retrieval and attribution models may force a reconsideration of the
+legal treatment of generative AI. By creating a tighter link between
+input and output, they make it possible for a model creator or user to
+exercise tighter control over the generation process. In this paper, we
+explore what kinds of information retrieval and attribution can provide,
+and how the availability of this information changes the legal analysis.
+Importantly, we consider both the power and limits of these methods.
+Retrieval and attribution are not likely to be fully accurate, even as
+they improve over a black-box baseline. We aim to give lawyers, courts,
+and policy-makers the tools they need to reason appropriately about what
+to expect from retrieval and attribution models, and what not to.</p>
+<h1 data-number="2" id="background"><span
+class="header-section-number">2</span> Background on ML and Generative
+Models</h1>
+<p>A person could explicitly write down a <em>model</em>, and this is
+how a lot models work: Grant credit if the applicant has at least three
+open accounts in good standing, and has not declared bankruptcy in the
+last seven years, unless …and so on. Informally, we can typically think
+of such models as assigning <em>inputs</em> to <em>outputs</em>.</p>
+<p><em>Machine learning</em> produces models; however, rather than being
+specified as a manual set of instructions, models are produced
+<em>algorithmically</em> by inspecting and analyzing available
+<em>data</em>. For example, in a credit-granting model, an input could
+be the <em>features</em> of person’s credit history, such as their
+number of open accounts in good standing, and whether they have declared
+bankruptcy. The output would be a yes-or-no decision: grant credit, or
+deny it.</p>
+<p>The algorithm for producing a machine learning model (typically
+called a <em>training</em> or <em>learning</em> algorithm) is given a
+general specification of the kind of rules that can be used to map
+inputs to outputs, and then searches for a rule that best fits the
+available set of training data. The details are exceeding complex, but
+in general these algorithms run iteratively to learn patterns from data
+that would result in “good” mapping from input to output, where what
+counts as a “good” mapping is typically quantified using a performance
+metric. Machine learning excels when these patterns are too complex to
+specify manually, or are hard to discover through direct inspection.</p>
+<h2 data-number="2.1"
+id="classification-and-regression-familiar-machine-learning-setups"><span
+class="header-section-number">2.1</span> Classification and Regression:
+Familiar Machine Learning Setups</h2>
+<p>One familiar type of machine learning involves assigning labels to
+inputs, such as tagging images of animals by their species. Another
+assigns inputs to continuous values, such as the predicted sale price of
+a house. In the former case, the outputs are drawn from a discrete set
+of labels: “cat,” “dog,” “yak,” “koala,” and so on. In the latter case,
+the outputs are drawn from a range of dollar figures. In both cases, the
+output domains are both different than the inputs (the label “cat” is
+not the same kind of thing as an image of a cat; nor, of course, is it
+the same as a cat itself), and much simpler than the inputs (an estimate
+of “$453,061” contains much less information than the information sheet
+on a real estate listing page). These models are trained on rich data
+(images of animals and property details, respectively), but their
+outputs are comparatively thin. As the algorithm processes these rich
+data, the data get represented inside the model, and then compressed
+into comparatively thin outputs.</p>
+<h2 data-number="2.2"
+id="generative-models-are-another-machine-learning-setup"><span
+class="header-section-number">2.2</span> Generative Models are Another
+Machine Learning Setup</h2>
+<p>The outputs of generative models are much richer than that of
+classification or regression models. Nevertheless, just as the output of
+a classification model like the image-classifier is a label, and the
+output of a regression model like the property-valuer is a number, the
+output of a generative model — a <em>generation</em> — is a piece of
+media. There are image models <span class="citation"
+data-cites="rombach2022highresolution">(Rombach et al. 2022)</span>,
+text models <span class="citation" data-cites="brown2020language">(T. B.
+Brown et al. 2020)</span>, music models <span class="citation"
+data-cites="agostinelli2023musiclm">(Agostinelli et al. 2023)</span>,
+spoken-audio models <span class="citation"
+data-cites="oord2016wavenet">(Oord et al. 2016)</span>, 3D scene models
+<span class="citation" data-cites="poole2022dreamfusion">(Poole et al.
+2022)</span>, and many more (Many modern generative AIs combine
+modalities.).</p>
+<p><em>The form of the model.</em> Neural networks are the architecture
+for most generative AI models. In comparison to more-familiar sets for
+classification in statistics, neural networks have many more parameters,
+which enable richer internal representations of the data.</p>
+<p><em>Model inputs and outputs.</em> The inputs to a generative model
+are also distinctive. Whereas a classification or regression model’s
+rule compresses a detailed input into a concise output, a generative
+model expands a concise input into a detailed output. Most commonly, the
+input is a user-provided text string (a <em>prompt</em>) used to prime
+the model. A user would give a generative text model a prompt like,
+“Last summer, I visited my grandmother in” and the model would generate
+a completion: “Taiwan.” For image generation models, a user could write
+the prompt, “Pink cat with a little backpack”, and the model would
+return an image of a pink cat with a little backpack. Notably, this
+image generation model is <em>multi-modal</em>, meaning it combines
+language and image data to create image generations from text.</p>
+<p><em>Training a model.</em> To train a model, an algorithm takes in
+the training data and some quantified, mathematical objective to perform
+well on — typically, a metric related to error, which should be
+minimized. For example, in classification, the objective typically
+captures how many training examples get classified incorrectly, such as
+mistakenly labeling a “cat” as a “dog,” which gets penalized during the
+training process. There is a similar overarching idea that applies to
+training generative models; however, there is a different way to
+quantify in the objective whether there is alignment with the training
+data examples.</p>
+<p>Consider text-generation models (typically called <em>large language
+models</em> or LLMs). During the training process, a model will be
+rewarded for completing a phrase in a way that correctly matches the
+training data: The model is encouraged to make outputs that more closely
+match the training data. For example, a model might be exposed to the
+training data example “This was a great day,” but shown only the first
+four words and asked to predict the fifth. If it predicts correctly and
+outputs “day,” then all of the portions of the model (the “weights”)
+that contributed to that output will be strengthened. But if it predicts
+incorrectly and outputs “hecatomb,” then the weights that contributed to
+that output will be weakened. In this way, the model will converge on
+common phrases like “great day” and mostly avoid uncommon ones like
+“Jalalabad teletubby.”</p>
+<h2 data-number="2.3" id="memorization-and-hallucination"><span
+class="header-section-number">2.3</span> Memorization and
+Hallucination</h2>
+<p>This statistical convergence has important consequences for
+memorization and hallucination. This model training procedure leads to
+both <em>memorization</em> and <em>hallucination</em>. Suppose, for
+example, that the model is prompted with “Last summer, I visited my
+grandmother in” and the model completes the prompt with “Taiwan”. This
+completion might arise because there is an exact match in the training
+data: a sentence reading “Last summer, I visited my grandmother in
+Taiwan.” This would be an example of memorization. Or, the model might
+have been trained on enough similar sentences like “I visited grandma in
+Berlin” and “Taiwan is my grandmother’s favorite city” that it generates
+“Taiwan” as a plausible completion that is statistically associated with
+“grandmother” and “visited”. Since generative models are rewarded for
+reproducing their training data, it is not surprising that memorization
+could occur.</p>
+<p>In some contexts, this conflation of training examples would is
+harmless; no one reading the output thinks that the LLM has a
+grandmother who lives in Taiwan. But in other cases, users treat LLMs
+like reference assistants or search engines and expect that the outputs
+make assertions of fact about the world. In this latter case, an output
+like “The capitol of Virginia is Virginia City”<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+bears no relation to reality. These generations can be called
+<em>hallucinations</em>.</p>
+<figure id="fig:gen-ai">
+<img src="images/ML.png" style="width:75.0%" />
+<figcaption>Generative models are trained to reproduce <strong>training
+data</strong>.</figcaption>
+</figure>
+<p>Unfortunately, it is not always easy to trace which examples in the
+training data contributed to a generation. Typical generative models are
+forgetful; they store correlations that are shared by training examples,
+but not necessarily the individual data from any particular example.
+They can be thought of as “stochastic databases,” sometimes returning
+specific examples from the training set, but more often, piecing
+together bits and pieces taken from many different examples in the
+training set. “Taiwan” may have been influenced by “I visited grandma in
+Berlin” even though the word “Taiwan” appears nowhere in that input
+example. And correlation does not imply causation: even if “Last summer,
+I visited my grandmother in Taiwan” appears in the training data, this
+fact may be completely irrelevant to the generation. The model might
+have predicted “Taiwan” even if that exact sentence had never appeared
+in the training data.</p>
+<h1 data-number="3" id="retrieval-and-attribution-models"><span
+class="header-section-number">3</span> Retrieval and Attribution
+Models</h1>
+<p>While exactly which examples were used to create a generation is
+unknowable, both <em>retrieval</em> and <em>attribution models</em> aim
+to create <em>some</em> connections between training data and
+generations. The increased interest in retrieval and attribution models
+comes both from the desire to create “better” generations and also to
+avoid potential legal problems. The two families of models take
+different approaches:</p>
+<div class="addmargin">
+<p><span>0cm</span> <strong><em>Retrieval models</em></strong> select
+relevant training examples before generation. Those selected training
+examples are given, along with the prompt, as the input to the
+generative model. This process is shown as the left-most arrow in figure
+<a href="#fig:rams" data-reference-type="ref"
+data-reference="fig:rams">2</a>.</p>
+<p><strong><em>Attribution models</em></strong> are similar to existing
+models but use post-hoc methods (methods after the generation is
+produced) to find connections between generations and specific input
+examples. This process is shown as the right-most arrow in figure <a
+href="#fig:rams" data-reference-type="ref"
+data-reference="fig:rams">2</a>.</p>
+</div>
+<p>For example, retrieval models can be thought of as performing a web
+search, then using the results of the web search to guide producing a
+generation. Attribution models can be thought of as writing a paper with
+research that you remember, then looking up citations in past literature
+that you have read and assigning citations after the fact.</p>
+<figure id="fig:rams">
+<img src="images/RAMS.png" style="width:75.0%" />
+<figcaption>The three modules: retrieval, generation, and attribution
+that currently can make up a generative model.</figcaption>
+</figure>
+<p>Retrieval and attribution are both techniques for forming connections
+between the inputs (training data or retrieved data) and the outputs. In
+particular, they can be used with generative models to estimate which
+examples in the training data or retrieval data were useful for
+generating an output. Figure <a href="#fig:rams"
+data-reference-type="ref" data-reference="fig:rams">2</a> shows
+retrieval, generation, and attribution as three modules that can make up
+a generative model: all generative models must include a generation
+component (shown in purple), but they may also include a retrieval
+component (blue), or attribution (green), or both retrieval and
+attribution. The process of generation was described in detail in
+section <a href="#background" data-reference-type="ref"
+data-reference="background">2</a>. Retrieval finds examples in the
+retrieval dataset relevant to a user-given query. The retrieved examples
+(shown in dark blue) get appended to the user-given query and is given
+as input to the generative model. The generative model then outputs a
+generation (dark green). Attribution models then attempt to attribute
+generated text to specific examples from the training set.</p>
+<p>Retrieval and attribution are processes that can be implemented
+through multiple different methods. Both components are currently under
+much development and the specifics are likely to evolve.</p>
+<h2 data-number="3.1" id="retrieval"><span
+class="header-section-number">3.1</span> Retrieval</h2>
+<p>Retrieval models can help reduce privacy concerns, improve
+factuality, and help keep models current. However, the extent to which
+they improve on these concerns depends on the specific implementation of
+the retrieval model and also the relationship between the retrieval data
+and the training data. In this section, we explore different
+implementations of retrieval models (and their limitations), to set up
+the discussion of their impacts on copyright and privacy in later
+sections.</p>
+<h3 data-number="3.1.1" id="sec:retrieval-sources"><span
+class="header-section-number">3.1.1</span> Retrieval Models Utilize
+Multiple Data Sources</h3>
+<p>While retrieval models can use the same dataset for training and
+retrieval, an additional advantage to retrieval models is that they make
+it possible to utilize multiple data sources while treating them
+differently. For example, retrieval models offer personalization without
+training on an individual’s data. This could be accomplished by training
+the generator component entirely on publicly intended data <a
+href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> , and using a database consisting of
+an individual’s private data as the retrieval dataset. This does not
+require any model to be trained on the individual’s private data and can
+be implemented so that an individual’s data never has to leave their
+device.</p>
+<p>Additionally, retrieval models have been used to externalize
+“memory”, embracing memorization to reduce hallucinations <span
+class="citation" data-cites="shuster2021hallucination">(Shuster et al.
+2021)</span>. That goal of reducing hallucinations has been referred to
+as “improving factuality” or “model groundness.” In this scenario, a
+model might be trained on either private and/or public data and then
+augmented with a public retrieval dataset. A model creator could
+independently verify that the information contained in the retrieval
+dataset was “factual.” Data that is factual is not just okay to be
+memorized exactly by the model, but in some cases, beneficial. For
+example, memorizing exactly that Christmas is celebrated on December 25
+in the US is not harmful. Verifying factuality, however, remains
+extremely underspecified. Memorizing that Christmas is celebrated in the
+winter is only true for the northern hemisphere, and while that is a
+factual statement in some cases, it is not universally true. We do not
+dive into what exactly constitutes a fact here, and emphasize that the
+claim that a retrieval model is more factual goes only so far as we can
+verify any facts about the retrieval dataset. This is particularly
+challenging when data is scraped from the web as it may contain
+inaccurate information and even deliberate misinformation. The majority
+of popular retrieval models have this goal <span class="citation"
+data-cites="lamda">(Thoppilan et al. 2022)</span>.</p>
+<p>Retrieval models offer another advantage by enabling the
+incorporation of more recent data into models. <span class="citation"
+data-cites="luu2021time lazaridou2021mind">(Luu et al. 2021; Lazaridou
+et al. 2021)</span> Instead of retraining a model to include more recent
+data, retrieval datasets can simply be augmented with more recent data.
+Of course this is not without limits. The retriever module is designed
+with particular data in mind. If the retrieval dataset becomes very
+different from the types of data the module was created for, then the
+performance of the retriever module may decline. To illustrate, a model
+trained before 2020 would not be aware of the global pandemic that arose
+and thus may not be able to effectively retrieve data from a dataset
+collected in 2023. In order to ensure that the retriever module is able
+to effectively find relevant examples, the retriever module would likely
+need to be re-trained or otherwise updated.</p>
+<p>In addition to multiple ways of constructing the retrieval dataset,
+the retriever module, the part of the retriever model used for selecting
+examples can also be implemented in many different methods. Figure <a
+href="#fig:retrievers" data-reference-type="ref"
+data-reference="fig:retrievers">3</a> shows how different
+implementations of the retriever module could be categorized. Some
+modules involve training a “retriever module” such as the methods listed
+on the right. Other modules can rely on traditional tools like
+performing a web search via a pre-existing search engine. Many current
+language models use neural retrievers such as LaMDA <span
+class="citation" data-cites="lamda">(Thoppilan et al. 2022)</span> and
+RETRO <span class="citation"
+data-cites="borgeaud2021improving">(Borgeaud et al. 2022)</span>. <a
+href="#fn4" class="footnote-ref" id="fnref4"
+role="doc-noteref"><sup>4</sup></a></p>
+<figure id="fig:retrievers">
+<img src="images/retrieval-methods.jpg" style="width:75.0%" />
+<figcaption>A flow chart categorizing many different methods for
+creating retriever modules <span class="citation"
+data-cites="guu2022representing">(Guu 2022)</span>.</figcaption>
+</figure>
+<h3 data-number="3.1.2" id="sec:retriever-limits"><span
+class="header-section-number">3.1.2</span> Retrieval has Limits</h3>
+<p>Regardless of how the retriever module is implemented, the ability of
+the retriever module to generalize to new datasets depends on how
+similar the new dataset is to the dataset that the retriever module was
+designed with in mind. For example, if a retriever module is optimized
+to work well for an individual living in California, that same retriever
+module might not generalize well to an individual living in Germany or
+an individual in Sri Lanka. Generalization is a known challenge and one
+that is actively studied. While there is a lot of interest in the
+problem of temporal shifts <span class="citation"
+data-cites="luu2021time lazaridou2021mind">(Luu et al. 2021; Lazaridou
+et al. 2021)</span> and adapting to new domains <span class="citation"
+data-cites="gururangan2020dont han2019unsupervised logeswaran2019zero">(Gururangan
+et al. 2020; Han and Eisenstein 2019; Logeswaran et al. 2019)</span>,
+there is currently not a playbook of best practices.</p>
+<p>Unfortunately, because the retrieved examples are added as inputs
+(and thus “suggestions”) to the generator module, it is possible for
+those retrieved examples to be <em>underutilized</em>. In the example of
+a user-query: “Christmas is celebrated…,” retrieved examples like
+“Christmas is celebrated December 25” only help improve factuality if
+the generator module utilizes that information. A nuanced point is that
+the retriever and the generator module may be at odds with each other.
+If, for instance, there were many examples in the training set that
+stated “Christmas is celebrated in the summer,” and the date “December
+25” never appeared in the training data<a href="#fn5"
+class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>
+it’s possible that the output of the retrieval + generator could be
+either “Christmas is celebrated in the summer” or “Christmas is
+celebrated in the summer on December 25” depending on which module, the
+retriever or the generator, dominates. The presence of the verified
+facts in the retrieval dataset does not ensure that the generated output
+abides by those facts <span class="citation"
+data-cites="longpre2022entitybased">(Longpre et al. 2022)</span>.
+Previous work found that the language model, GPT-3 <span
+class="citation" data-cites="brown2020language">(T. B. Brown et al.
+2020)</span>, updated generated answers to include facts found in the
+retrieved examples 85% of the time <span class="citation"
+data-cites="si2023prompting">(Si et al. 2023)</span>.</p>
+<h2 data-number="3.2" id="attribution"><span
+class="header-section-number">3.2</span> Attribution</h2>
+<p>Attribution models aim to <em>attribute</em> training examples to
+model outputs through identifying examples with a large
+<em>influence</em> on the model output, whereas retrieval models aim to
+incorporate specific examples from the <em>retrieval dataset</em> into
+the model inputs. These techniques originated with classical statistics
+and then were developed further for classification models with the goal
+of better interpreting model outputs and understanding “contributions”
+from training examples towards predictions <span class="citation"
+data-cites="cook1977detection koh2017understanding">(Cook 1977; Koh and
+Liang 2017)</span>.</p>
+<p>In the remainder of this paper, we use the words “attribution” and
+“influence” interchangeably. A common definition of influence is as
+follows:</p>
+<dl>
+<dt>Counterfactual influence:</dt>
+<dd>
+<p>A training example was <em><strong>influential</strong></em> to a
+generation if a model trained without that training example would be
+unlikely to have produced the generation. <a href="#fn6"
+class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+</dd>
+</dl>
+<p>In practice, this counterfactual definition is prohibitively
+expensive to compute because it requires retraining a new model for each
+training example in question. Modern generative models cost hundreds of
+thousands of dollars in compute to train <a href="#fn7"
+class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> and
+typically only trained once. Instead, researchers attempt to approximate
+the counterfactual definition of influence by defining additional
+notions of influence:</p>
+<dl>
+<dt>Change-based influence<a href="#fn8" class="footnote-ref"
+id="fnref8" role="doc-noteref"><sup>8</sup></a>:</dt>
+<dd>
+<p>If a generation is much more or less likely to be produced after
+greater importance is placed on a given training example during
+training, then that training example has high <em>influence</em> on the
+generation <span class="citation"
+data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.</p>
+</dd>
+<dt>Embedding-based attribution:</dt>
+<dd>
+<p>A training example can be <em>attributed</em> to a given model output
+if the model’s internal representation of the training example is very
+similar to the model’s internal representation of the prompt for the
+model output <span class="citation"
+data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.</p>
+</dd>
+</dl>
+<p>While the <em>change-based influence</em> definition does not require
+training an entirely new model, it still requires computationally
+expensive and memory intensive approximations <span class="citation"
+data-cites="schioppa2022scaling">(Schioppa et al. 2022)</span>. On the
+other hand, <em>embedding based attribution</em> is much cheaper, but
+has the drawback that a correlation between a training example and a
+generation does not imply that the presence of that training example
+caused the generation.</p>
+<h3 data-number="3.2.1" id="sec:attribution-limits"><span
+class="header-section-number">3.2.1</span> How to Interpret
+Attribution</h3>
+<p>There are two sources of error in attributing training examples to
+generations. As there is no ground truth definition of “attribution,”
+researchers create technical definitions of “attribution” and
+“influence” to use as a proxy metric. The first source of error is in
+using a technical definition of attribution to approximate our
+understanding of attribution<a href="#fn9" class="footnote-ref"
+id="fnref9" role="doc-noteref"><sup>9</sup></a>. Unfortunately, many of
+the technical definitions of “attribution” are still too expensive to
+compute. Thus, the second source of error arises from approximating the
+technical definitions of “attribution”. These sources of errors can be
+difficult to tease apart. For instance, let’s use the following
+generation as an example: “On this day fifty years ago, Sally signed the
+deed for the farm.” Attributions could look like the following:</p>
+<ol>
+<li><p>The attributed examples make sense for a given generation and is
+specifically relevant for a given generation. Example attributed
+training example: “Sally Tinker bought a farm next door to our house
+fifty years ago.”</p></li>
+<li><p>The attributed examples seem related but not specific to the
+generation. Example attributed training example: “Before you buy
+property, you have to sign a deed.”</p></li>
+<li><p>The attributed example is a common phrase. Example attributed
+training example: “Good morning.”</p></li>
+<li><p>The attributed examples do not make sense for the given
+generation. Example attributed training example: “Christmas is
+celebrated on December 25th.”</p></li>
+</ol>
+<p>In cases where the attribution is not specifically relevant for the
+generation, the attribution could stem from either source of error: a
+difference in the approximation of the technical definition of
+attribution, or where the technical implementation of attribution does
+not approximate well the definition of attribution. In the latter case,
+a training example could very well have a large influence on a
+generation, but that kind of influence may not be human interpretable.
+<a href="#fn10" class="footnote-ref" id="fnref10"
+role="doc-noteref"><sup>10</sup></a></p>
+<p>Unfortunately, distinguishing between errors in the technical
+approximation of attribution or the divergence of technical definitions
+of attribution has implications for licensing and copyright. In scenario
+4, where the attributed training example, “Christmas is celebrated on
+December 25th,” has nothing to do with the generation about Sally’s
+farm, it matters if the attribution was a <em>true positive</em>. In
+other words, does that attributed training example actually meet the
+technical definition of attribution or is it a <em>false positive</em>
+(incorrectly attributed for that generation). If the attribution was a
+<em>true positive</em>, and the attributed training example was indeed
+useful for generation, should that training example be licensed and
+compensated for contributing to the generation about Sally’s farm? Or
+should only training examples that are substantially similar to the
+generation be considered for either licensing or copyright.</p>
+<p>Errors in approximating the technical definition of attribution could
+also be <em>false negatives</em>: incorrectly missing an example that
+contributed to a generation. While identifying false negatives on mass
+is just as difficult as creating a better method for approximating the
+technical definition of attribution, it can be possible to find similar
+examples in the training set of a particular generation. Unfortunately,
+here, we would also need to define a notion of “similar” that can be
+used to search through the entire training set. For language, a common
+definition of “similar” is the edit distance between two sentences. The
+edit distance between “the dog was red” and “the dog was blue” is one
+word: there is a one word difference between the first and second
+phrase. The particular definition chosen for “similar” can be more or
+less permissive in returning candidate examples <span class="citation"
+data-cites="ippolito2022preventing">(Ippolito et al. 2022)</span>.</p>
+<p>Two further challenges for understanding sources of error remain.
+First, techniques for attribution and retrieval are typically measured
+across many different generations. While this gives an estimate as to
+how reliable a technique and/or model is, it does not give a tailored
+measure of confidence for any specific generation. Reasoning about any
+specific generation will require further study, including investigating
+the specific example retrieved or attributed and the relationship
+between those examples and the generation. Second, approximations for
+influence are easier for smaller models. As generative AI models have
+become larger and more complex, identifying good approximations remains
+a challenge <span class="citation" data-cites="basu2021influence">(Basu,
+Pope, and Feizi 2021)</span>.</p>
+<h2 data-number="3.3" id="sec:definitions"><span
+class="header-section-number">3.3</span> Technical Definitions are not
+Legal Definitions</h2>
+<p>Technical definitions of “influence” and “attribution” are carefully
+and specifically defined in scientific papers in order to make
+comparisons between techniques. While they may sometimes correlate with
+intuitive or legal notions of attribution, they are inexact proxies.
+These technical terms cannot perfectly capture the term it was based on.
+This is in part because the legal system leaves room for nuance and
+context that are difficult to capture systematically, via a computer
+program. <a href="#fn11" class="footnote-ref" id="fnref11"
+role="doc-noteref"><sup>11</sup></a> The technical definitions, on the
+other hand, are designed to be systematically applied and measurable. In
+other words, technical definitions will always fundamentally differ from
+intuitive or legal notions because they require a level of specification
+that we, humans, value but don’t require. Instead, it is important to
+simply understand where the definitions diverge. <a href="#fn12"
+class="footnote-ref" id="fnref12"
+role="doc-noteref"><sup>12</sup></a></p>
+<p>Words like “contribution,” “attribution,” and “interpretability” are
+ill defined before we try to create technical definitions—we don’t
+always know what we <em>want</em> when we request those words. For
+example, does an interpretable model mean that a person could describe
+the process that the model goes through to create a generation? Does it
+require that the model “reason” about the generation and that the
+reasons be discernible? At what level of detail would be acceptable? <a
+href="#fn13" class="footnote-ref" id="fnref13"
+role="doc-noteref"><sup>13</sup></a></p>
+<p>What do we mean when we say we want “attribution?” The presence of a
+training example that has nothing to do with the user-provided prompt
+may nevertheless impact the model output, whereas if an artist reads a
+novel as a child about giraffes and then becomes known for their work
+painting robots, we might not consider the novel as meaningfully
+contributing to the artist’s painting of robots. Unfortunately,
+attribution models could “attribute” a novel about giraffes to a novel
+about robots for reasons that are not human interpretable.</p>
+<h1 data-number="4" id="sec:privacy"><span
+class="header-section-number">4</span> Privacy</h1>
+<p>Both the ability to attribute training data to model generations and
+the inexactitude of those attributions impact our analysis of privacy
+and copyright concerns. Attribution and retrieval enable source
+verification (more in section <a href="#sec:source-verification"
+data-reference-type="ref"
+data-reference="sec:source-verification">4.1</a>). Additionally,
+memorization and regurgitation are greater concerns when we cannot
+exactly trace where the training data comes from and cannot respect the
+intended audience of a data point. In a world where we can better
+investigate the source and context of a generation, we can hope to make
+more informed decisions. However, the inexactitude of the attributions
+makes automatically processing privacy or copyright violations
+infeasible. Instead, the process continues to require human, and perhaps
+legal, involvement.</p>
+<p>We start our analysis with privacy. Generative models can generate
+content that is exactly in the training set, and also content that is
+not quite in the training set. Both can be problematic. In this section,
+we discuss three ways that retrieval and attribution models alter the
+balance of privacy risks from generative models.</p>
+<h2 data-number="4.1" id="sec:source-verification"><span
+class="header-section-number">4.1</span> Attribution Enables Source
+Verification</h2>
+<p>At the most basic level, attribution models enable <em>source
+verification</em> by connecting inputs to outputs. Even if the model
+itself cannot make judgments about whether a generation uses sensitive
+or personal information in an improper way, highlighting the sources
+used to create that generation can enable users to form those judgments.
+It is easier to decide whether “John Example lives on South Main Street”
+is a privacy violation when one knows whether that generation came from
+a press release or a paystub.</p>
+<p>Reliable source verification can both lessen and heighten privacy
+concerns. On the one hand, it can help well-intentioned users prevent
+privacy violations by enabling them to investigate the provenance of
+generations. If the original source for a generation is a public
+document, then the information in it is more likely to be freely
+shareable. But if the original source is a private document not intended
+to be public, accurate attribution can pinpoint the source of the
+original privacy breach and enable remediation. Source verification can
+also help even when the generation is a hallucination – by showing the
+<em>absence</em> of factual support for the contents of the generation,
+it shows that no private information is being leaked.</p>
+<p>On the other hand, source verification can lead less well-intentioned
+users straight to a privacy-invading smoking gun, by pinpointing the
+source data that led to the generation. For a user who is turning to the
+model precisely in order to invade someone else’s privacy, a generative
+AI model that is also a powerful search engine offers twice the value at
+one affordable price.</p>
+<p>This discussion assumes, however, that the source verification is
+accurate. But, as discussed in sections <a href="#sec:retriever-limits"
+data-reference-type="ref"
+data-reference="sec:retriever-limits">3.1.2</a> and <a
+href="#sec:attribution-limits" data-reference-type="ref"
+data-reference="sec:attribution-limits">3.2.1</a>, retrieval and
+attribution models can have both false positives and false negatives.
+The main effect of false positives is to degrade the utility of source
+verification by increasing the effort required to check how closely each
+identified source matches the generation. False negatives are another
+story. If a model’s users perceive its attributions as reliable, they
+will treat the absence of evident privacy violations as evidence of
+absence. This may seem no worse than the current state of the art for
+generative models, which can emit private data with no attribution
+whatsoever. The danger is the false sense of security provided by
+inaccurate anodyne attributions.</p>
+<h2 data-number="4.2" id="retrieval-creates-airgaps"><span
+class="header-section-number">4.2</span> Retrieval Creates Airgaps</h2>
+<p>Some ways of using retrieval models can offer meaningful privacy
+gains. As introduced in section <a href="#sec:retrieval-sources"
+data-reference-type="ref"
+data-reference="sec:retrieval-sources">3.1.1</a>, consider, a retrieval
+model that is <em>trained</em> on public training dataset but then
+<em>run</em> with a retrieval dataset containing their private
+information, e.g. a photo-effects app that runs entirely on a user’s
+device. The generations this model produces will contain only this
+individual’s private information. Splitting training and retrieval
+datasets creates an airgap, in which the model itself never has private
+information embedded within it.<a href="#fn14" class="footnote-ref"
+id="fnref14" role="doc-noteref"><sup>14</sup></a></p>
+<p>Other configurations of retrieval models have different privacy
+implications. A model where the training data and the retrieval dataset
+are the same has privacy risks that are essentially the same as a
+standard generative model. Additionally, if a model with a private
+retrieval dataset is transferred off an individual’s device then that
+can heightened privacy concerns.</p>
+<h2 data-number="4.3"
+id="generative-ai-suffers-from-diffusion-of-responsibility"><span
+class="header-section-number">4.3</span> Generative AI Suffers from
+Diffusion of Responsibility</h2>
+<p>A broader point about generative models is that people can claim a
+diffusion of responsibilities for harms – both by slicing up a privacy
+violation into more component steps, and by making one of those steps an
+uninterpretable black box. When the user who requests a generation is
+different from the company that compiled the training data, and when the
+two are separated by a model that is incapable of connecting the
+generation to the training data, it becomes harder to hold any of the
+parties accountable for privacy-invading generations.</p>
+<p>Again, retrieval and attribution models complicate this picture. On
+the one hand, attribution restores a link through the black box;
+precisely because a user or a generation service is in a position to
+connect generation and training data, it becomes more feasible to impose
+liability on them. A party who <em>could</em> have known that a
+generation was privacy-invading is, in an important sense, a party who
+<em>should</em> have known that it was. On this view, a user might be
+under a duty to reasonably investigate the attributions the model
+provided – but would be relieved from liability in cases of false
+negatives, where the model missed the attribution that would have shown
+the privacy-violating nature of the generation.</p>
+<p>Retrieval models, however, offer yet another way to slice up the deli
+meat into impossibly thin sheets. If it is hard for a model-maker to
+contemplate all the prompts the model might be given, and harder still
+for a foundation model-maker to contemplate all the ways the model might
+be fine-tuned, it seems utterly infeasible for a retrieval model-maker
+to contemplate all the different retrieval datasets the model might be
+applied to. Unless the privacy-violating information is embedded in the
+model itself – unless it it came from the training data rather than the
+retrieval data – the model-maker is causally remote from the privacy
+harms. This puts most of the weight on the user and on the provider of
+the retrieval dataset.</p>
+<h2 data-number="4.4" id="sec:decontextualize"><span
+class="header-section-number">4.4</span> Generative AI Decontextualizes
+Data</h2>
+<p>Generative AI can be thought of as performing a decontextualized,
+scrambled search through training data. Each generation is a collage of
+relevant fragments and patterns from the training data. Privacy
+violations arise because the sources and context in which data
+originated becomes divorced from the data through the process of
+collecting training data and training generative models. By the time the
+model emits information about a person’s address and medical history,
+that information has been shorn of the context that would warn a reader
+that the the information was recorded in a context subject to norms and
+laws against sharing.</p>
+<p>Attribution models can help identify the source of information, and
+some retrieval models can have notions of context baked into their
+division between training and retrieval datasets. But fundamentally,
+they cannot restore this context once it has gone missing. If the data
+collection process does not record who the data is about, who posted it,
+and what community norms it is subject to, that context is gone for good
+– or rather, gone for ill. Ultimately, respecting privacy requires
+understanding and respecting this context, which is a much larger
+task.</p>
+<h1 data-number="5" id="copyright"><span
+class="header-section-number">5</span> Copyright</h1>
+<p>Copyright raises a different set of issues, primarily because the
+doctrinal structure of copyright law is so sharply focused on causal
+questions of which copies are based on which other copies. Attribution
+models make these links more visible; retrieval models can directly link
+copies.</p>
+<h2 data-number="5.1" id="sec:copy-proof"><span
+class="header-section-number">5.1</span> Attribution Can Provide
+Evidence of Copying</h2>
+<p>It is copyright dogma that to infringe copyright, a defendant must
+copy <em>from the plaintiff’s work</em>. Mere coincidental resemblance
+is not infringement, and neither is copying from a common source, no
+matter how closely the two works resemble each other. This is one of the
+significant obstacles to finding that a generation infringes. Even if it
+resembles a work in the training dataset, was it copied <em>from</em>
+that work?</p>
+<p>Attribution models, it would seem, provide such proof on a silver
+platter. When a model identifies a training example as a significant
+influence on a generation, this is strong evidence that the generation
+was indeed copied from the training example. Indeed, the definition of
+counterfactual influence comes close to the legal concept of but-for
+causation: <em>but for</em> this training example, the generation would
+not have taken the form that it did. So when an attribution is accurate,
+it would seem to resolve the question of copying in fact.</p>
+<p>Of course, attributions need not be accurate. For one thing, not
+every attribution will be on the basis of copying copyrightable
+expression. But that goes to substantial similarity, not proof of
+copying. Being an influence is not by itself infringement. For another
+thing, the usual role of proof of copying in a copyright case is to
+allow the question of infringement to go to the jury: the plaintiff must
+present enough evidence to allow a reasonable finder of fact to conclude
+that the defendant copied from their work. And it seems quite plausible
+to say that if a model’s attributions are sufficiently accurate in
+general, then an attribution to the plaintiff’s work satisfies the
+plaintiff’s burden of production, even if there is possibility that the
+attribution is inaccurate.</p>
+<h2 data-number="5.2" id="sec:decoupling"><span
+class="header-section-number">5.2</span> Airgaps Can Make Copying
+Explicit</h2>
+<p>Retrieval models decouples the retrieval dataset from the training
+dataset, a fact that has important copyright implications. Consider, for
+example, a model trained on public-domain and licensed works that is
+then run against a retrieval dataset of copyrighted works. Now, although
+the model is capable of <em>generating</em> works that are similar to
+copyrighted works, the model itself is no longer even arguably <em>a
+copy</em> of those works, and hence cannot directly infringe.</p>
+<p>This decoupling is a double-edged sword. It can enable uses that seem
+more respectful of copyright’s limits – for example, a model that
+locally runs on a user’s phone, with a retrieval dataset of the music on
+the phone. As in the privacy example above, this approach is copyright
+airgapped; it does not depend on and does not risk sharing the music on
+the user’s device with others.</p>
+<p>But decoupling can also diffuse responsibility. Much like the makers
+of video-game emulators who tell users to only use the emulators with
+properly licensed software, wink wink nudge nudge, model makers could
+distribute tuned models to users who then, on their own, wire up the
+models to the kind of large database of infringing content that anyone
+who is even moderately motivated can easily find online. Here, the model
+maker could rely on the <em>Sony</em> defense to contributory liability
+by arguing that the model is a “device” with substantial noninfringing
+uses. For a model-maker who is careful to avoid inducing infringement by
+encouraging or counseling users to work with pirated retrieval datasets,
+this approach may effectively push off copyright liability from their
+stages of the supply chain.</p>
+<h2 data-number="5.3" id="sec:secondary-liability"><span
+class="header-section-number">5.3</span> Retrieval and Attribution Can
+Scramble Secondary Liability</h2>
+<p>Retrieval and especially attribution change the calculus of direct
+and secondary infringement in subtle ways. Retrieval models allow for
+the removal of copyrighted works (on notice or based on the user’s own
+investigation) in a targeted way. Whereas a traditional model must be
+retrained to make a change to the training dataset stick, a retrieval
+database can be more easily modified to remove the infringing works.
+Thus, the problem of separating infringing from noninfringing uses is
+potentially easier for retrieval models – which cuts in favor of
+imposing a duty to do so.</p>
+<p>Attribution, too, might heighten the duties applied to users and
+model-makers. An attribution that points to an infringing source
+strengthens the case for secondary liability. It could provide the
+knowledge of infringement necessary for contributory liability, and
+indicate the ability to control infringing activity necessary for
+vicarious infringement. Similarly, to the extent that the DMCA Section
+512 safe harbors apply, the information provided by an attribution could
+be relevant to several of the threshold conditions.</p>
+<p>The degree to which courts would and should regard these attributions
+as creating actionable knowledge, of course, depends on how accurate
+they are. As above, false positives raise the cost of investigation, but
+as long as the rate is not unreasonably high, the imposition of a duty
+to examine the attributions for a generation is still plausible. For
+false negatives, the question is whether a court would regard a missed
+attribution as something the defendant’s other processes should have
+caught, or whether the court might say that a process that is reliable
+overall is good enough even in cases where an infringement slips
+through.</p>
+<h1 data-number="6" id="sec:conclusion"><span
+class="header-section-number">6</span> Conclusion</h1>
+<p>This has been a paper on retrieval and attribution models, but it is
+also not really a paper about retrieval and attribution models. We think
+that these models may be important developments in the future of
+generative AI. But this field is developing rapidly and there is high
+likelihood that next generation models take a different route. Instead,
+retrieval and attribution models might ultimately be no more than
+footnotes to the development of generative AI. If so, then the details
+of our legal analysis might seem to be irrelevant.</p>
+<p>But the point of this paper is not to nail down the exact legal
+treatment of a specific kind of technical architecture – it is to show
+<em>how deeply the legal treatment depends on the specific technical
+choices made about that architecture</em>. Key premises of the privacy
+and copyright analysis of black-box generative AIs are simply not true
+of retrieval and attribution models. Small changes to a technical
+architecture can have immense legal consequences.</p>
+<p>We therefore have three takeaways for the legal and policy community.
+First, a one-size-fits-all regulatory regime is likely to fail badly;
+instead, any regulation of generative AI will need to be able to adapt
+to different model designs and implementations. Second, scholars should
+be careful not to assume that the models that made generative AI
+world-famous are representative of the whole of the field; they are not.
+And third, as always, scholars and policy-makers must attend to the
+technical details of the technologies they engage with. It is, after
+all, our job.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="list">
+<div id="ref-agostinelli2023musiclm" class="csl-entry" role="listitem">
+Agostinelli, Andrea, Timo I. Denk, Zalán Borsos, Jesse Engel, Mauro
+Verzetti, Antoine Caillon, Qingqing Huang, et al. 2023. <span>“MusicLM:
+Generating Music from Text.”</span> <a
+href="https://arxiv.org/abs/2301.11325">https://arxiv.org/abs/2301.11325</a>.
+</div>
+<div id="ref-akyurek2022tracing" class="csl-entry" role="listitem">
+Akyürek, Ekin, Tolga Bolukbasi, Frederick Liu, Binbin Xiong, Ian Tenney,
+Jacob Andreas, and Kelvin Guu. 2022. <span>“Towards Tracing Factual
+Knowledge in Language Models Back to the Training Data.”</span> <a
+href="https://arxiv.org/abs/2205.11482">https://arxiv.org/abs/2205.11482</a>.
+</div>
+<div id="ref-basu2021influence" class="csl-entry" role="listitem">
+Basu, Samyadeep, Phil Pope, and Soheil Feizi. 2021. <span>“Influence
+Functions in Deep Learning Are Fragile.”</span> In <em>International
+Conference on Learning Representations</em>.
+</div>
+<div id="ref-biderman2023pythia" class="csl-entry" role="listitem">
+Biderman, Stella, Hailey Schoelkopf, Quentin Anthony, Herbie Bradley,
+Kyle O’Brien, Eric Hallahan, Mohammad Aflah Khan, et al. 2023.
+<span>“Pythia: A Suite for Analyzing Large Language Models Across
+Training and Scaling.”</span> <a
+href="https://arxiv.org/abs/2304.01373">https://arxiv.org/abs/2304.01373</a>.
+</div>
+<div id="ref-borgeaud2021improving" class="csl-entry" role="listitem">
+Borgeaud, Sebastian, Arthur Mensch, Jordan Hoffmann, Trevor Cai, Eliza
+Rutherford, Katie Millican, George Bm Van Den Driessche, et al. 2022.
+<span>“Improving Language Models by Retrieving from Trillions of
+Tokens.”</span> In <em>Proceedings of the 39th International Conference
+on Machine Learning</em>, edited by Kamalika Chaudhuri, Stefanie
+Jegelka, Le Song, Csaba Szepesvari, Gang Niu, and Sivan Sabato,
+162:2206–40. Proceedings of Machine Learning Research. PMLR. <a
+href="https://proceedings.mlr.press/v162/borgeaud22a.html">https://proceedings.mlr.press/v162/borgeaud22a.html</a>.
+</div>
+<div id="ref-brown2022what" class="csl-entry" role="listitem">
+Brown, Hannah, Katherine Lee, Fatemehsadat Mireshghallah, Reza Shokri,
+and Florian Tramèr. 2022. <span>“What Does It Mean for a Language Model
+to Preserve Privacy?”</span> In <em>Proceedings of the 2022 ACM
+Conference on Fairness, Accountability, and Transparency</em>, 97–108.
+Seoul, Republic of Korea: ACM. https://doi.org/<a
+href="https://doi.org/10.1145/3531146.3534642">https://doi.org/10.1145/3531146.3534642</a>.
+</div>
+<div id="ref-brown2020language" class="csl-entry" role="listitem">
+Brown, Tom B., Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan,
+Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. <span>“Language
+Models Are Few-Shot Learners.”</span> <a
+href="https://arxiv.org/abs/2005.14165">https://arxiv.org/abs/2005.14165</a>.
+</div>
+<div id="ref-stablediffusion-suit" class="csl-entry" role="listitem">
+Butterick, Matthew. 2023. <span>“Stable Diffusion Litigation.”</span> <a
+href="https://stablediffusionlitigation.com/">https://stablediffusionlitigation.com/</a>.
+</div>
+<div id="ref-carlini2023extracting" class="csl-entry" role="listitem">
+Carlini, Nicholas, Jamie Hayes, Milad Nasr, Matthew Jagielski, Vikash
+Sehwag, Florian Tramèr, Borja Balle, Daphne Ippolito, and Eric Wallace.
+2023. <span>“Extracting Training Data from Diffusion Models.”</span> <a
+href="https://arxiv.org/abs/2301.13188">https://arxiv.org/abs/2301.13188</a>.
+</div>
+<div id="ref-carlini2023quantifying" class="csl-entry" role="listitem">
+Carlini, Nicholas, Daphne Ippolito, Matthew Jagielski, Katherine Lee,
+Florian Tramèr, and Chiyuan Zhang. 2023. <span>“Quantifying Memorization
+Across Neural Language Models.”</span> In <em>ICLR</em>.
+</div>
+<div id="ref-carlini2020extracting" class="csl-entry" role="listitem">
+Carlini, Nicholas, Florian Tramèr, Eric Wallace, Matthew Jagielski,
+Ariel Herbert-Voss, Katherine Lee, Adam Roberts, et al. 2020.
+<span>“Extracting Training Data from Large Language Models.”</span>
+</div>
+<div id="ref-citron2008dueprocess" class="csl-entry" role="listitem">
+Citron, Danielle Keats. 2008. <span>“<span>Technological Due
+Process</span>.”</span> <em>Washington University Law Review</em> 85
+(6): 1249–1314.
+</div>
+<div id="ref-cook1977detection" class="csl-entry" role="listitem">
+Cook, R. Dennis. 1977. <span>“Detection of Influential Observation in
+Linear Regression.”</span> <em>Technometrics</em> 19: 15–18.
+</div>
+<div id="ref-dai2022knowledge" class="csl-entry" role="listitem">
+Dai, Damai, Li Dong, Yaru Hao, Zhifang Sui, Baobao Chang, and Furu Wei.
+2022. <span>“Knowledge Neurons in Pretrained Transformers.”</span> In
+<em>Proceedings of the 60th Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers)</em>, 8493–8502.
+Dublin, Ireland: Association for Computational Linguistics. <a
+href="https://doi.org/10.18653/v1/2022.acl-long.581">https://doi.org/10.18653/v1/2022.acl-long.581</a>.
+</div>
+<div id="ref-feldman2020influence" class="csl-entry" role="listitem">
+Feldman, Vitaly, and Chiyuan Zhang. 2020. <span>“What Neural Networks
+Memorize and Why: Discovering the Long Tail via Influence
+Estimation.”</span> In <em>Advances in Neural Information Processing
+Systems</em>, edited by H. Larochelle, M. Ranzato, R. Hadsell, M. F.
+Balcan, and H. Lin, 33:2881–91. Curran Associates, Inc. <a
+href="https://proceedings.neurips.cc/paper_files/paper/2020/file/1e14bfe2714193e7af5abc64ecbd6b46-Paper.pdf">https://proceedings.neurips.cc/paper_files/paper/2020/file/1e14bfe2714193e7af5abc64ecbd6b46-Paper.pdf</a>.
+</div>
+<div id="ref-geva2023dissecting" class="csl-entry" role="listitem">
+Geva, Mor, Jasmijn Bastings, Katja Filippova, and Amir Globerson. 2023.
+<span>“Dissecting Recall of Factual Associations in Auto-Regressive
+Language Models.”</span> <a
+href="https://arxiv.org/abs/2304.14767">https://arxiv.org/abs/2304.14767</a>.
+</div>
+<div id="ref-gururangan2020dont" class="csl-entry" role="listitem">
+Gururangan, Suchin, Ana Marasović, Swabha Swayamdipta, Kyle Lo, Iz
+Beltagy, Doug Downey, and Noah A. Smith. 2020. <span>“Don<span>’</span>t
+Stop Pretraining: Adapt Language Models to Domains and Tasks.”</span> In
+<em>Proceedings of the 58th Annual Meeting of the Association for
+Computational Linguistics</em>, 8342–60. Online: Association for
+Computational Linguistics. <a
+href="https://doi.org/10.18653/v1/2020.acl-main.740">https://doi.org/10.18653/v1/2020.acl-main.740</a>.
+</div>
+<div id="ref-guu2022representing" class="csl-entry" role="listitem">
+Guu, Kelvin. 2022. <span>“Representing and Using Knowledge in NLP with a
+Focus on Memory-Augmented Models.”</span> Stanford CS224N. <a
+href="https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/slides/cs224n-2022-lecture15-guu.pdf">https://web.stanford.edu/class/archive/cs/cs224n/cs224n.1224/slides/cs224n-2022-lecture15-guu.pdf</a>.
+</div>
+<div id="ref-han2019unsupervised" class="csl-entry" role="listitem">
+Han, Xiaochuang, and Jacob Eisenstein. 2019. <span>“Unsupervised Domain
+Adaptation of Contextualized Embeddings for Sequence Labeling.”</span>
+In <em>Proceedings of the 2019 Conference on Empirical Methods in
+Natural Language Processing and the 9th International Joint Conference
+on Natural Language Processing (EMNLP-IJCNLP)</em>, 4238–48. Hong Kong,
+China: Association for Computational Linguistics. <a
+href="https://doi.org/10.18653/v1/D19-1433">https://doi.org/10.18653/v1/D19-1433</a>.
+</div>
+<div id="ref-harvardprivacytools" class="csl-entry" role="listitem">
+Harvard University Privacy Tools Project. Accessed 2023.
+<span>“Differential Privacy.”</span> <a
+href="https://privacytools.seas.harvard.edu/differential-privacy"
+class="uri">https://privacytools.seas.harvard.edu/differential-privacy</a>.
+</div>
+<div id="ref-henighan2023circuits" class="csl-entry" role="listitem">
+Henighan, Tom, Shan Carter, Tristan Hume, Nelson Elhage, Robert Lasenby,
+Stanislav Fort, Nicholas Schiefer, and Christopher Olah. 2023.
+<span>“Superposition, Memorization, and Double Descent.”</span>
+Anthropic. <a
+href="https://transformer-circuits.pub/2023/toy-double-descent/index.html">https://transformer-circuits.pub/2023/toy-double-descent/index.html</a>.
+</div>
+<div id="ref-ippolito2022preventing" class="csl-entry" role="listitem">
+Ippolito, Daphne, Florian Tramèr, Milad Nasr, Chiyuan Zhang, Matthew
+Jagielski, Katherine Lee, Christopher A. Choquette-Choo, and Nicholas
+Carlini. 2022. <span>“Preventing Verbatim Memorization in Language
+Models Gives a False Sense of Privacy.”</span> <a
+href="https://arxiv.org/abs/2210.17546">https://arxiv.org/abs/2210.17546</a>.
+</div>
+<div id="ref-koh2017understanding" class="csl-entry" role="listitem">
+Koh, Pang Wei, and Percy Liang. 2017. <span>“Understanding Black-Box
+Predictions via Influence Functions.”</span> In, 1885–94. PMLR.
+</div>
+<div id="ref-lazaridou2021mind" class="csl-entry" role="listitem">
+Lazaridou, Angeliki, Adhi Kuncoro, Elena Gribovskaya, Devang Agrawal,
+Adam Liska, Tayfun Terzi, Mai Gimenez, et al. 2021. <span>“Mind the Gap:
+Assessing Temporal Generalization in Neural Language Models.”</span>
+<em>Advances in Neural Information Processing Systems</em> 34: 29348–63.
+</div>
+<div id="ref-lee2018hallucinations" class="csl-entry" role="listitem">
+Lee, Katherine, Orhan Firat, Ashish Agarwal, Clara Fannjiang, and David
+Sussillo. 2018. <span>“Hallucinations in Neural Machine
+Translation.”</span> In <em>NIPS 2018 Workshop: IRASL</em>.
+</div>
+<div id="ref-lehr2017legalml" class="csl-entry" role="listitem">
+Lehr, David, and Paul Ohm. 2017. <span>“<span class="nocase">Playing
+with the Data: What Legal Scholars Should Learn About Machine
+Learning</span>.”</span> <em>U.C. Davis Law Review</em> 51: 653–717.
+</div>
+<div id="ref-lesota2021survey" class="csl-entry" role="listitem">
+Lesota, Oleg, Navid Rekabsaz, Daniel Cohen, Klaus Antonius Grasserbauer,
+Carsten Eickhoff, and Markus Schedl. 2021. <span>“A Modern Perspective
+on Query Likelihood with Deep Generative Retrieval Models.”</span> In
+<em>Proceedings of the 2021 <span>ACM</span> <span>SIGIR</span>
+International Conference on Theory of Information Retrieval</em>.
+<span>ACM</span>. <a
+href="https://doi.org/10.1145/3471158.3472229">https://doi.org/10.1145/3471158.3472229</a>.
+</div>
+<div id="ref-li2021blackbox" class="csl-entry" role="listitem">
+Li, Yangzi. 2021. <span>“Does Black-Box Machine Learning Shift the
+<span>US</span> Fair Use Doctrine?”</span> <em>Journal of Intellectual
+Property Law &amp; Practice</em> 16 (11).
+</div>
+<div id="ref-logeswaran2019zero" class="csl-entry" role="listitem">
+Logeswaran, Lajanugen, Ming-Wei Chang, Kenton Lee, Kristina Toutanova,
+Jacob Devlin, and Honglak Lee. 2019. <span>“Zero-Shot Entity Linking by
+Reading Entity Descriptions.”</span> In <em>Proceedings of the 57th
+Annual Meeting of the Association for Computational Linguistics</em>,
+3449–60. Florence, Italy: Association for Computational Linguistics. <a
+href="https://doi.org/10.18653/v1/P19-1335">https://doi.org/10.18653/v1/P19-1335</a>.
+</div>
+<div id="ref-longpre2022entitybased" class="csl-entry" role="listitem">
+Longpre, Shayne, Kartik Perisetla, Anthony Chen, Nikhil Ramesh, Chris
+DuBois, and Sameer Singh. 2022. <span>“Entity-Based Knowledge Conflicts
+in Question Answering.”</span> <a
+href="https://arxiv.org/abs/2109.05052">https://arxiv.org/abs/2109.05052</a>.
+</div>
+<div id="ref-luu2021time" class="csl-entry" role="listitem">
+Luu, Kelvin, Daniel Khashabi, Suchin Gururangan, Karishma Mandyam, and
+Noah A Smith. 2021. <span>“Time Waits for No One! Analysis and
+Challenges of Temporal Misalignment.”</span> <em>arXiv Preprint
+arXiv:2111.07408</em>.
+</div>
+<div id="ref-meng2022locating" class="csl-entry" role="listitem">
+Meng, Kevin, David Bau, Alex J Andonian, and Yonatan Belinkov. 2022.
+<span>“Locating and Editing Factual Associations in
+<span>GPT</span>.”</span> In <em>Advances in Neural Information
+Processing Systems</em>, edited by Alice H. Oh, Alekh Agarwal, Danielle
+Belgrave, and Kyunghyun Cho. <a
+href="https://openreview.net/forum?id=-h6WAS6eE4">https://openreview.net/forum?id=-h6WAS6eE4</a>.
+</div>
+<div id="ref-api-keys" class="csl-entry" role="listitem">
+Mohammed, Abubakar. 2021. <span>“GitHub Copilot AI Is Generating and
+Giving Out Functional API Keys.”</span> <em>Fossbytes</em>. <a
+href="https://fossbytes.com/github-copilot-generating-functional-api-keys/">https://fossbytes.com/github-copilot-generating-functional-api-keys/</a>.
+</div>
+<div id="ref-molnar2020history" class="csl-entry" role="listitem">
+Molnar, Christoph, Giuseppe Casalicchio, and Bernd Bischl. 2020.
+<span>“Interpretable Machine Learning <span></span> a Brief History,
+State-of-the-Art and Challenges.”</span> In <em><span>ECML</span>
+<span>PKDD</span> 2020 Workshops</em>, 417–31. Springer International
+Publishing. <a
+href="https://doi.org/10.1007/978-3-030-65965-3_28">https://doi.org/10.1007/978-3-030-65965-3_28</a>.
+</div>
+<div id="ref-oord2016wavenet" class="csl-entry" role="listitem">
+Oord, Aaron van den, Sander Dieleman, Heiga Zen, Karen Simonyan, Oriol
+Vinyals, Alex Graves, Nal Kalchbrenner, Andrew Senior, and Koray
+Kavukcuoglu. 2016. <span>“WaveNet: A Generative Model for Raw
+Audio.”</span> <a
+href="https://arxiv.org/abs/1609.03499">https://arxiv.org/abs/1609.03499</a>.
+</div>
+<div id="ref-pasquale2015blackbox" class="csl-entry" role="listitem">
+Pasquale, Frank. 2015. <em>The Black Box Society: The Secret Algorithms
+That Control Money and Information</em>. Harvard University Press.
+</div>
+<div id="ref-poole2022dreamfusion" class="csl-entry" role="listitem">
+Poole, Ben, Ajay Jain, Jonathan T. Barron, and Ben Mildenhall. 2022.
+<span>“DreamFusion: Text-to-3D Using 2D Diffusion.”</span> <a
+href="https://arxiv.org/abs/2209.14988">https://arxiv.org/abs/2209.14988</a>.
+</div>
+<div id="ref-census" class="csl-entry" role="listitem">
+Population Reference Bureau and the U.S. Census Bureau’s 2020 Census
+Data Products and Dissemination Team. 2023. <span>“Why the Census Bureau
+Chose Differential Privacy.”</span> Report C2020BR-03. U.S. Census
+Bureau. <a
+href="https://www.census.gov/library/publications/2023/decennial/c2020br-03.html">https://www.census.gov/library/publications/2023/decennial/c2020br-03.html</a>.
+</div>
+<div id="ref-rich2015bb" class="csl-entry" role="listitem">
+Rich, Michael L. 2015. <span>“<span class="nocase">Machine Learning,
+Automated Suspicion Algorithms, and the Fourth Amendment</span>.”</span>
+<em>University of Pennsylvania Law Review</em> 164: 871.
+</div>
+<div id="ref-rombach2022highresolution" class="csl-entry"
+role="listitem">
+Rombach, Robin, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and
+Björn Ommer. 2022. <span>“High-Resolution Image Synthesis with Latent
+Diffusion Models.”</span> <a
+href="https://arxiv.org/abs/2112.10752">https://arxiv.org/abs/2112.10752</a>.
+</div>
+<div id="ref-rudin2021interpretable" class="csl-entry" role="listitem">
+Rudin, Cynthia, Chaofan Chen, Zhi Chen, Haiyang Huang, Lesia Semenova,
+and Chudi Zhong. 2021. <span>“Interpretable Machine Learning:
+Fundamental Principles and 10 Grand Challenges.”</span> <a
+href="https://arxiv.org/abs/2103.11251">https://arxiv.org/abs/2103.11251</a>.
+</div>
+<div id="ref-schioppa2022scaling" class="csl-entry" role="listitem">
+Schioppa, Andrea, Polina Zablotskaia, David Vilar, and Artem Sokolov.
+2022. <span>“Scaling up Influence Functions.”</span> In <em>Proceedings
+of the AAAI Conference on Artificial Intelligence</em>, 36:8179–86. 8.
+</div>
+<div id="ref-shuster2021hallucination" class="csl-entry"
+role="listitem">
+Shuster, Kurt, Spencer Poff, Moya Chen, Douwe Kiela, and Jason Weston.
+2021. <span>“Retrieval Augmentation Reduces Hallucination in
+Conversation.”</span> In <em>Findings of the Association for
+Computational Linguistics: EMNLP 2021</em>, 3784–3803. Punta Cana,
+Dominican Republic: Association for Computational Linguistics. <a
+href="https://doi.org/10.18653/v1/2021.findings-emnlp.320">https://doi.org/10.18653/v1/2021.findings-emnlp.320</a>.
+</div>
+<div id="ref-si2023prompting" class="csl-entry" role="listitem">
+Si, Chenglei, Zhe Gan, Zhengyuan Yang, Shuohang Wang, Jianfeng Wang,
+Jordan Boyd-Graber, and Lijuan Wang. 2023. <span>“Prompting GPT-3 to Be
+Reliable.”</span> <a
+href="https://arxiv.org/abs/2210.09150">https://arxiv.org/abs/2210.09150</a>.
+</div>
+<div id="ref-lamda" class="csl-entry" role="listitem">
+Thoppilan, Romal, Daniel De Freitas, Jamie Hall, Noam Shazeer, Apoorv
+Kulshreshtha, Heng-Tze Cheng, Alicia Jin, et al. 2022. <span>“LaMDA:
+Language Models for Dialog Applications.”</span> <a
+href="https://arxiv.org/abs/2201.08239">https://arxiv.org/abs/2201.08239</a>.
+</div>
+</div>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Our thanks to Nicholas Carlini, Matthew Jagielski,
+Kelvin Guu, Reza Shokri, Florian Tramèr and additional players to be
+named later. Creative Commons license t/k.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>It’s <a
+href="https://www.youtube.com/watch?v=e0HGEZXTy8Y">common
+knowledge</a>.<a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Publicly intended: data that the data owner intended to
+make public. Notably, this is not the same as public data as some data
+was not made public by the data owner. Example: one out of the two
+participants in a chat conversation could upload both sides of the chat
+online.<a href="#fnref3" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>For more details comparing different methods for
+creating retriever modules, please see <span class="citation"
+data-cites="lesota2021survey">Lesota et al. (2021)</span> or <span
+class="citation" data-cites="guu2022representing">Guu (2022)</span>.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>While this example is a stretch, it is illustrative of
+other “facts” that may not be present in collected and curated training
+data<a href="#fnref5" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>The strategy for computing the counterfactual influence
+can also be called <em>leave-one-out training</em> <span
+class="citation"
+data-cites="koh2017understanding feldman2020influence">(Koh and Liang
+2017; Feldman and Zhang 2020)</span>.<a href="#fnref6"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>For example, the open-source, Pythia, language models
+cost an estimated $400,000 in compute per model <span class="citation"
+data-cites="biderman2023pythia">(Biderman et al. 2023)</span>.<a
+href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>In the literature this is called “gradient-based
+influence”<span class="citation"
+data-cites="akyurek2022tracing">(Akyürek et al. 2022)</span>.<a
+href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>The challenge of creating technical definitions to use
+as proxies is discussed further in section <a href="#sec:definitions"
+data-reference-type="ref" data-reference="sec:definitions">3.3</a>.<a
+href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Modern machine learning models are able to capture
+patterns in unstructured or unrelated data that humans cannot as easily
+capture. Those patterns often correspond to concepts, like that
+sentences end in punctuation, but they do not always represent
+understandable concepts.<a href="#fnref10" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>Folks have argued that machine learning has improved
+our ability to capture ambiguity and nuance. While machine learning has
+certainly enabled our use of large amounts of unstructured data
+(unstructured data is a type of ambiguity, however, again, understanding
+unstructured data does not completely capture notions of ambiguity). We,
+along with many others, argue that this is limited by our ability to
+specify a definition or objective that we want to achieve. Thus, we
+don’t believe current computer programs are able to fully contextualize
+data.<a href="#fnref11" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>A great example of how technical terms need specific
+definitions is the term <em>differential privacy</em>. Differential
+privacy has been embraced in many systems since it’s introduction in
+2006, including by the U.S. Census Bureau <span class="citation"
+data-cites="census">(Population Reference Bureau and the U.S. Census
+Bureau’s 2020 Census Data Products and Dissemination Team 2023)</span>,
+because it it provides guarantees of the amount of exposure of data.
+Specifically, “algorithm is said to be differentially private if by
+looking at the output, one cannot tell whether any individual’s data was
+included in the original dataset or not” <span class="citation"
+data-cites="harvardprivacytools">(Harvard University Privacy Tools
+Project Accessed 2023)</span>. This definition of “privacy preserving”
+is strict, but easily broken. If an individual is duplicated in the
+dataset then removing one instance of that individual would not
+necessarily make it more challenging to tell if that individual’s data
+was included int he original dataset <span class="citation"
+data-cites="brown2022what">(H. Brown et al. 2022)</span><a
+href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>The interpretability literature is ripe with
+discussions of what an acceptable notion of interpretability could look
+like. The takeaway is that there is no one answer. It depends on the
+application of the model and why interpretability may be desired <span
+class="citation"
+data-cites="molnar2020history rudin2021interpretable">(Molnar,
+Casalicchio, and Bischl 2020; Rudin et al. 2021)</span>.<a
+href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>This example assumes that an individual’s data will
+only contain their private information. For example, an individual’s
+chat messages or emails with a friend could contain their friend’s
+private information as well. In this case, we can say that the retrieval
+model does not expose more private information than the individual
+already had access to.<a href="#fnref14" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+</body>
+</html>

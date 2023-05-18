@@ -4,6 +4,8 @@ title:  '  Drafts'
 
 [Transformative AI](drafts/transformative-ai.html) (2023)
 
+[Beyond Generation: Privacy and Copyright Consequences of Retrieval and Attribution Models](drafts/beyond-generation-privacy-copyright.html) (2023)
+
 [What we know about memorization](memorization.html) (2023)
 
 ### Generative AI + Copyright Explainer Series
