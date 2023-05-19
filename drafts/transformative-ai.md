@@ -1,5 +1,5 @@
 ---
-title:  'Say Transformative AI'
+title:  'Transformative AI'
 ---
 <p style="text-align:right">May 2023</p>
 
