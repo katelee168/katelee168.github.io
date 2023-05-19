@@ -2,7 +2,10 @@
 title:  'Say, Disruptive AI'
 ---
 <p style="text-align:right">May 2023</p>
+<p style="text-align: right">→ Comment on this doc [here](https://docs.google.com/document/d/14l5K3PcAxW5PJPrFmUfnjVdphxBmGkGGh6ezoLrZ8LE/edit#)</p>
 
+<!-- Comment on this doc [here](https://docs.google.com/document/d/14l5K3PcAxW5PJPrFmUfnjVdphxBmGkGGh6ezoLrZ8LE/edit#). -->
+## 
 
 We should use the term disruptive AI when talking about current + future ML/AI tools. 
 
