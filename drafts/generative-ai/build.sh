@@ -21,6 +21,7 @@ do
         --css pandoc.css \
         --citeproc \
         --toc \
+        --number-sections \
         --output $filename.html \
         $filename.md
 done
@@ -30,3 +31,7 @@ done
 # pandoc -t markdown_strict --citeproc pandoc-bib-test.md -o pandoc-bib-test-output.md --bibliography references.bib
 # pandoc -t html --citeproc index.md -o index.html --bibliography references.bib
 # pandoc -t yaml -f bibtex references.bib
+
+# --lua-filter \
+#         --number-sections \
+#         

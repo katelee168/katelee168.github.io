@@ -1,10 +1,15 @@
-<!--Training data [feedback]-->
-
-# Chapter 1: Training data {#intro}
+---
+title: "Chapter 1: Training data"
+tags: [machine learning, datasets, generative ai, artificial intelligence, copyright, privacy, law]
+# date: May 29, 2023
+# author:
+#   - [Katherine Lee](https://katelee168.github.io/)
+#   - [Daphne Ippolito](https://daphnei.com/)
+---
 
 <p align="right">
 by [Katherine Lee](https://katelee168.github.io/) and [Daphne Ippolito](https://daphnei.com/) </br>
-April 28, 2023
+May 29, 2023
 </p>
 
 The training data used to develop generative models has a direct impact on their outputs (aka *generations*).
@@ -12,7 +17,7 @@ If there are no Garfield comics in a model's training data, what are the odds of
 Good selection of training data is the most important way creators can control the risk of copyright and privacy infringements in the resulting, generative model. 
 ^[We should couch this by saying that training dataset design is the _current_ most important set of choices model creators have. There are other models in the works that are trying to reduce copyright and privacy infringements by attributing generations to specific examples in the data, or by adding noise to obscure individual data points (differential privacy), or by limiting the scope of a model to an application where copyright and privacy are less of a concern (for example, Disney training on scripts where they own all the copyrights).]
 The sheer amount of data required for training modern-day generative model makes it impossible for dataset creators to interact with each item in the dataset, and thus impossible to know exactly the content, source, and context of each item in the dataset. 
-For example, a dataset creator might be able to answer the question: “How many Garfield comics are there in the training data?”, but they might not be able to answer the questions: “How many fan or parody Garfield comics are there in the training data?” 
+For example, a dataset creator might be able to answer the question: "How many Garfield comics are there in the training data?", but they might not be able to answer the questions: "How many fan or parody Garfield comics are there in the training data?" 
 
 
 In this chapter, we discuss datasets of the not-so-distant past (the late 1990s and early 2000s) and how datasets and dataset collection practices have changed.
@@ -20,15 +25,14 @@ Then, we discuss what the choices data curators make to create modern-day, gener
 Finally, we acknowledge both the difficulty in making educated choices and the real impact those choices have on the resulting models. 
 
 
-### Table of Contents
+## tl;dr {-}
 
 1. [**A Brief History**](#early-datasets): Early datasets used for generative modeling were much smaller, had denser annotations, and were more likely to be manually curated. 
-2. [**Today’s Datasets**](#today-datasets): Today’s datasets are on the scale of multiple terabytes. It’s impossible to annotate or fully understand these datasets. 
-3. [**Data collection**](#data-collection): Datasets collection requires making a lot of choices about what data is relevant. The impact of those choices on generations from the model is not well understood. 
-4. [**Data curation**](#data-curation): Data curation requires understanding the goals of the models, which are often un-, or under-specified, and the cultural context of the data. Again, the size of the datasets can make this a challenges.
-5. [**Conclusion & Next: Copyright and Training Data**](#next)
+2. [**Trends in Today's Datasets**](#today-datasets): Today’s datasets are on the scale of multiple terabytes. It is impossible to annotate or fully understand these datasets. Dataset creators create datasets by choosing corpora to put together (sec [2.1](#corpus)). Unfortunately, choosing what good corpora, or good examples, are is a poorly defined problem (sec [2.2](#good-data)). Similarly, choosing what bad corpora, or bad examples, is poorly defined and difficult to automate (sec [2.3](#filtering)). Testing the impact of data choices involves training expensive models which makes thorough testing prohibitively expensive (sec [2.4](#expensive)). Finally, data provenance for modern datasets is difficult to pin down (sec [2.5](#provenance)), and as datasets are around for longer, researchers are able to better study them, that means new datasets are often less understood (sec [2.6](#new-datasets)).
+3. [**Conclusion & Next: Copyright and Training Data**](#next)
 
-## A Brief History {#early-datasets}
+
+# A Brief History {#early-datasets}
 
 > Early work in generation didn't "learn" from data. 
 > As statistical models have become more capable through computed and increased dataset sizes, annotations have come in and out of favor to provide intermediaries to better train or evaluate generative models.
@@ -40,8 +44,7 @@ Early chatbots, such as [ELIZA](https://dl.acm.org/doi/10.1145/365153.365168) (1
 
 Similarly, early work on photo-realistic image generation didn't use any grounding in photography.
 Rather, the field of Graphics focused on building mathematical models of 3D objects, such as the famous [Utah teapot](https://graphics.cs.utah.edu/teapot/) (1975), and then rendered them onto a 2D images, writing algorithms to mimic the shadowing and light effects of the real world.
-Other work used procedural algorithms to generate realistic textures TODO(add more here).
-TODO: add ben poole's work here on making 3D renderings from photographs.
+Other work used [procedural algorithms](https://en.wikipedia.org/wiki/Procedural_texture) to generate realistic textures and add them to surfaces.
 
 
 <figure style="text-align:center;">
@@ -51,24 +54,24 @@ TODO: add ben poole's work here on making 3D renderings from photographs.
 
 We'll first discuss some historical language datasets then return to image datasets in a later [section](#image-generation).
 
-### Language datasets
+## Language Generation Datasets
 
 Early monolingual datasets, such as the Brown Corpus and the Penn Tree Bank, were collected from literary, government, and news sources, and were densely annotated with linguistic structure, such as parts-of-speech^[Is a word a noun, or verb, or adverb?] and syntax^[Syntax is the hierarchical structure of a sentence.] annotations.
 Early work in natural language processing  assumed that building a language understanding system would require encoding this type of linguistic knowledge and mechanically applying it. 
 ^[For example, one might use linguistic structure to understand that in the sentence "The dog fetched the ball.", "the dog" is a noun phrase serving as the subject of the sentence. Additionally, we might infer from context that a dog is the sort of thing that is more likely to fetch than a ball, and that a ball is the sort of thing that a dog might fetch.]
-Building annotated datasets was a labor-intensive process, often this was completed by professional, highly skilled annotators at organizations like the Linguistic Data Consortium, though some datasets like TODO chose to crowdsource annotations from non-experts.
+Building annotated datasets was a labor-intensive process, often this was completed by professional, highly skilled annotators at organizations like the Linguistic Data Consortium, though some datasets like [PennTreebank](https://catalog.ldc.upenn.edu/LDC99T42) chose to crowdsource annotations from non-experts.
 
 The shift towards larger datasets was driven by the growth of electronic records and the internet.
-Some notable datasets include [English Gigaword](https://catalog.ldc.upenn.edu/LDC2003T05) (2003), sourced text from English newswire; the Enron Emails dataset (2001), sourced from emails released by the US federal government during its investigations of Enron;and the [One Billion Word Benchmark](https://arxiv.org/abs/1312.3005) (2013), sourced from government documents and newswire.
+Some notable datasets include [English Gigaword](https://catalog.ldc.upenn.edu/LDC2003T05) (2003), sourced text from English newswire; the [Enron Emails dataset](https://www.cs.cmu.edu/~./enron/) (2001), sourced from emails released by the US federal government during its investigations of Enron;and the [One Billion Word Benchmark](https://arxiv.org/abs/1312.3005) (2013), sourced from government documents and newswire.
 
 All of the datasets mentioned so far have a trait in common--the source material was either public record or explicitly licensed for research usage.
-However, as it became apparent that bigger datasets led to superior models of language, and the field of NLP saw rapid advancements in the algorithms and computing hardware needed to efficiently processing large amounts of data,  efforts to build responsibly-sourced and hand-curated datasets could not keep with with the demand for big datasets.
+However, as it became apparent that bigger datasets led to superior models of language, and the field of NLP saw rapid advancements in the algorithms and computing hardware needed to efficiently processing large amounts of data,  efforts to build responsibly-sourced and hand-curated datasets could not keep up with the demand for big datasets.
 
 It wasn’t just the growth of the internet that drove the growth in dataset sizes, increased computational power (a.k.a. compute) and new model designs meant that statistical models increased in capacity and became better at finding patterns in unstructured data. 
 These shifts also decreased the need for annotations since models were able to pick out patterns in the data that corresponded with tasks without relying on data that was curated for the task. 
 
 For example, some of the earliest generation applications to work with large text corpora were machine translation.
-From multilingual data sources such as United Nations documents and news sites, dataset creators assembled datasets of two or more languages of the same topics. Some of these datasets had aligned text (a specific sentence in two or more languages), but some datasets, like TODO were simply transcripts of the same meeting in multiple languages--these were effectively loosely annotated.
+From multilingual data sources such as United Nations documents and news sites, dataset creators assembled datasets of two or more languages of the same topics. Some of these datasets had aligned text (a specific sentence in two or more languages), but some datasets, like [Europarl](https://www.statmt.org/europarl/) were simply transcripts of the same parliament meeting in multiple languages--these were effectively loosely annotated.
 These datasets were used to build statistical language models which would learn to output translations for any input sentence.
 
 In the 2010s, we saw the rise of web-scraped datasets.
@@ -84,7 +87,7 @@ All state-of-the-art large language models are trained on this type of data.
 
 There are also large datasets containing proprietary data. Those datasets may be annotated with user actions, such as number of stars for Amazon Reviews, or Netflix recommendations. [Amazon’s Review dataset](https://nijianmo.github.io/amazon/index.html), released dataset in 2018, contains 233.1M examples with customer ratings, and [Netflix’s recommendations dataset](https://www.kaggle.com/datasets/netflix-inc/netflix-prize-data) contains 100M customer ratings. Other popular datasets in this vein are [IMDB movie reviews](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews), or the [Google Books N-gram corpus](https://en.wikipedia.org/wiki/Google_Ngram_Viewer) (2.2 TB of text!).
 
-### Image Generation
+## Image Generation Datasets
 
 Until relatively recently, most of Machine Learning with image data focused on classification tasks than image generation.
 Early datasets include [MNIST](https://www.lri.fr/~marc/Master2/MNIST_doc.pdf) (1999), which consisted of 60,000 black-and-white images of digits; [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), which contained 60,000 photographs of objects from 10 classes, including airplanes, frogs, and cats; and Imagenet (2009), which contains over 14 million images from 1,000 classes.
@@ -103,7 +106,6 @@ Prominent datasets included [Celeb-A](https://openaccess.thecvf.com/content_iccv
 
 Of course, the most exciting models today don't just generate an image from a single class identifier like "bird" or airplane."
 Models like Stable Diffusion or Imagen can parse complex natural language descriptions to generate entire novel photorealistic images.
-TODO: include an example image
 Good text-to-image models require training images with rich captions describing them.
 Early [GAN-based text-to-image models](http://proceedings.mlr.press/v48/reed16.pdf) collected human-written descriptions of the images in the Birds and Flowers datasets.
 [MS-COCO](https://cocodataset.org/#home) (2015), a dataset intended for image captioning research, was also co-opted to be used in reverse, its examples flipped to generate an image from a caption.
@@ -113,56 +115,127 @@ Like in Language research, it quickly became clear that larger datasets resulted
 In addition, training datasets needed to be high-resolution in order to create high-resolution, high-fidelity generations.
 [LAION 5B](https://laion.ai/blog/laion-5b/) (2022) met this need with a dataset of over 5 billion image-text pairs, creating by sweeping over the websites in the Common Crawl, collecting images with detailed [alt-text](https://www.accessiblepublishing.ca/a-guide-to-image-description/) descriptions.
 ^[Alt-text descriptions of images are an accessibility feature intended for situations where an image cannot be rendered. For example, visually impaired people using screen readers will read alt-text in lieu of seeing the image.]
-This is the dataset most state-of-the-art open-source text-to-image models are trained on.
-
-TODO OTHER IMAGE
+This is the dataset most state-of-the-art, open-source, text-to-image models are trained on.
 
 <figure style="text-align:center;">
-  <img src="images/imcl2016_fig1_v3.png" alt="Early GAN-generated images" style="width:37%;">
-  <img src="images/stablediffison_bird_flower.jpeg" alt="Examples from LAION" style="width:37%;">
-  <figcaption>**left**: Generations from one of the first text-to-image synthesis [papers (2016)](http://proceedings.mlr.press/v48/reed16.html). **right**: A generated image from DALL-E 2, a state-of-the-art text-to-image model.</figcaption>
+  <img src="images/icml2016_fig1_v3.png" alt="Early GAN-generated text-to-image generation results" style="width:37%;">
+  <img src="images/sota_bird_flowers.jpg" alt="Imags generated with DALLE-2 and Stable Diffusion" style="width:20%;">
+  <figcaption>**left**: Generations from one of the first text-to-image synthesis [papers](http://proceedings.mlr.press/v48/reed16.html) (2016). **right**: Images from teo state-of-the-art text-to-image models ([DALLE-2](https://openai.com/product/dall-e-2) and [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release)) for the prompt "A red-breasted black bird perched on a branch with small pink flowers." Modern models are much better at compositionality and synthesizing novel scenes than older systems.</figcaption>
 </figure>
 
 
 
+# Trends in Today’s Datasets {#today-datasets}
+
+The datasets used to train today’s large language models are massive and predominantly contain data scraped from the web.^[The Pile, ROOTS, and Chinchilla all combine data scraped from the web with additional more-curated data sources.] Among popular language datasets, the Pile and C4 are both 800GB; [ROOTS]((https://huggingface.co/bigscience/bloom#training-data)) is 1.6TB of pre-processed text, and the unreleased dataset Chinchilla used for training is 5.3 TB.^[The number reported in their [paper](https://arxiv.org/abs/2203.15556) was 1.4T tokens, or 4x the training data for a different language model, Gopher, which used 300B tokens. For [Gopher](https://arxiv.org/abs/2112.11446), they sampled 12.8% of the dataset _MassiveText_ that contains 10.5TB of data. 0.128 * 4 * 10.5TB = 5.3TB]
+In this section, we describe some of the ramifications of datasets that are too large for their creators to manually inspect each data point, let alone add additional annotations.
+We'll compare modern datasets with MNIST, the quintessential small dataset in machine learning.^[Over 6000 papers cite MNIST directly and a Google Scholar search returned 76,900 articles that mention MNIST. MNIST has become synonymous with "small, standard dataset" so other datasets like Fashion-MNIST, which has photos of clothing, also appear in the search results.] 
 
 
-## Today’s datasets {#today-datasets}
+## Data Collection is at the Corpus Level {#corpus}
+Modern datasets tend to be built by picking entire sources of data to include or not to include, rather than picking individual examples.
+Data can come from different sources.
+Language datasets can be scraped from Twitter, code repositories, personal blogs, advertisements, FanFiction, PasteBin dumps, search-engine optimization text, and so on.
+Image datasets can come from Flickr or from news articles.
+In choosing one domain over another, dataset creators make assumptions about the content of each domain.
+For example, Wikipedia is a popular source of data because it contains curated articles about a diverse array of topics.
+If the dataset creator wanted to create a model that was able to give coding advice, they may choose to include StackExchange or Github data as well.
+^[Github contains far more than just code. For example, many repositories also contain Readmes written in prose. Additionally, since many websites and blogs are hosted on Github, Github can also contain personal, narrative stories.]
+But Wikipedia isn’t conversational. If interactions with the generative model are meant to feel fluid and natural, then the dataset creator may choose to add chat data, such as Youtube Subtitles, HackerNews conversations, or Twitter. 
+For both image and language datasets, creators can also make the decision to scrape from a crawl of the entire internet, rather than specifically seeking out certain websites or domains.
 
-> Today’s datasets are on the scale of multiple terabytes. 
-<!-- > It’s impossible to annotate or fully understand these datasets.  -->
-> Fully annotating and understanding these datasets is impossible.
-> Annotations are used either to better ensure or validate that particular ideas or structures are learned from the data. 
+Language composition is another important question. Should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages?
+That particular question actually hides even more choices. If an English sentence includes a single Italian word, is that sentence English or Italian? What about the sentence, "I walked from campo dei fiori to santa Maria degli angeli?" Additionally, many situations are contextual and cultural. Before René Magritte’s 1929 painting, we would have said "Ceci n'est pas une pipe" was French, but today, it would also be commonly understood by many English speakers.
 
-The datasets used to train today’s large language models are massive and predominantly contain data scraped from the web^[The Pile, ROOTS, and Chinchilla all combine data scraped from the web with additional data sources.]. The Pile and C4 are both 800GB; [ROOTS]((https://huggingface.co/bigscience/bloom#training-data)) was 1.6TB of pre-processed text, and the unreleased dataset Chinchilla used for training is 5.3 TB^[The number reported in their [paper](https://arxiv.org/abs/2203.15556) was 1.4T tokens, or 4x the training data for a different language model, Gopher, which used 300B tokens. For [Gopher](https://arxiv.org/abs/2112.11446), they sampled 12.8% of the dataset _MassiveText_ that contains 10.5TB of data. 0.128 * 4 * 10.5TB = 5.3TB]. 
-It’s impossible for dataset creators to read each individual data point let alone annotate them.
+<figure style="text-align:center;">
+  <img src="images/pipe.jpeg" alt="Ceci n’est pas une pipe" style="width:50%;">
+  <figcaption>Est-ce French? Is this l'anglais?</figcaption>
+</figure>
 
-This automated collection process can obscure important context such as the provenance of the data. 
-For data in these large, web-scraped datasets, dataset creators might know that a paragraph of text is from a particular website, but that won’t necessarily tell us who the author of the text is, or who the photographer or artist is and whether they have permission to post the content.
-For example, chat logs are typically between two or more people. Both people do not need to consent for one person to put that chat log somewhere publicly where it could become part of the dataset. The chats could also become public through a data leak, or as a result of malicious action, for example, personal chats were leaked during the GamerGate harassment campaign^[GPT2, another language model, generated a conversation between two real individuals using their usernames. This conversation wasn’t exactly as it appeared in the GamerGate harassment campaign, but was about the same topic. More on this topic in [this blog](https://bair.berkeley.edu/blog/2020/12/20/lmmem/) and [this paper](https://dl.acm.org/doi/fullHtml/10.1145/3531146.3534642).]. 
-The entire movie *The Fast and the Furious*, could become part of a dataset without the dataset creator’s knowledge because someone decided to tweet out the entire movie in [two minute clips](https://mashable.com/article/twitter-copyright-full-movies).
-^[Other copyright concerns could arise. For example, there are instances [license laundering](https://en.wikipedia.org/wiki/Licence_laundering) on Github: individuals taking Github repositories that have a license and reposting it without the original license.]
-Additionally, without provenance and inferred cultural context, data may look unexpected. For example, a generative AI model may refer to "sex" as "seggs" because individuals online have adapted to censorship by using the homophones, such as "seggs", to discuss sensitive topics.
+During the data collection process, creators make dozens of these choices about what data is relevant, and the impact of those choices on generations from the model is not well understood. 
+We know that the balance of genres in a dataset affects the resulting model's knowledge and ability.^[A model trained on Project Gutenberg, whose most recent entires are from the 1920s, will clearly be much worse at reciting recent facts that one trained on Wikipedia.] 
+As much as we would like to back each data selection decision by science, it’s cost- and compute- prohibitive to run a different experiment for each decision. 
+Thus, many of these decisions are just choices the dataset creator makes, without much validation.
 
-In contrast, the provenance of MNIST is much more clear. 
-The dataset was built by *M*ixing two datasets from the *N*ational *I*nstitute of *S*cience and *T*echnology's datasets of handwritten numbers one written by high school students and the other by employees at the US Census Bureau.
+As a concrete example, we can look at the Pile (2020), a popular publicly-available dataset for training language models.
+The dataset creators chose to include multiple "academic" datasets, like PubMed, ArXiv, and FreeLaw, and code from Github. This means that models trained on the Pile will have seen medical literature, legal literature, and code. A model not trained on code would have a much harder time generating code.^[This doesn't mean that models not explicitly trained on code can’t generate code. Webscraped data is not clean, and there will inevitably be some code mixed in.]
 
-Additionally, we know how many and which examples are labeled incorrectly in the MNIST^[[Northcutt, 2019](https://arxiv.org/abs/1911.00068) investigated mislabeled images in MNIST. Anecdotally, Yann LeCunn has been overheard claiming he knows every mislabeled image in MNIST.] because MNIST has been extensively studied^[Over 6000 papers cite MNIST directly and a Google Scholar search returned 76,900 articles that mention MNIST.  MNIST has become synonymous with “small, standard dataset” so other datasets like Fashion-MNIST, which has photos of clothing, also appear in the search results.].
-This was possible both because MNIST was an extremely popular dataset over the course of it's nearly 25 year history, and because it's much, much smaller, than today's datasets (97,500x smaller than LAION^[LAION-5B has 5.85 billion text-image pairs. MNIST has 60,000 examples.]).
-<!-- since MNIST is one of the oldest and most extensively studied machine learning datasets (and TODOx smaller than LAION,  -->
+<figure style="text-align:center;">
+  <img src="images/pile-composition.png" alt="Data composition within the Pile" style="width:75%;">
+  <figcaption>[The Pile](http://arxiv.org/abs/2101.00027) is made up of many smaller datasets. Many of these components are web-scrapes focused on a specific domain, such as Wikipedia, StackExchange, USPTO (United States Patent and Trademark Office), and ArXiv. Some components, like [Enron Emails](https://www.cs.cmu.edu/~./enron/),  [EuroParl](https://www.statmt.org/europarl/), and Project Gutenberg^[Collection of out-of-copyright books available online.] are not explicitly scraped from the web.</figcaption>
+</figure>
 
-The massive size of today's datasets makes it a challenge to identify potentially mislabeled or misleadingly labeled images--there are often more than one way for images to be labeled, leading to misleading or incomplete labels
-^[There is some work investigating mislabeled [examples](https://arxiv.org/abs/2208.11695), but this work is rarely done compared with the number of existing datasets.]. 
-For example, LAION captions may not describe the content of the image at all, or may not accurately describe the image the LAION captions may not even accurately describe the content of the image and could even be written in multiple languages. 
+## The Quixotic Quest for a ``Good`` Dataset {#good-data}
+While dataset creators frequently say they want "clean data," the term is a misnomer. Instead, dataset creators typically mean that they want a dataset that creates a "good model."
+For models with clear goals, "good" can be easy to define.
+The creators of MNIST wanted a model that could classify images of handwritten digits, and the dataset they collected could be tailored to this singular goal.
+In Generative AI, we typically want our models to do many things.
+We expect a large language model to be able to answer factual questions about the world, but also to tell fictional stories, give relationship advice, and de-escalate when asked to generate toxic content.
+"Good," in the context of generative AI is extremely un- and under-specified which makes many possible choices of data valid. 
+^[Many generative AI models are referred to as "general purpose" (this is the G and P in OpenAI's GPT).  Models are in fact never general because data and modeling choices create preferences and limitations, however, the intent of the creators is to make the model as general as possible.]
+Some model creators will also specify they want a "helpful and harmless model."^[For example this [paper](https://www.anthropic.com/index/training-a-helpful-and-harmless-assistant-with-reinforcement-learning-from-human-feedback) from researchers at Anthropic discuss technical implementations for "helpful and harmless" assistants. Additionally, Sam Altman used this phrasing during the [Senate Judiciary Committee hearing on AI](https://www.youtube.com/watch?v=fP5YdyjTfG0).]
 
-That being said, modern models are remarkably capable of performing tasks _in spite_ of misleading or mislabeled examples^[TODO Cite chiyuan's randomness paper]. 
-They are remarkably capable of also performing tasks that they weren't explicilty trained to do. 
+Let’s get a little more specific with that and take "don’t generate toxic content" as an illustrative example. It’s an easy goal to state but hard to implement. 
+What constitutes "toxic" content  is ill-defined and constantly evolving, and classifications of toxicity can be correlated with other aspects of text, such as sexual explicitness.
+^[[Prior work](https://maria-antoniak.github.io/resources/2021_acl_bad_seeds.pdf) demonstrates how biases can seep into bias measurements through choices in the topics.]
+^[The [Perspective API](https://medium.com/jigsaw/better-discussions-with-imperfect-models-91558235d442) is one API that tries to identify "toxic" content. Again, what is considered "toxic" is context dependent, and in this case may be better explained as "stuff you don’t want advertisements associated with."]
+For example, the Texas’ Liberty County Vindicator posted the full text of the Declaration of Independence and [Facebook’s moderation flagged it as hate speech](https://www.washingtonpost.com/news/the-intersect/wp/2018/07/05/facebook-censored-a-post-for-hate-speech-it-was-the-declaration-of-independence/]).
+Additionally, different individuals or groups may have different interpretations of the same text, complicating the process of deciding what data to include and exclude. 
+For example, the LGBTQ community centers sexual orientation and sexual experience. Filtering out data related to sexual orientation and sexual experience could inadvertently remove data related to the LGBTQ community.
+^[[This paper](https://arxiv.org/abs/2104.08758) provides an example of this in the dataset C4.] ^[One way to approach this challenge is to adopt a more flexible and inclusive approach to data collection and analysis. This may involve working closely with individuals or groups who have expertise in the cultural context under study and being open to multiple perspectives and interpretations. Overall, it is important to recognize that cultural data is often fluid and dynamic, and our understanding of it may change over time. Therefore, any process for determining what data to include and exclude must be adaptable and open to revision as new insights emerge. It may also involve acknowledging the limitations of quantitative methods in capturing the full complexity of cultural data and being open to using qualitative approaches that allow for more nuanced and contextualized analysis.]
+
+Unfortunately, even if we agreed on what is "toxic," there isn’t a clear, technical consensus for what to do about this content.
+Some researchers propose removing any data deemed "toxic," but other researchers disagree arguing that it’s better to include some "toxic" data so that models are able to identify and stop generation of "toxic" content^[[A Pretrainer's Guide to Training Data: Measuring the Effects of Data Age, Domain Coverage, Quality, & Toxicity](https://arxiv.org/abs/2305.13169)] and argue that we should control outputs of models, not inputs.
+And yet, including or excluding, and identifying "toxic" content is just one of many, many choices dataset curators have to _just make_.
+Any fixed, black and white process of determining what data is worth including or excluding will miss cultural connotations that resist quantification and objectivity.
+In addition, whatever processes we use for deciding on "good" data must be adaptable and open to revision, reflecting how the desired uses of models change over time.
+
+## Filtering Out Bad Examples is an Automatic (and Imperfect) Process {#filtering}
+Unfortunately, the scale of today's datasets encourages dataset creators to use automatic methods to decide on mass what data to include or remove. 
+Often, a classification model (ideally one that is small and fast to run) is trained to label data as "toxic" or "low-quality."
+This classification model might have been build using human annotations, or it might itself be built off of automatically derived labels.^[A popular approach right now is to train a classifier that assess quality using a training dataset where examples are labeled as high-qualiy if they come form trusted sourced like Wikipedia or Books, and low-quality if they come from the general Internet.]
+This classificiation model is then used to automatically label every example in the dataset, and examples with negative labels are removed.
+For example, [LAION-Aesthetics](https://laion.ai/blog/laion-aesthetics/) is a subset of LAION-5B containing only images which an automatic classifier labeled as aesthetically pleasing. 
+
+Though "good" data is hard to define, some data is unambiguously bad because it contains obvious errors.
+Nearly all datasets, both small and large, have errors.
+For datasets where each item is labelled with a class, errors can exist because there is more than one way for an example to be labeled, leading to misleading or incomplete labels.^[For example, [an analysis of Imagenet's biodiversity](https://arxiv.org/abs/2208.11695) found that 12% of the dataset's wildlife images are incorrectly labeled.]
+In image-caption datasets, an image's caption may describe only one part of the image, or it may not even describe the content of the image at all.
+In any language dataset, the text might not be in the language we expect it to be, or it could be written in multiple languages, or it could not be natural language at all.^[One of the authors of this paper spent days confounded by why a model trained on [Project Gutenberg](https://www.gutenberg.org) was generating gibberish. It turned out the gibberish was chess moves, and that [18 million characters of chess notation](https://www.gutenberg.org/ebooks/4656) were in the dataset.]
+The massive size of today's datasets makes it extremely challenging to systematically identify and remove examples with these types of errors.^[Just consider that MNIST, with 60,000 examples is 97,500x smaller than LAION, with 5.85 billion.]
+It is also not uncommon for the people who are filtering a dataset to not be the same ones who collected it.
+For example, researchers might take a dump of the Common Crawl, and then run subsequent filters to remove low-quality or toxic content.
+
+That being said, modern models are remarkably capable of performing tasks _in spite_ of misleading or mislabeled examples.^[[Understanding Deep Learning
+(Still) Requires Rethinking Generalization](https://dl.acm.org/doi/abs/10.1145/3446776)] 
+They are also remarkably capable of performing tasks that they weren't explicilty trained to do. 
 <!-- That being said, modern models are remarkably capable of performing tasks that they were not explicitly trained to do.  -->
-Many generative language models are trained to generate the next word in the sentence^[Other modern LMs can be trained with other objective functions, like masked language modeling (also called span corruption), or the UL2 loss. More info [here](https://ai.googleblog.com/2022/10/ul2-20b-open-source-unified-language.html)] ^[Many generative image models are trained to reconstruct a given training example.]. 
-However, modern models can perform tasks like reversing a sentence^[Try it yourself in [ChatGPT](https://chat.openai.com/).]! 
-Providing examples of what “reversal” means in the prompt to the model can help the model understand the pattern, but models are not successful every time and are very sensitive to the format of the prompt.
+For example, generative language models are typically trained with the obective of predicting the next word in the sentence given the previous ones.^[Some modern LMs are trained with other objective functions, such as a fill-in-the-blank-style objective called [span corruption](https://ai.googleblog.com/2022/10/ul2-20b-open-source-unified-language.html).] ^[Many generative image models are trained to reconstruct a given training example.]
+However, modern models can perform tasks like reversing a sentence!^[Try it yourself in [ChatGPT](https://chat.openai.com/).]
+Providing examples of what "reversal" means in the prompt to the model can help the model understand the pattern, but models are not successful every time and are very sensitive to the format of the prompt.
 
-Annotated datasets can help evaluate the effectiveness of models on a task we care about and also to augment un-annotated data to make those tasks easier. 
+## Data Ablations are Prohibitively Expensive to Run {#expensive}
+Ideally we would like to know exactly how decisions made during dataset creation will impact what a generative model is good and bad at.
+The stanadrd approach to testing this is to train models with and without slices of the data removed, then evaluate how the removal impacts model performance.
+This is called ablation testing.
+As a concrete example, we could train the same model with and without Wikipedia removed from the dataset, or with and without text classified as toxic removed, and then observe how well the resulting models performan on tasks like question-answering and toxic Tweet identification.
+
+Unfortunately, today’s models are massive (billions of parameters) and can cost millions of dollars to train. Also, unfortunately, testing with smaller models doesn’t always have the same results as testing on larger models.
+The result is that thorough ablation testing is cost-prohibitive.
+^[Models develop capabilities at larger sizes ([Wei, 2022](https://openreview.net/forum?id=yzkSU5zdwD))]
+This means that model creators can’t afford to test every possible definition of "toxic" or every combination of "include/exclude" for different types of data.
+
+<!-- ## Datasets are Too Big to Manually Annotate
+DAPHNE COMMENT
+I have commented out this section for now because I was struggling to re-work it into the current narrative. I think that if we talk about annotation, we need to clearly distinguish between methodical human annotaton collection (e.g., paying annotators to look at photos and write descriptions of them), automatically acquired annotations (e.g. grabbing alt-text for images on the web like LAION does), and the approaches that are somewhere in between (e.g. starting with automatic annotations but having paid annotators assess and remove badly annotated examples). 
+END COMMENT
+
+Annotated datasets can help evaluate the effectiveness of models on a task we care about and also to augment un-annotated data to make those tasks easier. In that sense, the LAION captions could be thought of as "annotations" of the image dataset that enable the model to more effectively learn the contents of the images--the captions would be very difficult to learn without the "annotated" captions collected. Here is another example: if "doctor" always appears in the training set with the pronouns "he/him,"" the model trained on that dataset would pick up that pattern and not use any other pronoun. Annotated text could be used to measure this issue by testing explicitly measuring pronoun and profession correlations. In the late 2010s, researchers created many annotated datasets to evaluate models, including: Big-Bench, GLUE, SuperGLUE, and SQuAD. All of these datasets feature leader-boards to compare trained models. Today, model alignment through reinforcement learning through human feedback^[Reinforcement Learning through Human Feedback (RLHF) is a technique for providing feedback to the model about how "good" a generation was. This is currently used in popular models such as ChatGPT.] could also be thought of as providing annotations to the data to steer generation in a particular way.
+
+Older datasets used in generative AI were much more likely to have intentionally-collected human annotations.
+
+Annotated datasets can help evaluate the effectiveness of models on task we care about.
+They can also be used to augment un-annotated data during model training.
 In that sense, the LAION captions could be thought of as "annotations" of the image dataset that enable the model to more effectively learn the contents of the images--the captions would be very difficult to learn without the "annotated" captions collected. 
 Here is another example: if "doctor" always appears in the training set with the pronouns "he/him,"" the model trained on that dataset would pick up that pattern and not use any other pronoun. 
 Annotated text could be used to measure this issue by testing explicitly measuring pronoun and profession correlations. 
@@ -172,110 +245,67 @@ Today, model alignment through reinforcement learning through human feedback^[Re
 
 These annotated datasets are commonly used for evaluation, though the distinction between evaluation and training is not super clear as the datasets are often benchmarks that come with a training and test set. It’s common practice to train on the data from the training set of the evaluation benchmark then test on the evaluation benchmark’s test set.
 
-TODO: some better transition here? 
-
-
-<!-- Today’s language models, just like today’s image models, use many fewer annotations and rely more on computational power to discover statistical patterns.
+Today’s language models, just like today’s image models, use many fewer annotations and rely more on computational power to discover statistical patterns.
 It wasn’t just the growth of the internet that drove the growth in dataset sizes, increased computational power (a.k.a. compute) and new model designs meant that statistical models increased in capacity and became better at finding patterns in unstructured data. 
-These shifts also decreased the need for annotations since models were able to pick out patterns in the data that corresponded with tasks without relying on data that was curated for the task.  -->
+These shifts also decreased the need for annotations since models were able to pick out patterns in the data that corresponded with tasks without relying on data that was curated for the task.
 
-
-
-
-## Data collection {#data-collection}
-
-> Datasets collection requires making a lot of choices about what data is relevant. The impact of those choices on generations from the model is not well understood. 
-
-The balance of genres in a dataset affects the model's knowledge and ability. 
-For example, should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages? That question actually hides even more choices. If an English sentence includes a single Italian word, is that sentence English or Italian? What about the sentence, “I walked from campo dei fiori to santa Maria degli angeli?” Additionally, many situations are contextual and cultural. Before René Magritte’s 1929 painting, we would have said “Ceci n'est pas une pipe” was French, but today, it would also be commonly understood by many English speakers.
-As much as we would like to back each decision on what data to include by science, it’s cost- and compute- prohibitive to run a different experiment for each decision. 
-Thus many of these decisions are just choices the dataset creator makes.
-
-
-<figure style="text-align:center;">
-  <img src="images/pipe.jpeg" alt="Ceci n’est pas une pipe" style="width:50%;">
-  <figcaption>Est-ce French? Is this l'anglais?</figcaption>
-</figure>
-
-Even within one language there are many varieties of text that come from different sources. Data from Twitter, code repositories, personal blogs, advertisements, FanFiction, PasteBin dumps, text for search-engine optimization, and so on, are going to look very different.
-Dataset creators make assumptions about the content of each domain and often choose to include or exclude entire domains. 
-For example, Wikipedia is a popular source of data because it contains curated articles about a diverse array of topics. If the dataset creator wanted to create a model that was able to give coding advice, they may choose to include StackExchange or Github data as well.
-^[Github contains far more than just code. For example, many repositories also contain Readmes written in prose. Additionally, since many websites and blogs are hosted on Github, Github can also contain personal, narrative stories.]
-But Wikipedia isn’t conversational. If interactions with the generative model are meant to feel fluid and natural, then the dataset creator may choose to add chat data, such as Youtube Subtitles, HackerNews conversations, or Twitter. 
-
-In one popular language dataset, the Pile, the dataset creators chose to include multiple “academic” datasets, like PubMed, ArXiv, and FreeLaw, and code from Github. This means that models trained on the Pile will have seen medical literature, legal literature, and code. A model not trained on code would have a much harder time generating code^[This doesn't mean that models not explicitly trained on code can’t generate code. Webscraped data is not clean, and there will inevitably be some code mixed in.].
-
-
-
-
-<figure style="text-align:center;">
-  <img src="images/pile-composition.png" alt="Data composition within the Pile" style="width:75%;">
-  <figcaption>[The Pile](http://arxiv.org/abs/2101.00027) is made up of many smaller datasets. Many of these components are web-scrapes focused on a specific domain, such as Wikipedia, StackExchange, USPTO (United States Patent and Trademark Office), and ArXiv. Some components, like Enron Emails,  EuroParl^[“Proceedings of the European Parliament in 21
-European languages from 1996 until 2012” ([The Pile](http://arxiv.org/abs/2101.00027)).], and Project Gutenberg^[Collection of out-of-copyright books available online.] are not explicitly scraped from the web.</figcaption>
-</figure>
-
-There have been some efforts within the ML community to encourage dataset creators to document the choices they made. 
-A common choice is to create a [datasheet](https://arxiv.org/abs/1803.09010) which collects information about how the data was collected, the motivation behind it, any preprocessing that was done, and future maintenance plans.^[Many datasets available on HuggingFace (a popular open-source model and dataset repository) now have datasheets attached to them.]
-As an example, this is the Pile’s [datasheet](https://arxiv.org/pdf/2201.07311.pdf). 
-However, even an extensive datasheet like the Pile’s still still answers only a tiny fraction of the questions you could ask about what data it contains, why it was included, and how it was collected.
-Additionally, many companies don’t release many details about their proprietary datasets.
-^[For example, we don’t know much about the training data for ChatGPT, nor the difference between ChatGPT’s and [Claude’s](https://www.anthropic.com/earlyaccess) datasets. However, to the extent that similarity between training data and the user’s downstream task has an impact on the generative AI’s performance on the tasks, then companies should feel motivated to document and release additional information about what was in the training data to enable users to choose the right API for their application.]
-
-## Data curation {#data-curation}
-
-> Data curation requires understanding the goals of the models, which are often un-, or under-specified, and the cultural context of the data. Again, the size of the datasets can make this a challenge.
-
-
-While dataset curators frequently say they want “clean data,” the term is a misnomer. Instead, dataset curators typically mean that they want a dataset that creates a “good model.”
-“Good” is extremely un- and under-specified which makes many possible choices of data valid. 
-^[Many generative AI models are referred to as “general purpose models.” Models are never general because data and modeling choices create preferences and limitations, however, the intent of the creators is to make the model as general as possible.]
-Some model creators will also specify a “good model that doesn’t cause harm.” Let’s get a little more specific with that and take “don’t generate toxic content” as an illustrative example. It’s an easy goal to state but hard to implement. 
-
-What constitutes "toxic" content  is ill-defined and constantly evolving, and classifications of toxicity can be correlated with other aspects of text, such as sexual explicitness.
-^[[Prior work](https://maria-antoniak.github.io/resources/2021_acl_bad_seeds.pdf) demonstrates how biases can seep into bias measurements through choices in the topics.]
-^[The [Perspective API](https://medium.com/jigsaw/better-discussions-with-imperfect-models-91558235d442) is one API that tries to identify “toxic” content. Again, what is considered “toxic” is context dependent, and in this case may be better explained as “stuff you don’t want advertisements associated with.”]
-For example, the Texas’ Liberty County Vindicator posted the full text of the Declaration of Independence and [Facebook’s moderation flagged it as hate speech](https://www.washingtonpost.com/news/the-intersect/wp/2018/07/05/facebook-censored-a-post-for-hate-speech-it-was-the-declaration-of-independence/]).
-Additionally, different individuals or groups may have different interpretations of the same text, complicating the process of deciding what data to include and exclude. 
-For example, the LGBTQ community centers sexual orientation and sexual experience. Filtering out data related to sexual orientation and sexual experience could inadvertently remove data related to the LGBTQ community.
-^[[This paper](https://arxiv.org/abs/2104.08758) provides an example of this in the dataset C4.] ^[One way to approach this challenge is to adopt a more flexible and inclusive approach to data collection and analysis. This may involve working closely with individuals or groups who have expertise in the cultural context under study and being open to multiple perspectives and interpretations. Overall, it is important to recognize that cultural data is often fluid and dynamic, and our understanding of it may change over time. Therefore, any process for determining what data to include and exclude must be adaptable and open to revision as new insights emerge. It may also involve acknowledging the limitations of quantitative methods in capturing the full complexity of cultural data and being open to using qualitative approaches that allow for more nuanced and contextualized analysis.]
-Whatever process we use must be adaptable and open to revision. We can never have a black and white process of determining what data to include and exclude because we are dealing with cultural connotations that resist quantification and objectivity.
-
-However, the scale of the datasets encourages dataset creators and curators to use automatic methods to decide on mass what data to include or remove. 
-For example, a secondary model trained with labels for “toxic” or “low-quality” data could be used to label all data in a dataset. This present-day annotation is much less structured than prior, linguistic annotations. 
-Even with data curation, the training data for the largest generative models are still minimally curated compared with standard dataset collection practices from pre-2017.
-^[It’s not a secret that most datasets are crap. And by crap, we mean that they’re incredibly messy. In all data science, the first step is to “clean” and explore the data. Of course, “crap” is a catch-all term, and the ways in which data can be messy varies widely. However, whenever you’re dealing with large collections of data that are not cost-effective to manually curate and inspect, the dataset will necessarily contain anomalies and errors. Even if it were possible to manually curate and inspect the entire dataset, it would be impossible to find all possible patterns across the data because we are 1. All humans who have limited brain capacity and whose background makes it easier to identify some patterns and not others, and 2. Some patterns are not semantically meaningful to humans.]
-
-Unfortunately, even if we agreed on what was “toxic” there isn’t a clear, technical solution for how to reduce toxic content. Some researchers propose removing any data deemed “toxic,” and other researchers disagree arguing that it’s better to include some “toxic” data so that models are able to identify and stop generation of “toxic” content [**TODO**, citations] and argue that we should control outputs of models, not inputs.
-Labeling data for concepts like “toxicity” can help evaluate generations from models.
+Unfortunately, even if we agreed on what was "toxic" there isn’t a clear, technical solution for how to reduce toxic content. Some researchers propose removing any data deemed "toxic," and other researchers disagree arguing that it’s better to include some "toxic" data so that models are able to identify and stop generation of "toxic" content [**TODO**, citations] and argue that we should control outputs of models, not inputs.
+Labeling data for concepts like "toxicity" can help evaluate generations from models.
 These annotations need not be structured as a dataset, and some creators of generative models prefer to directly annotate the media produced by the model. This labeled data can also be useful for future training purposes, as it can be used to train classifiers based on the new labels.
 
-The lack of technical consensus here is often not for lack of desire but rather a reflection of both how many of these questions are societal and cannot be answered technically, and also of the computational cost required to investigate these questions.
-The process of testing whether to include a slice of data can involve training a model with and without that slice of data. That’s called ablation testing. Unfortunately, today’s models are massive (billions of parameters) and can cost millions of dollars to train. Also, unfortunately, testing with smaller models doesn’t always have the same results as testing on larger models making straightforward testing cost-prohibitive.
-^[Models develop capabilities at larger sizes ([Wei, 2022](https://openreview.net/forum?id=yzkSU5zdwD))]
-This means that model creators can’t afford to test every possible definition of “toxic” or every combination of “include/exclude” for different types of data.
+This present-day annotation is much less structured than prior, linguistic annotations. 
+Even with data curation, the training data for the largest generative models are still minimally curated compared with standard dataset collection practices from pre-2017.
+^[It’s not a secret that most datasets are crap. And by crap, we mean that they’re incredibly messy. In all data science, the first step is to "clean" and explore the data. Of course, "crap" is a catch-all term, and the ways in which data can be messy varies widely. However, whenever you’re dealing with large collections of data that are not cost-effective to manually curate and inspect, the dataset will necessarily contain anomalies and errors. Even if it were possible to manually curate and inspect the entire dataset, it would be impossible to find all possible patterns across the data because we are 1. All humans who have limited brain capacity and whose background makes it easier to identify some patterns and not others, and 2. Some patterns are not semantically meaningful to humans.]
 
-And yet, including or excluding, and identifying “toxic” content is just one of many, many choices dataset curators have to _just make_.
-As we discussed before in the section [_Data Collection_](#data-collection), dataset creators must also decide whether to include mostly text in one language or whether to mix in multiple languages. The line between dataset curation and creation isn’t well-defined and people can use either term to refer to the same acts.
-^[I’ve arbitrarily used data collection to refer to adding data to the dataset and data curation to be filtering data out of the dataset. Ultimately, adding and removing data are just a series of choices dataset creators and curators can make about what can be included. Dataset curation is a part of the dataset creation process. Additionally, the choice of adding particular sub-datasets means choosing to exclude other sub-datasets, which is also a curation choice. The reason to use two terms, dataset creator and dataset curator, at all is because often datasets are created and then filtered later on by a different set of people. ]
-Datasets can also be curated differently depending on the application at hand.
-For example, another choice dataset curators may make is whether it’s better to include mostly chat logs when creating a chat bot or if dataset creators should also include news articles or code.
-All this is to say that dataset collection and curation is an active area of research for which the answers depend heavily on the open-ended goals of generative modeling.
-^[This is not to say that “open-ended” is necessarily bad. One exciting result from generative AI releases has been seeing the multitude of ways people have used the systems. Exciting, and perhaps unintentional.]
 
-## Conclusion & next up: Copyright and Training Data {#next}
+ -->
 
-What dataset creation really boils down to is a set of choices. Datasets could look different, and they _were_ different. But today’s datasets are shaped by the present set of influences: model sizes, availability of data and compute, open-ended goals (and sometimes, a lack of desire to specify a specific goal), difficulty defining societal concepts, and business incentives.
+
+## Data Provenance is Unclear {#provenance}
+Automated collection processes that scrape the web for data can obscure the provenance of the examples collected.
+For large, web-scraped datasets, dataset creators might know that an image or a paragraph of text is from a particular website, but that won’t necessarily tell them who the author of the text is, or who the photographer or artist is and whether the website had permission to post the content.
+For example, chat logs are typically between two or more people. Both people do not need to consent for one person to put that chat log somewhere publicly where it could become part of the dataset. The chats could also become public through a data leak, or as a result of malicious action, for example, personal chats were leaked during the GamerGate harassment campaign.^[GPT2, another language model, generated a conversation between two real individuals using their usernames. This conversation wasn’t exactly as it appeared in the GamerGate harassment campaign, but was about the same topic. More on this topic in [this blog](https://bair.berkeley.edu/blog/2020/12/20/lmmem/) and [this paper](https://dl.acm.org/doi/fullHtml/10.1145/3531146.3534642).]
+The entire movie *The Fast and the Furious*, could become part of a dataset without the dataset creator’s knowledge because someone decided to tweet out the entire movie in [two minute clips](https://mashable.com/article/twitter-copyright-full-movies).
+^[Other copyright concerns could arise. For example, there are instances [license laundering](https://en.wikipedia.org/wiki/Licence_laundering) on Github: individuals taking Github repositories that have a license and reposting it without the original license.]
+
+In contrast, for older datasets, the data origin tends to be much more clear.
+For example, the MNIST dataset was built by *M*ixing two datasets from the *N*ational *I*nstitute of *S*cience and *T*echnology: one of handwritten numbers one written by high school students and the other by employees at the US Census Bureau.
+
+
+<!-- TODO(find a spot to add these sentences back in) Additionally, without provenance and inferred cultural context, data may look unexpected.
+For example, a generative AI model may refer to "sex" as "seggs" because individuals online have adapted to censorship by using the homophones, such as "seggs", to discuss sensitive topics. -->
+
+## New Datasets are Less Understood Than Old Ones {#new-datasets}
+As datasets age, so too does our understanding of them.
+Old datasets like MNIST have been around long enough for researchers to develop an understanding of their flaws.^[MNIST has been extensively studied during its 25 year history. Over 6000 papers cite MNIST directly and a Google Scholar search returned 76,900 articles that mention MNIST.]
+For MNIST, we know how many and which examples are labeled incorrectly.^[[Northcutt, 2019](https://arxiv.org/abs/1911.00068) investigated mislabeled images in MNIST. Anecdotally, Yann LeCunn has been overheard claiming he knows every mislabeled image in MNIST.]
+Some datasets, such as [Tiny Images](http://groups.csail.mit.edu/vision/TinyImages/) (2008), a dataset of 80-million web-scraped images, have even been withdrawn by their creators due to subsequent analysis showing the presence of derogatory and offensive content.
+
+The rapid pace of generative AI research makes it difficult for analysis of existing datasets to keep up with the development and adoption of new ones.
+Additionally, an increasing number of popular generative models are trained by companies on non-public datasets, which makes any sort of outside analysis impossible.^[For example, we don’t know much about the training data for ChatGPT, nor the difference between ChatGPT’s and [Claude’s](https://www.anthropic.com/earlyaccess) datasets. However, to the extent that similarity between training data and the user’s downstream task has an impact on the generative AI’s performance on the tasks, then companies should feel motivated to document and release additional information about what was in the training data to enable users to choose the right API for their application.]
+
+Despite this, there have been significant push within the ML community for for data creators to document their datasets before releasing them.
+One common recomendation is to create a [datasheet](https://arxiv.org/abs/1803.09010) which collects information about how the data was collected, the motivation behind it, any preprocessing that was done, and future maintenance plans.^[Many datasets available on HuggingFace (a popular open-source model and dataset repository) now have datasheets attached to them.]
+As an example, this is the Pile’s [datasheet](https://arxiv.org/pdf/2201.07311.pdf). 
+However, even an extensive datasheet like the Pile’s still still answers only a tiny fraction of the questions you could ask about what data it contains, why it was included, and how it was collected.
+
+# Conclusion & next up: Copyright and Training Data {#next}
+
+Dataset creators do not want to create bad datasets.
+The lack of technical consensus on what to include in datasets is a reflection of the lack of societal consensus on what we want the capabilities of Generative AI to be.
+Thus, questions on how to make a good dataset cannot be answered solely technically.
+What dataset creation really boils down to is a set of choices.
+Datasets can look different than they do today; they _were_ different in the recent past.
+But today’s datasets are shaped by the present set of influences: model sizes, availability of data and compute, open-ended goals (and sometimes, a lack of desire to specify a specific goal), difficulty defining societal concepts, and business incentives.
+Ultimately, these datasets exist to serve the tasks we want Generative AI to do.
+"General purpose" is not a task that it is easy to develop a dataset for.
 
 We started this journey discussing how the choices in training data can raise copyright issues. Next in this series on generative AI, we’ll discuss what sorts of copyrightable works could be included in the training data, why they may have ended up there, and whether or not that is permissible. Additionally, we’ll discuss how different media (text, image, video, music, etc.) might require different treatment.
 
- Instead, dataset curators typically mean that they want a dataset that creates a “good model.”
-Ultimately, datasets exist to serve the tasks we want models to do. "General purpose" is not a task that it is easy to develop a dataset for.
-Fro example, OpenAI's models are trained for the goal of being general-purpose, except if the purpose is generating hate speech.
-
-## Dedication
+# Dedication {-}
 
 This piece is dedicated to the late, [Chris Cieri](https://www.ldc.upenn.edu/christopher-cieri-1963-2023), director of LDC, with whom we had discussed the early versions of this paper in 2021. 
 
-## Acknowledgements
+# Acknowledgements {-}
 
-This discussion is fueled by years of discussions with wonderful people, including, but not limited to: [James Grimmelman](https://james.grimmelmann.net/), [David Mimno](https://mimno.infosci.cornell.edu/), [A. Feder Cooper](https://afedercooper.info/), [Daphne Ippolito](https://daphnei.com/), [Nicholas Carlini](https://nicholas.carlini.com/), [Florian Tramèr](https://floriantramer.com/), [James Bradbury](https://twitter.com/jekbradbury), [Shayne Longpre](https://www.shaynelongpre.com/), [Chris Cieri](https://twitter.com/chris_cieri?lang=en), and [Lillian Lee](https://www.cs.cornell.edu/home/llee/)
+This discussion is fueled by years of discussions with wonderful people, including, but not limited to: [James Bradbury](https://twitter.com/jekbradbury), [Nicholas Carlini](https://nicholas.carlini.com/), [Chris Cieri](https://twitter.com/chris_cieri?lang=en), [A. Feder Cooper](https://afedercooper.info/),  [James Grimmelmann](https://james.grimmelmann.net/), [Lillian Lee](https://www.cs.cornell.edu/home/llee/), [Shayne Longpre](https://www.shaynelongpre.com/), [David Mimno](https://mimno.infosci.cornell.edu/), and [Florian Tramèr](https://floriantramer.com/).
