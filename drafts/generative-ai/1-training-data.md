@@ -14,21 +14,21 @@ May 29, 2023
 
 The training data used to develop generative models has a direct impact on their outputs (aka *generations*).
 If there are no Garfield comics in a model's training data, what are the odds of it spontaneously generating a Garfield comic?
-Good selection of training data is the most important way creators can control the risk of copyright and privacy infringements in the resulting, generative model. 
+Training data selection is the most direct way creators can control the risk of copyright and privacy infringements in the resulting, generative model. 
 ^[We should couch this by saying that training dataset design is the _current_ most important set of choices model creators have. There are other models in the works that are trying to reduce copyright and privacy infringements by attributing generations to specific examples in the data, or by adding noise to obscure individual data points (differential privacy), or by limiting the scope of a model to an application where copyright and privacy are less of a concern (for example, Disney training on scripts where they own all the copyrights).]
 The sheer amount of data required for training modern-day generative model makes it impossible for dataset creators to interact with each item in the dataset, and thus impossible to know exactly the content, source, and context of each item in the dataset. 
-For example, a dataset creator might be able to answer the question: "How many Garfield comics are there in the training data?", but they might not be able to answer the questions: "How many fan or parody Garfield comics are there in the training data?" 
+For example, a dataset creator might be able to answer the question: "How many Garfield comics are there in the training data?" but they might not be able to answer the questions: "How many fan or parody Garfield comics are there in the training data?" 
 
 
 In this chapter, we discuss datasets of the not-so-distant past (the late 1990s and early 2000s) and how datasets and dataset collection practices have changed.
 Then, we discuss what the choices data curators make to create modern-day, generative-AI datasets. 
-Finally, we acknowledge both the difficulty in making educated choices and the real impact those choices have on the resulting models. 
+Finally, we acknowledge both the difficulty in making educated choices and the impact those choices have on the resulting models. 
 
 
 ## tl;dr {-}
 
 1. [**A Brief History**](#early-datasets): Early datasets used for generative modeling were much smaller, had denser annotations, and were more likely to be manually curated. 
-2. [**Trends in Today's Datasets**](#today-datasets): Today’s datasets are on the scale of multiple terabytes. It is impossible to annotate or fully understand these datasets. Dataset creators create datasets by choosing corpora to put together (sec [2.1](#corpus)). Unfortunately, choosing what good corpora, or good examples, are is a poorly defined problem (sec [2.2](#good-data)). Similarly, choosing what bad corpora, or bad examples, is poorly defined and difficult to automate (sec [2.3](#filtering)). Testing the impact of data choices involves training expensive models which makes thorough testing prohibitively expensive (sec [2.4](#expensive)). Finally, data provenance for modern datasets is difficult to pin down (sec [2.5](#provenance)), and as datasets are around for longer, researchers are able to better study them, that means new datasets are often less understood (sec [2.6](#new-datasets)).
+2. [**Trends in Today's Datasets**](#today-datasets): Today’s datasets are on the scale of multiple terabytes. It is impossible to annotate or fully understand these datasets. Dataset creators create datasets by choosing corpora to put together (sec [2.1](#corpus)). Unfortunately, choosing what good corpora, or good examples, are is a poorly defined problem (sec [2.2](#good-data)). Identifying bad corpora, or bad examples, is a similarly, poorly-defined problem which makes it difficult to automate (sec [2.3](#filtering)). Testing the impact of data choices involves training expensive models which makes thorough testing prohibitively expensive (sec [2.4](#expensive)). Additionally, data provenance for modern datasets is difficult to pin down (sec [2.5](#provenance)). The longer a dataset is around for, and the more commonly used it is, the better researchers are able to study them. This means that newer datasets are often less understood (sec [2.6](#new-datasets)).
 3. [**Conclusion & Next: Copyright and Training Data**](#next)
 
 
@@ -59,19 +59,19 @@ We'll first discuss some historical language datasets then return to image datas
 Early monolingual datasets, such as the Brown Corpus and the Penn Tree Bank, were collected from literary, government, and news sources, and were densely annotated with linguistic structure, such as parts-of-speech^[Is a word a noun, or verb, or adverb?] and syntax^[Syntax is the hierarchical structure of a sentence.] annotations.
 Early work in natural language processing  assumed that building a language understanding system would require encoding this type of linguistic knowledge and mechanically applying it. 
 ^[For example, one might use linguistic structure to understand that in the sentence "The dog fetched the ball.", "the dog" is a noun phrase serving as the subject of the sentence. Additionally, we might infer from context that a dog is the sort of thing that is more likely to fetch than a ball, and that a ball is the sort of thing that a dog might fetch.]
-Building annotated datasets was a labor-intensive process, often this was completed by professional, highly skilled annotators at organizations like the Linguistic Data Consortium, though some datasets like [PennTreebank](https://catalog.ldc.upenn.edu/LDC99T42) chose to crowdsource annotations from non-experts.
+Building annotated datasets was a labor-intensive process and was often completed by professional, highly skilled annotators at organizations like the Linguistic Data Consortium, though some datasets like [PennTreebank](https://catalog.ldc.upenn.edu/LDC99T42) chose to crowdsource annotations from non-experts.
 
 The shift towards larger datasets was driven by the growth of electronic records and the internet.
-Some notable datasets include [English Gigaword](https://catalog.ldc.upenn.edu/LDC2003T05) (2003), sourced text from English newswire; the [Enron Emails dataset](https://www.cs.cmu.edu/~./enron/) (2001), sourced from emails released by the US federal government during its investigations of Enron;and the [One Billion Word Benchmark](https://arxiv.org/abs/1312.3005) (2013), sourced from government documents and newswire.
+Some notable datasets include [English Gigaword](https://catalog.ldc.upenn.edu/LDC2003T05) (2003), sourced from English newswire; the [Enron Emails dataset](https://www.cs.cmu.edu/~./enron/) (2001), sourced from emails released by the US federal government during its investigations of Enron;and the [One Billion Word Benchmark](https://arxiv.org/abs/1312.3005) (2013), sourced from government documents and newswire.
 
-All of the datasets mentioned so far have a trait in common--the source material was either public record or explicitly licensed for research usage.
+All of the datasets mentioned so far use material that was either in the public record or explicitly licensed for research usage.
 However, as it became apparent that bigger datasets led to superior models of language, and the field of NLP saw rapid advancements in the algorithms and computing hardware needed to efficiently processing large amounts of data,  efforts to build responsibly-sourced and hand-curated datasets could not keep up with the demand for big datasets.
-
-It wasn’t just the growth of the internet that drove the growth in dataset sizes, increased computational power (a.k.a. compute) and new model designs meant that statistical models increased in capacity and became better at finding patterns in unstructured data. 
+This was furthered by the growing availability of data on the internet. 
+<!-- It wasn’t just the growth of the internet that drove the growth in dataset sizes, increased computational power (a.k.a. compute) and new model designs meant that statistical models increased in capacity and became better at finding patterns in unstructured data.  -->
 These shifts also decreased the need for annotations since models were able to pick out patterns in the data that corresponded with tasks without relying on data that was curated for the task. 
 
 For example, some of the earliest generation applications to work with large text corpora were machine translation.
-From multilingual data sources such as United Nations documents and news sites, dataset creators assembled datasets of two or more languages of the same topics. Some of these datasets had aligned text (a specific sentence in two or more languages), but some datasets, like [Europarl](https://www.statmt.org/europarl/) were simply transcripts of the same parliament meeting in multiple languages--these were effectively loosely annotated.
+From multilingual data sources such as United Nations documents and news sites, dataset creators assembled datasets of two or more languages of the same topics. Some of these datasets had aligned text (a specific sentence in two or more languages), but some datasets, like [Europarl](https://www.statmt.org/europarl/) were simply transcripts of the same parliament meeting in multiple languages.
 These datasets were used to build statistical language models which would learn to output translations for any input sentence.
 
 In the 2010s, we saw the rise of web-scraped datasets.
@@ -89,10 +89,10 @@ There are also large datasets containing proprietary data. Those datasets may be
 
 ## Image Generation Datasets
 
-Until relatively recently, most of Machine Learning with image data focused on classification tasks than image generation.
+Until relatively recently, most of Machine Learning with image data focused on classification than generating images.
 Early datasets include [MNIST](https://www.lri.fr/~marc/Master2/MNIST_doc.pdf) (1999), which consisted of 60,000 black-and-white images of digits; [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), which contained 60,000 photographs of objects from 10 classes, including airplanes, frogs, and cats; and Imagenet (2009), which contains over 14 million images from 1,000 classes.
 Deep Learning researchers relied heavily on these datasets to develop methodologies for image classification, and early work on machine learning-powered image generation, including [generative adversarial networks (GAN)](https://arxiv.org/pdf/1406.2661.pdf) (2014) and [denoising diffusion models](https://dl.acm.org/doi/abs/10.5555/3495724.3496298), followed suit.
-For many years, the diversity present in large datasets like Imagenet confounded image generation approaches.
+For many years, it was difficult to generate images similar to images in large, image datasets like Imagenet because of the diversity present.
 Large but more narrowly-scoped datasets allowed for the development of models with higher fidelity generations.
 Prominent datasets included [Celeb-A](https://openaccess.thecvf.com/content_iccv_2015/html/Liu_Deep_Learning_Face_ICCV_2015_paper.html) (2015) which contained 200k close-up images of faces; [Caltech-UCSD Birds](https://vision.cornell.edu/se3/caltech-ucsd-birds-200/) with over 11k bird photos; and [Oxford Flowers 102] with 1k flower photos.
 
@@ -108,7 +108,7 @@ Of course, the most exciting models today don't just generate an image from a si
 Models like Stable Diffusion or Imagen can parse complex natural language descriptions to generate entire novel photorealistic images.
 Good text-to-image models require training images with rich captions describing them.
 Early [GAN-based text-to-image models](http://proceedings.mlr.press/v48/reed16.pdf) collected human-written descriptions of the images in the Birds and Flowers datasets.
-[MS-COCO](https://cocodataset.org/#home) (2015), a dataset intended for image captioning research, was also co-opted to be used in reverse, its examples flipped to generate an image from a caption.
+[MS-COCO](https://cocodataset.org/#home) (2015), a dataset intended for image captioning research, was also co-opted to be used in reverse--its examples were flipped so that models would generate an image from a caption.
 
 
 Like in Language research, it quickly became clear that larger datasets resulted in superior models.
@@ -128,7 +128,7 @@ This is the dataset most state-of-the-art, open-source, text-to-image models are
 # Trends in Today’s Datasets {#today-datasets}
 
 The datasets used to train today’s large language models are massive and predominantly contain data scraped from the web.^[The Pile, ROOTS, and Chinchilla all combine data scraped from the web with additional more-curated data sources.] Among popular language datasets, the Pile and C4 are both 800GB; [ROOTS]((https://huggingface.co/bigscience/bloom#training-data)) is 1.6TB of pre-processed text, and the unreleased dataset Chinchilla used for training is 5.3 TB.^[The number reported in their [paper](https://arxiv.org/abs/2203.15556) was 1.4T tokens, or 4x the training data for a different language model, Gopher, which used 300B tokens. For [Gopher](https://arxiv.org/abs/2112.11446), they sampled 12.8% of the dataset _MassiveText_ that contains 10.5TB of data. 0.128 * 4 * 10.5TB = 5.3TB]
-In this section, we describe some of the ramifications of datasets that are too large for their creators to manually inspect each data point, let alone add additional annotations.
+In this section, we describe some of the ramifications of datasets that are too large for their creators to manually inspect each data point.
 We'll compare modern datasets with MNIST, the quintessential small dataset in machine learning.^[Over 6000 papers cite MNIST directly and a Google Scholar search returned 76,900 articles that mention MNIST. MNIST has become synonymous with "small, standard dataset" so other datasets like Fashion-MNIST, which has photos of clothing, also appear in the search results.] 
 
 
@@ -144,16 +144,17 @@ If the dataset creator wanted to create a model that was able to give coding adv
 But Wikipedia isn’t conversational. If interactions with the generative model are meant to feel fluid and natural, then the dataset creator may choose to add chat data, such as Youtube Subtitles, HackerNews conversations, or Twitter. 
 For both image and language datasets, creators can also make the decision to scrape from a crawl of the entire internet, rather than specifically seeking out certain websites or domains.
 
-Language composition is another important question. Should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages?
-That particular question actually hides even more choices. If an English sentence includes a single Italian word, is that sentence English or Italian? What about the sentence, "I walked from campo dei fiori to santa Maria degli angeli?" Additionally, many situations are contextual and cultural. Before René Magritte’s 1929 painting, we would have said "Ceci n'est pas une pipe" was French, but today, it would also be commonly understood by many English speakers.
+The composition of languages within a dataset is another important question. Should the dataset be primarily one language? Should it include an equal balance across as many languages as possible? What about an unequal balance across languages?
+That question obscures even more choices. If an English sentence includes a single Italian word, is that sentence English or Italian? What about the sentence, "I walked from campo dei fiori to santa Maria degli angeli?" Additionally, many situations are contextual and cultural. Before René Magritte’s 1929 painting, we would have said "Ceci n'est pas une pipe" was French, but today, it would also be commonly understood by many English speakers.
 
 <figure style="text-align:center;">
   <img src="images/pipe.jpeg" alt="Ceci n’est pas une pipe" style="width:50%;">
   <figcaption>Est-ce French? Is this l'anglais?</figcaption>
 </figure>
 
-During the data collection process, creators make dozens of these choices about what data is relevant, and the impact of those choices on generations from the model is not well understood. 
+During the data collection process, creators make dozens of choices about what data is relevant. 
 We know that the balance of genres in a dataset affects the resulting model's knowledge and ability.^[A model trained on Project Gutenberg, whose most recent entires are from the 1920s, will clearly be much worse at reciting recent facts that one trained on Wikipedia.] 
+But, the exactly how those choices would impact generations from the model is not well understood. 
 As much as we would like to back each data selection decision by science, it’s cost- and compute- prohibitive to run a different experiment for each decision. 
 Thus, many of these decisions are just choices the dataset creator makes, without much validation.
 
